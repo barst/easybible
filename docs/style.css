@@ -235,6 +235,118 @@ h1 {
 .theme-deuteronomy .range { color: #C62828; }
 .theme-deuteronomy .verse { color: #880E4F; }
 
+/* --- Theme for Jeremiah --- */
+.theme-jeremiah h1 { color: #6A1B9A; } /* Deep Purple */
+.theme-jeremiah .card { background: linear-gradient(135deg, #f3e5f5, #ffffff); }
+.theme-jeremiah .title { color: #6A1B9A; }
+.theme-jeremiah .range { color: #7B1FA2; }
+.theme-jeremiah .verse { color: #4A148C; }
+
+/* --- Theme for Lamentations --- */
+.theme-lamentations h1 { color: #B71C1C; } /* Deep Red */
+.theme-lamentations .card { background: linear-gradient(135deg, #ffebee, #ffffff); }
+.theme-lamentations .title { color: #B71C1C; }
+.theme-lamentations .range { color: #C62828; }
+.theme-lamentations .verse { color: #880E4F; }
+
+/* --- Theme for Ezekiel --- */
+.theme-ezekiel h1 { color: #0D47A1; } /* Deep Blue */
+.theme-ezekiel .card { background: linear-gradient(135deg, #e3f2fd, #ffffff); }
+.theme-ezekiel .title { color: #0D47A1; }
+.theme-ezekiel .range { color: #1565C0; }
+.theme-ezekiel .verse { color: #1A237E; }
+
+/* --- Theme for Daniel --- */
+.theme-daniel h1 { color: #2E7D32; } /* Strong Green */
+.theme-daniel .card { background: linear-gradient(135deg, #e8f5e9, #ffffff); }
+.theme-daniel .title { color: #2E7D32; }
+.theme-daniel .range { color: #388E3C; }
+.theme-daniel .verse { color: #1B5E20; }
+
+/* --- Theme for Hosea --- */
+.theme-hosea h1 { color: #880E4F; } /* Pink */
+.theme-hosea .card { background: linear-gradient(135deg, #fce4ec, #ffffff); }
+.theme-hosea .title { color: #880E4F; }
+.theme-hosea .range { color: #AD1457; }
+.theme-hosea .verse { color: #C2185B; }
+
+/* --- Theme for Joel --- */
+.theme-joel h1 { color: #4CAF50; } /* Green */
+.theme-joel .card { background: linear-gradient(135deg, #e8f5e9, #ffffff); }
+.theme-joel .title { color: #4CAF50; }
+.theme-joel .range { color: #66BB6A; }
+.theme-joel .verse { color: #388E3C; }
+
+/* --- Theme for Amos --- */
+.theme-amos h1 { color: #FF6F00; } /* Amber */
+.theme-amos .card { background: linear-gradient(135deg, #fff8e1, #ffffff); }
+.theme-amos .title { color: #FF6F00; }
+.theme-amos .range { color: #FF8F00; }
+.theme-amos .verse { color: #E65100; }
+
+/* --- Theme for Obadiah --- */
+.theme-obadiah h1 { color: #3E2723; } /* Brown */
+.theme-obadiah .card { background: linear-gradient(135deg, #efebe9, #ffffff); }
+.theme-obadiah .title { color: #3E2723; }
+.theme-obadiah .range { color: #4E342E; }
+.theme-obadiah .verse { color: #5D4037; }
+
+/* --- Theme for Jonah --- */
+.theme-jonah h1 { color: #00BCD4; } /* Cyan */
+.theme-jonah .card { background: linear-gradient(135deg, #e0f7fa, #ffffff); }
+.theme-jonah .title { color: #00BCD4; }
+.theme-jonah .range { color: #00ACC1; }
+.theme-jonah .verse { color: #00838F; }
+
+/* --- Theme for Micah --- */
+.theme-micah h1 { color: #673AB7; } /* Deep Purple */
+.theme-micah .card { background: linear-gradient(135deg, #ede7f6, #ffffff); }
+.theme-micah .title { color: #673AB7; }
+.theme-micah .range { color: #7E57C2; }
+.theme-micah .verse { color: #5E35B1; }
+
+/* --- Theme for Nahum --- */
+.theme-nahum h1 { color: #D32F2F; } /* Red */
+.theme-nahum .card { background: linear-gradient(135deg, #ffebee, #ffffff); }
+.theme-nahum .title { color: #D32F2F; }
+.theme-nahum .range { color: #E53935; }
+.theme-nahum .verse { color: #C62828; }
+
+/* --- Theme for Habakkuk --- */
+.theme-habakkuk h1 { color: #424242; } /* Grey */
+.theme-habakkuk .card { background: linear-gradient(135deg, #e0e0e0, #ffffff); }
+.theme-habakkuk .title { color: #424242; }
+.theme-habakkuk .range { color: #616161; }
+.theme-habakkuk .verse { color: #757575; }
+
+/* --- Theme for Zephaniah --- */
+.theme-zephaniah h1 { color: #5C6BC0; } /* Indigo */
+.theme-zephaniah .card { background: linear-gradient(135deg, #e8eaf6, #ffffff); }
+.theme-zephaniah .title { color: #5C6BC0; }
+.theme-zephaniah .range { color: #7986CB; }
+.theme-zephaniah .verse { color: #3F51B5; }
+
+/* --- Theme for Haggai --- */
+.theme-haggai h1 { color: #795548; } /* Brown */
+.theme-haggai .card { background: linear-gradient(135deg, #efebe9, #ffffff); }
+.theme-haggai .title { color: #795548; }
+.theme-haggai .range { color: #8D6E63; }
+.theme-haggai .verse { color: #6D4C41; }
+
+/* --- Theme for Zechariah --- */
+.theme-zechariah h1 { color: #4CAF50; } /* Green */
+.theme-zechariah .card { background: linear-gradient(135deg, #e8f5e9, #ffffff); }
+.theme-zechariah .title { color: #4CAF50; }
+.theme-zechariah .range { color: #66BB6A; }
+.theme-zechariah .verse { color: #388E3C; }
+
+/* --- Theme for Malachi --- */
+.theme-malachi h1 { color: #BF360C; } /* Deep Orange */
+.theme-malachi .card { background: linear-gradient(135deg, #fbe9e7, #ffffff); }
+.theme-malachi .title { color: #BF360C; }
+.theme-malachi .range { color: #D84315; }
+.theme-malachi .verse { color: #A1887F; }
+
 /* --- Theme for Isaiah --- */
 .theme-isaiah h1 { color: #4a0072; } /* Deep Purple */
 .theme-isaiah .card { background: linear-gradient(135deg, #f3e5f5, #ffffff); }

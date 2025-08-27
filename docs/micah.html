@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>彌迦書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-micah">
+  <h1>彌迦書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《彌迦書》是舊約小先知書的第六卷，先知彌迦與以賽亞同期，向猶大和以色列傳講信息。本書的核心主題是「神的公義」與「彌賽亞的盼望」。彌迦嚴厲地斥責了當時社會中的不公義、壓迫窮人、虛假的宗教和腐敗的領袖。他宣告神對這些罪惡的審判是不可避免的，耶路撒冷將被毀。然而，在審判的信息中，也穿插著神對最終復興的應許，特別是關於彌賽亞將從伯利恆而出，以及神對祂子民的憐憫和赦免。本書是理解神對社會公義要求和彌賽亞預言的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "神對以色列和猶大的審判",
+    range: "彌1-3章",
+    keypoint: "彌迦宣告神將審判撒馬利亞和耶路撒冷，因為他們的偶像崇拜、社會不公和領袖的腐敗。",
+    verse: "耶和華從他的聖殿出來，降臨步行在地的高處。（彌1:3）",
+    detail: "彌迦書以神從天而降，審判祂子民的罪惡開篇。他嚴厲地斥責了北國以色列的首都撒馬利亞和南國猶大的首都耶路撒冷的罪行，包括偶像崇拜、對窮人的壓迫、虛假的先知和腐敗的領袖。神宣告，這些城市將被毀滅，百姓將被擄，因為他們離棄了神的公義。"
+  },
+  {
+    title: "彌賽亞的降生與和平國度",
+    range: "彌4-5章",
+    keypoint: "預言末後的日子，神的殿必堅立，萬民歸向祂；彌賽亞將從伯利恆而出，祂必牧養以色列。",
+    verse: "伯利恆以法他啊，你在猶大諸城中為小，將來必有一位從你那裡出來，在以色列中為我作掌權的；他的根源從亙古，從太初就有。（彌5:2）",
+    detail: "在審判的信息中，彌迦書穿插了榮耀的彌賽亞預言。他預言在末後的日子，神的殿必堅立，萬民將歸向祂，學習祂的道，不再有戰爭。更重要的是，他精確地預言了彌賽亞將從猶大地的伯利恆而出，祂將牧養以色列，帶來真正的平安。這預言在耶穌基督身上得到了應驗。"
+  },
+  {
+    title: "神所要的是什麼？",
+    range: "彌6章",
+    keypoint: "神所要的不是獻祭，而是行公義，好憐憫，存謙卑的心與神同行。",
+    verse: "世人哪，耶和華已指示你何為善。他向你所要的是什麼呢？只要你行公義，好憐憫，存謙卑的心與你的神同行。（彌6:8）",
+    detail: "這是彌迦書中最著名的經文之一，也是舊約先知信息的核心。神透過與以色列的爭辯，指出祂所要的不是外在的儀式或獻祭，而是內心的轉變和實際的行動。行公義、好憐憫、存謙卑的心與神同行，這才是神對祂子民的真正要求，也是真正敬拜的體現。"
+  },
+  {
+    title: "神的憐憫與赦免",
+    range: "彌7章",
+    keypoint: "先知為百姓的罪哀嘆，但最終宣告神是樂意赦免罪孽、不永遠懷怒的神。",
+    verse: "神啊，有何神像你，赦免罪孽，饒恕你產業中餘民的罪過？他不永遠懷怒，喜愛施恩。（彌7:18）",
+    detail: "彌迦書以先知對百姓罪惡的哀嘆開篇，他看見社會的敗壞，甚至連義人也從地上滅絕。然而，在絕望中，先知將目光轉向神。他宣告神是獨一無二的，祂樂意赦免罪孽，不永遠懷怒，因為祂喜愛施恩。神將再次憐憫祂的子民，將他們的罪惡拋入深海，並信守祂對亞伯拉罕和雅各的應許。這為全書帶來了最終的盼望。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那施行公義又樂意施恩的耶和華神，藉著彌迦書的真理，使您更深認識祂對社會公義的要求。願您能行公義，好憐憫，存謙卑的心與神同行，並在祂的應許中，堅信祂的憐憫永不改變，直到彌賽亞的國度降臨。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

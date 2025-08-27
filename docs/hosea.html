@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>何西阿書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-hosea">
+  <h1>何西阿書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《何西阿書》是舊約小先知書的第一卷，先知何西阿在北國以色列滅亡前夕傳講信息。本書的核心主題是「神的慈愛」與「以色列的背叛」。神命令何西阿娶一個淫婦為妻，並生下兒女，以象徵神與以色列之間如同夫妻的盟約關係。以色列如同不貞的妻子，離棄神去隨從偶像，但神卻始終以不變的愛來呼喚他們回轉。本書充滿了神對以色列的深情呼喚、對罪惡的審判，以及對最終復興的應許。它是理解神盟約之愛的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "先知的婚姻與以色列的背叛",
+    range: "何1-3章",
+    keypoint: "神命令何西阿娶淫婦歌篾為妻，並生下兒女，以象徵神與以色列之間如同夫妻的盟約關係，以及以色列的背叛。",
+    verse: "耶和華對何西阿說：『你去娶淫婦為妻，也收那從淫亂所生的兒女；因為這地大行淫亂，離棄耶和華。』（何1:2）",
+    detail: "何西阿的婚姻是神對以色列深情之愛的活生生寫照。歌篾的不貞象徵著以色列對神的背叛和偶像崇拜。神透過兒女的名字（耶斯列、羅路哈瑪、羅阿米）預言了對以色列的審判。然而，即使在審判中，神也應許將來要再次憐憫和恢復他們，重新與他們立約，使他們歸回。"
+  },
+  {
+    title: "神對以色列的控訴與審判",
+    range: "何4-10章",
+    keypoint: "神控訴以色列的罪惡，包括缺乏真知識、道德敗壞、偶像崇拜和政治聯盟，預言將有審判臨到。",
+    verse: "我的民因無知識而滅亡。你棄掉知識，我也必棄掉你，使你不再給我作祭司。（何4:6）",
+    detail: "這部分充滿了神對以色列的嚴厲控訴。他們缺乏對神的真知識，道德敗壞，祭司和百姓都陷入罪惡。他們在政治上依靠外邦勢力，而不是依靠神。神預言將有饑荒、刀劍、瘟疫和被擄的審判臨到他們，因為他們離棄了活水的源頭，轉去隨從虛無的偶像。"
+  },
+  {
+    title: "神不變的愛與呼喚回轉",
+    range: "何11章",
+    keypoint: "神回顧祂對以色列的慈愛，如同父親教導孩子走路，卻因以色列的悖逆而心如刀割，但祂的愛仍不改變。",
+    verse: "我怎能捨棄你？以色列啊，我怎能棄絕你？我怎能使你如押瑪？怎能使你如洗扁？我回心轉意，我的憐愛大大發動。（何11:8）",
+    detail: "這是何西阿書中最感人的一章，顯明了神那份超越人理解的慈愛。神回顧祂如何從埃及呼召以色列，如同父親教導孩子走路，用慈繩愛索牽引他們。然而，以色列卻不斷地背叛。神的心為此極其痛苦，但祂的憐愛大大發動，不願徹底毀滅他們。這份不變的愛，是神呼喚以色列回轉的動力。"
+  },
+  {
+    title: "呼喚回轉與最終的復興",
+    range: "何12-14章",
+    keypoint: "神呼喚以色列回轉歸向祂，應許將來要醫治他們的背道，愛他們，使他們如同百合花、橄欖樹般復興。",
+    verse: "以色列啊，你要歸向耶和華你的神；你是因自己的罪孽跌倒了。當歸向耶和華，用言語禱告他說：『求你除淨我們的一切罪孽，悅納我們，使我們將嘴唇的祭代替牛犢獻上。』（何14:1-2）",
+    detail: "何西阿書以神對以色列深情的呼喚作結。神應許，只要以色列願意回轉歸向祂，祂就必醫治他們的背道，重新愛他們。他們將如同百合花般開放，如同黎巴嫩的香柏樹般扎根，如同橄欖樹般茂盛。這最終的復興，是神對祂盟約子民不變的信實和慈愛的彰顯，也是對所有願意悔改歸向祂的人的應許。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那以慈繩愛索牽引您的耶和華神，藉著何西阿書的真理，使您更深認識祂那永不改變的愛。願您在祂的愛中回轉歸向祂，經歷祂醫治的恩典，並在祂的信實中，得著生命的復興。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>耶利米書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-jeremiah">
+  <h1>耶利米書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《耶利米書》是舊約篇幅最長的先知書之一，記錄了先知耶利米在猶大國滅亡前夕，向百姓傳講神信息的事蹟。耶利米被稱為「哭泣的先知」，因為他親眼目睹了猶大國的敗壞、耶路撒冷的陷落和百姓被擄的悲劇。本書充滿了神對猶大百姓罪惡的嚴厲審判，對假先知的斥責，以及對百姓悔改的深情呼喚。然而，在審判的信息中，也穿插著神對未來新約的應許，預示了神將來要恢復祂的子民，並將律法寫在他們心版上。本書是理解猶大國滅亡歷史和神公義與慈愛的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "先知的蒙召與猶大的罪惡",
+    range: "耶1-6章",
+    keypoint: "耶利米蒙召作列國的先知，神揭露猶大百姓的背道、偶像崇拜和道德敗壞，預言將有從北方來的審判。",
+    verse: "我未將你造在腹中，我已認識你；你未出母胎，我已分別你為聖；我已派你作列國的先知。（耶1:5）",
+    detail: "耶利米在年輕時蒙召，承擔了向悖逆的百姓傳講神審判信息的艱鉅任務。神透過各種比喻（如破裂的池子、變質的葡萄樹）揭露猶大百姓的罪惡，他們離棄活水的源頭，轉去敬拜偶像。神預言將有從北方來的敵人（巴比倫）作為祂審判的工具，耶路撒冷將面臨圍困和毀滅。"
+  },
+  {
+    title: "聖殿的虛假安全感與新約的應許",
+    range: "耶7-10章",
+    keypoint: "耶利米在聖殿門口傳講信息，斥責百姓對聖殿的虛假倚靠；神應許將來要與以色列家和猶大家另立新約。",
+    verse: "耶和華說：『日子將到，我要與以色列家和猶大家另立新約。』（耶31:31）",
+    detail: "百姓錯誤地以為只要有聖殿在，他們就安全了。耶利米嚴厲地指出，如果他們不悔改，聖殿也將被毀。在審判的信息中，神也透過耶利米發出了關於新約的應許，這是一個內在的約，神將把律法寫在百姓的心版上，使他們真正認識神。"
+  },
+  {
+    title: "先知的苦難與神的審判",
+    range: "耶11-20章",
+    keypoint: "耶利米因傳講神的信息而遭受逼迫、嘲笑和囚禁，但他仍忠心傳講神對猶大和列國的審判。",
+    verse: "耶和華啊，你曾勸導我，我也聽了你的勸導。你比我有力量，且勝了我。我終日成為笑話，人人都戲弄我。（耶20:7）",
+    detail: "耶利米的一生充滿了苦難和孤獨，他被稱為『哭泣的先知』。他因傳講不受歡迎的審判信息而遭到同胞的排斥、逼迫和囚禁。他甚至向上帝抱怨，但他最終仍然忠於神的呼召。這部分也記錄了神對猶大和周邊列國的審判信息，顯明神掌管歷史。"
+  },
+  {
+    title: "猶大國的滅亡與被擄",
+    range: "耶21-39章",
+    keypoint: "神預言猶大國將被巴比倫所滅，耶路撒冷將被毀，百姓將被擄，並勸百姓順服巴比倫。",
+    verse: "耶和華如此說：『為巴比倫所定的七十年滿了以後，我要眷顧你們，向你們成就我的恩言，使你們回到這地方。』（耶29:10）",
+    detail: "耶利米在猶大國滅亡前夕，不斷勸告百姓順服巴比倫，因為這是神的旨意。然而，百姓和假先知卻拒絕聽從。最終，耶路撒冷被攻陷，聖殿被毀，百姓被擄到巴比倫。但在這悲劇中，神也透過耶利米發出了盼望的信息：七十年後，祂將使被擄的百姓歸回。"
+  },
+  {
+    title: "餘民的歸回與新約的應許",
+    range: "耶40-52章",
+    keypoint: "記錄了猶大被擄後的餘民狀況，以及神對列國的審判，再次強調新約的應許。",
+    verse: "耶和華說：『日子將到，我要使大衛公義的苗裔興起；他必掌王權，行事有智慧，在地上施行公平和公義。』（耶23:5）",
+    detail: "這部分記錄了猶大被擄後的餘民在本地和埃及的狀況，以及神對埃及、非利士、摩押、亞捫、以東、大馬士革、基達、夏瑣、以攔和巴比倫等列國的審判。在這些審判的信息中，神再次強調了祂對以色列的恢復和新約的應許，預言將來要興起一位公義的苗裔，就是彌賽亞，祂將帶來真正的公平和公義。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那鑒察人心、施行公義的耶和華神，藉著耶利米書的真理，使您更深認識祂的聖潔與慈愛。願您在祂的審判中看見祂的公義，在祂的應許中得著盼望，並在祂的新約裡，經歷祂將律法寫在您心版上的恩典。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

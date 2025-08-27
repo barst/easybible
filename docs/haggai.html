@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哈該書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-haggai">
+  <h1>哈該書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《哈該書》是舊約小先知書的第十卷，先知哈該在猶大百姓從巴比倫被擄歸回後，向他們傳講信息。當時，百姓雖然已經歸回，但聖殿的重建工作卻因各種困難和百姓的冷淡而停滯了十多年。哈該書的核心主題是「重建聖殿」與「神的榮耀」。哈該以其簡潔有力的信息，激勵百姓重新投入聖殿的建造，並應許神將會與他們同在，使後來的榮耀大過先前的榮耀。本書是理解被擄歸回時期神學和神對祂子民優先次序要求的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "重建聖殿的呼召",
+    range: "該1章",
+    keypoint: "哈該呼籲百姓反思為何自己的房屋華美，而神的殿卻荒涼，激勵他們重新投入聖殿的重建工作。",
+    verse: "這殿仍然荒涼，你們自己還住有天花板的房屋嗎？（該1:4）",
+    detail: "哈該書以一個尖銳的問題開篇，直指百姓的優先次序錯誤。他們忙於建造自己的房屋，卻任由神的殿荒涼。哈該指出，百姓生活中的貧困和不順，正是因為他們沒有將神的事放在首位。神應許，只要他們重新投入聖殿的建造，祂就必與他們同在，並賜下祝福。"
+  },
+  {
+    title: "後來的榮耀大過先前的榮耀",
+    range: "該2章",
+    keypoint: "神應許聖殿後來的榮耀將大過先前的榮耀，並應許震動天地，使萬國的珍寶都歸於這殿。",
+    verse: "這殿後來的榮耀必大過先前的榮耀；在這地方我必賜平安。這是萬軍之耶和華說的。（該2:9）",
+    detail: "面對百姓對新聖殿規模不如所羅門聖殿的失望，神透過哈該應許，祂將震動天地，使萬國的珍寶都歸於這殿，使後來的榮耀大過先前的榮耀。這不僅指物質上的榮耀，更指向彌賽亞的降臨。神也應許與省長所羅巴伯同在，堅固他的手，使他成為神的印記。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那激勵百姓重建聖殿的耶和華神，藉著哈該書的真理，使您更深認識祂對您生命優先次序的要求。願您能將神的事放在首位，熱心為祂做工，並在祂的應許中，經歷祂的同在與祝福，使後來的榮耀大過先前的榮耀。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

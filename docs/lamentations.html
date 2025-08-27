@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>耶利米哀歌的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-lamentations">
+  <h1>耶利米哀歌的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《耶利米哀歌》是舊約中的一卷詩歌書，傳統上認為是先知耶利米所寫。本書以五首哀歌的形式，描繪了耶路撒冷在巴比倫入侵後被毀的悲慘景象，以及猶大百姓被擄的深切痛苦。它充滿了對神公義審判的承認、對罪惡的悔恨、對苦難的哀嘆，以及在絕望中對神憐憫和信實的微弱盼望。耶利米哀歌不僅是歷史事件的悲痛記錄，更是人類在極端苦難中，向神發出的真實呼求，展現了信仰在破碎中的掙扎與堅持。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "耶路撒冷的孤單與悲慘",
+    range: "哀1章",
+    keypoint: "描繪耶路撒冷被毀後的孤單、荒涼和悲慘景象，如同寡婦般哭泣，無人安慰。",
+    verse: "先前滿有人民的城，現在何竟獨坐！先前在列國中為大的，現在何竟像寡婦！先前在諸省中為王后的，現在何竟成了進貢的！（哀1:1）",
+    detail: "第一首哀歌以擬人化的手法，將耶路撒冷描繪成一位失去一切、孤單哭泣的婦人。城牆被毀，百姓被擄，昔日的榮華蕩然無存。這章充滿了對過去輝煌的追憶和對現今悲慘的哀嘆，承認這一切都是因著自己的罪惡，神公義的審判臨到。"
+  },
+  {
+    title: "神的忿怒與審判",
+    range: "哀2章",
+    keypoint: "強調耶路撒冷的毀滅是出於耶和華的忿怒，祂親自施行審判，沒有絲毫憐憫。",
+    verse: "主發烈怒，把錫安城的華美從天拋到地上。以色列的榮耀，他也不再記念；在他發怒的日子，將殿和祭壇一併拆毀。（哀2:1）",
+    detail: "第二首哀歌將耶路撒冷的毀滅歸因於神的忿怒。先知承認，這不是偶然的災難，而是神對百姓悖逆的公義報應。神沒有收回祂的手，祂的怒氣像火一樣傾倒在城牆、聖殿和百姓身上。這章的語氣更加沉重，強調了神審判的徹底性和無可避免性。"
+  },
+  {
+    title: "在苦難中尋求盼望",
+    range: "哀3章",
+    keypoint: "先知在極深的苦難中，回轉思想神的憐憫和信實，宣告耶和華的慈愛永不斷絕。",
+    verse: "我們不致消滅，是出於耶和華諸般的慈愛；是因他的憐憫不致斷絕。每早晨這都是新的；你的誠實極其廣大！我心裡說：『耶和華是我的分，因此，我要仰望他。』（哀3:22-24）",
+    detail: "第三首哀歌是全書的轉捩點，也是盼望的中心。先知從個人的極度痛苦中，回轉思想神的屬性。他承認神的公義，也堅信神的慈愛和憐憫永不改變，每早晨都是新的。儘管身處絕境，他仍選擇仰望神，將耶和華視為他唯一的盼望和產業。這章為所有在苦難中的人提供了巨大的安慰。"
+  },
+  {
+    title: "昔日的榮耀與今日的羞辱",
+    range: "哀4章",
+    keypoint: "對比耶路撒冷昔日的輝煌與今日的悲慘，特別是貴冑和孩童的遭遇，顯明罪惡帶來的徹底敗壞。",
+    verse: "錫安的眾子，素來是精金，現在何竟被看為瓦器，就是窯匠手所做的？（哀4:2）",
+    detail: "第四首哀歌再次對比了耶路撒冷昔日的榮耀和現今的羞辱。曾經如同精金的貴冑，如今卻像瓦器般被踐踏；曾經在街上玩耍的孩童，如今卻因飢餓而倒斃。這章特別強調了罪惡所帶來的徹底敗壞，連祭司和先知也未能倖免。然而，在悲痛中，先知也預言了以東的報應和錫安的恢復。"
+  },
+  {
+    title: "向神的呼求與懇求",
+    range: "哀5章",
+    keypoint: "百姓向神發出集體的呼求，承認自己的罪，懇求神恢復他們，使他們歸回。",
+    verse: "耶和華啊，求你使我們向你回轉，我們就得以回轉。求你復新我們的日子，像古時一樣。（哀5:21）",
+    detail: "第五首哀歌是百姓集體的禱告，他們向神傾訴自己的苦難：產業被奪，婦女受辱，年輕人被擄，長老受辱。他們承認這一切都是因著自己的罪。在絕望中，他們仍緊抓住神的憐憫，懇求神不要永遠丟棄他們，而是能復興他們，使他們的日子像古時一樣。這是一個在破碎中仍不放棄對神盼望的禱告。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那在苦難中仍不離棄我們的耶和華神，藉著耶利米哀歌的真理，使您在悲傷中看見祂的憐憫，在絕望中抓住祂的信實。願您能將一切的痛苦向祂傾訴，並在祂諸般的慈愛中，得著新的盼望與力量。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

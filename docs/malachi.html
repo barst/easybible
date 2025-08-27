@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>瑪拉基書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-malachi">
+  <h1>瑪拉基書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《瑪拉基書》是舊約聖經的最後一卷書，也是舊約與新約之間「四百年沉默期」前的最後一個先知聲音。先知瑪拉基在猶大百姓從巴比倫被擄歸回後，聖殿重建完成，但百姓的信仰卻陷入冷淡、形式化和道德敗壞的時期傳講信息。本書的核心主題是「神對以色列不變的愛」與「百姓的背叛」。瑪拉基以一系列的問答形式，揭露了百姓對神的輕蔑、對律法的違背、對什一奉獻的虧欠，以及對婚姻的不忠。然而，在嚴厲的指責中，神也應許將來要差遣使者為彌賽亞預備道路，並宣告祂將來要施行審判和潔淨。本書是理解舊約律法和新約福音之間橋樑的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "神對以色列的愛與百姓的輕蔑",
+    range: "瑪1章",
+    keypoint: "神宣告祂愛雅各，惡以掃；百姓卻質疑神的愛，並以污穢的祭物輕蔑神。",
+    verse: "耶和華說：『我曾愛你們。』你們卻說：『你在何事上愛我們呢？』耶和華說：『以掃不是雅各的哥哥嗎？我卻愛雅各，惡以掃。』（瑪1:2-3）",
+    detail: "瑪拉基書以神對以色列不變的愛開篇，但百姓卻對此提出質疑。神透過對雅各和以掃的揀選，再次證明祂的愛是主權的。然而，百姓卻以污穢的祭物獻給神，輕蔑神的聖潔。神嚴厲地斥責祭司和百姓，因為他們沒有將最好的獻給神，這顯明了他們內心的冷淡和對神的輕視。"
+  },
+  {
+    title: "對祭司和百姓的指責",
+    range: "瑪2章",
+    keypoint: "神指責祭司沒有遵守盟約，偏離正道；百姓在婚姻上不忠，離棄幼年所娶的妻。",
+    verse: "所以你們當謹守你們的心，誰也不可以詭詐待幼年所娶的妻。（瑪2:15）",
+    detail: "瑪拉基繼續指責祭司沒有忠於他們的職責，沒有按神的律法教導百姓，反而使許多人在律法上跌倒。神宣告將有審判臨到他們。接著，他轉向百姓，指責他們在婚姻上的不忠，離棄幼年所娶的妻，這在神眼中是極其可憎的。神強調祂恨惡離婚，因為這破壞了神所設立的盟約。"
+  },
+  {
+    title: "審判的使者與潔淨的火",
+    range: "瑪3章",
+    keypoint: "神應許將差遣使者為彌賽亞預備道路，祂的降臨如同煉金之人的火，潔淨利未人。",
+    verse: "萬軍之耶和華說：『我必差遣我的使者在我面前預備道路。你們所尋求的主必忽然進入他的殿；立約的使者就是你們所仰慕的，快要來到。』（瑪3:1）",
+    detail: "瑪拉基書預言了彌賽亞降臨前的預備工作。神應許將差遣使者（施洗約翰）為彌賽亞預備道路。彌賽亞的降臨將帶來審判和潔淨，如同煉金之人的火和漂布之人的鹼。祂將潔淨利未人，使他們能以公義獻祭。神也指責百姓在什一奉獻上的虧欠，並應許只要他們將當納的十分之一全然送入倉庫，神就必為他們敞開天上的窗戶，傾福與他們。"
+  },
+  {
+    title: "耶和華的日子與公義的日頭",
+    range: "瑪4章",
+    keypoint: "耶和華的日子將臨，惡人將被焚燒，而敬畏神名的人必有公義的日頭出現，其光線有醫治之能。",
+    verse: "但向你們敬畏我名的人必有公義的日頭出現，其光線有醫治之能。你們必出來跳躍如圈裡的肥犢。（瑪4:2）",
+    detail: "瑪拉基書以一個關於『耶和華大而可畏之日』的預言作結。惡人將被焚燒，如同碎秸。然而，對於那些敬畏神名的人，必有『公義的日頭』出現，其光線有醫治之能。這『公義的日頭』預表了彌賽亞耶穌基督。神也應許在耶和華大而可畏之日未到以前，差遣先知以利亞（施洗約翰）來轉化人心。瑪拉基書以這個應許結束，為舊約時代畫上了句號，也為新約的到來留下了懸念和盼望。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那愛您、鑒察人心的耶和華神，藉著瑪拉基書的真理，使您更深認識祂的公義與慈愛。願您能將最好的獻給祂，在祂的應許中，經歷祂的潔淨與祝福，並在等候公義日頭出現的日子裡，活出敬畏祂名的生命。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

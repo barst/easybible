@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哈巴谷書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-habakkuk">
+  <h1>哈巴谷書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《哈巴谷書》是舊約小先知書的第八卷，先知哈巴谷在猶大國面臨巴比倫威脅的時期傳講信息。本書的獨特之處在於，它不是神向百姓說話，而是先知哈巴谷向神發出疑問和抱怨。哈巴谷對神為何容忍猶大國的罪惡和不公感到困惑，更不解神為何要使用更邪惡的巴比倫來懲罰猶大。神回應了先知的疑問，並宣告「義人必因信得生」。本書是理解在苦難和不解中，如何憑信心仰望神公義和主權的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "先知的疑問與神的回答",
+    range: "哈1-2章",
+    keypoint: "哈巴谷質疑神為何容忍猶大的罪惡和不公，神回答將興起巴比倫來懲罰猶大；哈巴谷再問神為何使用更邪惡的巴比倫，神宣告『義人必因信得生』。",
+    verse: "惟義人因信得生。（哈2:4）",
+    detail: "哈巴谷書以先知向神的抱怨開篇。他首先質疑神為何容忍猶大國的罪惡和不公。神回答說，祂將興起殘暴的巴比倫來懲罰猶大。這讓哈巴谷更加困惑：神為何要使用比猶大更邪惡的國家來施行審判？神的回應是：『義人必因信得生』。這句話成為了新約保羅神學的核心，強調在一切不解和苦難中，信徒唯有憑信心仰望神的主權和公義。"
+  },
+  {
+    title: "先知的禱告與信心的凱歌",
+    range: "哈3章",
+    keypoint: "哈巴谷在苦難中向神禱告，回顧神在歷史中的大能作為，最終宣告即使環境惡劣，他仍要因耶和華歡欣。",
+    verse: "雖然無花果樹不發旺，葡萄樹不結果，橄欖樹也不效力，田地不出糧食，圈中絕了羊，棚內也沒有牛；然而，我要因耶和華歡欣，因救我的神喜樂。（哈3:17-18）",
+    detail: "哈巴谷書以一首壯麗的禱告詩作結。先知回顧了神在歷史中施行審判和拯救的大能作為，這堅固了他的信心。儘管他預見了國家將面臨的災難和貧困，但他選擇超越眼前的困境，憑信心仰望神。他宣告，即使在最惡劣的環境下，他仍要因耶和華歡欣，因救他的神喜樂。這是一個在苦難中憑信心得勝的凱歌。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那在苦難中仍掌權的耶和華神，藉著哈巴谷書的真理，使您在不解和困惑中，仍能憑信心仰望祂的公義與主權。願您能像先知一樣，即使環境惡劣，仍要因救您的神喜樂，活出因信得生的生命。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

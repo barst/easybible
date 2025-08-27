@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>約拿書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-jonah">
+  <h1>約拿書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《約拿書》是舊約小先知書中獨特的一卷，它不是先知預言的彙編，而是一個關於先知約拿的敘事故事。神命令約拿去向亞述的首都尼尼微城傳講悔改的信息，但約拿卻因民族仇恨和對神憐憫的誤解而逃避神的呼召。本書的核心主題是「神的普世憐憫」和「人的狹隘」。神透過大魚、蓖麻樹等奇妙事件，教導約拿認識祂那超越民族界限的慈愛，以及祂對所有願意悔改之人的憐憫。約拿書挑戰讀者，去反思自己是否也像約拿一樣，對神的恩典設限。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "約拿的逃避與神的追趕",
+    range: "拿1章",
+    keypoint: "神命令約拿去尼尼微傳道，約拿卻逃往他施，神興起大風浪，約拿被拋入海中，被大魚吞吃。",
+    verse: "耶和華的話臨到亞米太的兒子約拿，說：『你起來，往尼尼微大城去，向其中的居民呼喊，因為他們的惡達到我面前。』約拿卻起來，逃往他施去躲避耶和華。（拿1:1-3）",
+    detail: "約拿書以先知約拿的悖逆開篇。他逃避神的呼召，不願向仇敵尼尼微傳講信息。然而，神卻興起大風浪，追趕約拿。約拿最終被水手拋入海中，被神預備的一條大魚吞吃。這一切都顯明了神的主權和祂對約拿的堅定旨意，祂不會輕易放棄祂所揀選的僕人。"
+  },
+  {
+    title: "魚腹中的禱告與第二次機會",
+    range: "拿2-3章",
+    keypoint: "約拿在魚腹中向神禱告，蒙神拯救；他順服前往尼尼微，尼尼微人悔改，神轉意不降災。",
+    verse: "我遭遇患難求告耶和華，你就應允我；我從陰間的深處呼求，你就俯聽我的聲音。（拿2:2）",
+    detail: "在魚腹中，約拿經歷了死亡的邊緣，他向神發出悔改的禱告，神便使魚將他吐在旱地上。約拿順服地前往尼尼微，傳講神審判的信息。令人驚訝的是，尼尼微全城從君王到百姓都真誠悔改，神也因此轉意，不降所說的災。這顯明了神的憐憫超越了約拿的預期，也超越了人類的罪惡。"
+  },
+  {
+    title: "約拿的憤怒與神的憐憫",
+    range: "拿4章",
+    keypoint: "約拿因神憐憫尼尼微而發怒，神透過蓖麻樹教導約拿認識祂那超越民族界限的慈愛。",
+    verse: "耶和華說：『這蓖麻不是你栽種的，也不是你培養的；一夜發生，一夜枯槁，你尚且愛惜；何況這尼尼微大城，其中有十二萬多不能分辨左手右手的人，並有許多牲畜，我豈能不愛惜呢？』（拿4:10-11）",
+    detail: "約拿因神憐憫尼尼微而感到憤怒和不滿，他甚至求死。神透過一棵蓖麻樹的生長和枯萎，教導約拿認識祂那廣闊無邊的憐憫。神愛所有的人，包括那些約拿所憎恨的仇敵。約拿書以一個開放式的問題結束，挑戰讀者去反思自己是否也像約拿一樣，對神的恩典設限，是否願意與神一同去愛那些我們不喜歡的人。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那滿有憐憫的耶和華神，藉著約拿書的真理，擴張您的心胸，使您能超越狹隘的界限，去愛那些您不喜歡的人。願您能順服神的呼召，傳講祂的真理，並在祂的憐憫中，經歷祂那超越一切的慈愛。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

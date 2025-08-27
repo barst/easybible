@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>西番雅書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-zephaniah">
+  <h1>西番雅書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《西番雅書》是舊約小先知書的第九卷，先知西番雅在猶大王約西亞統治時期傳講信息。當時猶大國雖然經歷了宗教改革，但社會深層的偶像崇拜和道德敗壞依然存在。西番雅書的核心主題是「耶和華的日子」——一個帶來普世性審判的日子，但其中也包含對餘民的拯救和最終復興的應許。西番雅以其嚴厲的語氣，宣告神對猶大和列國的審判是不可避免的，呼籲百姓在審判臨到之前尋求耶和華，謙卑悔改。本書是理解神公義審判和祂對餘民信實的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "普世性的審判",
+    range: "番1章",
+    keypoint: "西番雅宣告耶和華的日子臨近，將帶來對猶大和全地的普世性審判，因為他們的偶像崇拜和道德敗壞。",
+    verse: "耶和華的大日臨近，臨近而且甚快，乃是耶和華日子的聲音；勇士在其中必痛痛地哭號。（番1:14）",
+    detail: "西番雅書以一個嚴厲的警告開篇，宣告『耶和華的大日』即將臨到。這不僅是對猶大，更是對全地的審判。神將徹底清除地上的罪惡，包括偶像崇拜、對巴力神的敬拜、那些不尋求耶和華的人，以及那些在宗教改革中搖擺不定的人。這章強調了神審判的徹底性和不可避免性。"
+  },
+  {
+    title: "列國的審判與餘民的呼召",
+    range: "番2章",
+    keypoint: "神宣告對周邊列國的審判，並呼籲謙卑的餘民在審判臨到之前尋求耶和華。",
+    verse: "世上遵守耶和華典章的謙卑人哪，你們都當尋求耶和華！當尋求公義謙卑，或者在耶和華發怒的日子可以隱藏起來。（番2:3）",
+    detail: "西番雅將審判的範圍擴展到周邊列國，包括非利士、摩押、亞捫、古實和亞述。這些國家因其驕傲和對神子民的敵意而將受到懲罰。然而，在審判的信息中，神也發出了對謙卑餘民的呼召，勸他們在神發怒的日子來臨之前，尋求公義和謙卑，或許可以得到神的隱藏和保護。"
+  },
+  {
+    title: "耶路撒冷的罪惡與最終的復興",
+    range: "番3章",
+    keypoint: "神再次指責耶路撒冷的罪惡，但最終應許將招聚餘民歸回，除去他們的驕傲，使他們在神面前歡樂。",
+    verse: "耶和華你的神是施行拯救、大有能力的主。他在你中間必因你歡欣喜樂，默然愛你，且因你喜樂而歡呼。（番3:17）",
+    detail: "西番雅書的最後一章再次將焦點轉向耶路撒冷，指責其悖逆、不聽從神、不依靠神。然而，在嚴厲的審判之後，神發出了榮耀的復興應許。神將招聚分散的餘民歸回，除去他們的驕傲，使他們成為聖潔的子民。神將親自住在他們中間，因他們歡欣喜樂，並使他們在列國中得著稱讚和名聲。這預言了神最終的救贖和祂國度的降臨。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那施行審判又施行拯救的耶和華神，藉著西番雅書的真理，使您更深認識祂的公義與慈愛。願您在耶和華的日子臨近時，尋求公義謙卑，並在祂的應許中，經歷祂的歡欣喜樂，活出聖潔的生命。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

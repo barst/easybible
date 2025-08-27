@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>約珥書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-joel">
+  <h1>約珥書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《約珥書》是舊約小先知書的第二卷，先知約珥在猶大國面臨蝗災和乾旱的背景下傳講信息。本書的核心主題是「耶和華的日子」——一個既帶來審判也帶來復興的日子。約珥以蝗災為預兆，呼籲百姓要撕裂心腸而非衣服地真誠悔改，並應許神將會賜下聖靈，帶來豐收和復興。本書信充滿了對神審判的警告、對百姓悔改的呼喚，以及對末後聖靈澆灌和神國降臨的榮耀預言。它是理解末世論和聖靈工作的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "蝗災與耶和華的日子",
+    range: "珥1章",
+    keypoint: "約珥以毀滅性的蝗災為預兆，呼籲百姓要為即將來臨的耶和華的日子哀號。",
+    verse: "耶和華的日子臨近了，好像毀滅從全能者來到。（珥1:15）",
+    detail: "約珥書以一場史無前例的蝗災開篇，這場災難不僅摧毀了農作物，也帶來了嚴重的饑荒。先知將這場蝗災視為『耶和華的日子』的預兆，一個神施行審判的日子。他呼籲百姓要為此哀號，並召集全國禁食禱告，以期能轉離神的忿怒。"
+  },
+  {
+    title: "呼籲悔改與神的應許",
+    range: "珥2章",
+    keypoint: "約珥呼籲百姓要撕裂心腸而非衣服地真誠悔改，神應許將會賜下聖靈，帶來豐收和復興。",
+    verse: "你們要撕裂心腸，不撕裂衣服，歸向耶和華你們的神。因為他有恩典，有憐憫，不輕易發怒，有豐盛的慈愛，並且後悔不降所說的災。（珥2:13）",
+    detail: "在蝗災的背景下，約珥發出了真誠悔改的呼籲。他強調，神所要的不是外在的儀式，而是內心的轉變。神應許，只要百姓真誠悔改，祂就必轉意，賜下豐收，並將聖靈澆灌在凡有血氣的身上，使人說預言、見異象、做異夢。這預言在五旬節時得到了應驗。"
+  },
+  {
+    title: "耶和華的日子與列國的審判",
+    range: "珥3章",
+    keypoint: "神將招聚列國到約沙法谷施行審判，並為祂的子民伸冤，最終建立祂的國度。",
+    verse: "因為在那些日子，那時候，我使猶大和耶路撒冷被擄之人歸回的時候，我必聚集萬民，帶他們下到約沙法谷，在那裡施行審判。（珥3:1-2）",
+    detail: "約珥書的最後一章將眼光從蝗災擴展到末後的『耶和華的日子』。神將招聚那些欺壓祂子民的列國到約沙法谷（意為『耶和華審判』）施行審判。神將為祂的子民伸冤，並使猶大和耶路撒冷永遠堅立，成為聖潔。這預言了神最終的勝利和祂國度的降臨，帶來永恆的平安和豐盛。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那掌管萬有、施行審判又滿有憐憫的耶和華神，藉著約珥書的真理，使您更深認識祂的公義與慈愛。願您能真誠悔改，經歷聖靈的澆灌，並在等候耶和華的日子中，滿有盼望地活出聖潔的生命。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

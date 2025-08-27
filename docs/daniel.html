@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>但以理書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-daniel">
+  <h1>但以理書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《但以理書》是舊約中的一卷大先知書，作者是先知但以理，他與其他猶大百姓一同被擄到巴比倫。本書分為兩大部分：前六章（1-6章）是歷史敘事，講述但以理和他的三個朋友在異教君王統治下的忠心見證，以及神對他們的保守和高升。後六章（7-12章）是預言異象，揭示了從巴比倫到末世列國的興衰，以及彌賽亞國度的最終建立。但以理書的核心信息是：儘管世上的國度不斷更迭，但至高者在人的國中掌權，祂的國是永遠的國。本書是理解末世預言和神主權的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "忠心見證與神的保守",
+    range: "但1-6章",
+    keypoint: "但以理和他的三個朋友在巴比倫王宮中持守信仰，神保守他們脫離火窯和獅子坑，並使他們被高升。",
+    verse: "王對但以理說：『你所常事奉的神，他必救你。』（但6:16）",
+    detail: "但以理書的前半部分，透過一系列生動的故事，展現了在異教文化和政治壓力下，忠心信徒如何持守信仰。但以理和他的朋友拒絕王的膳食，在火窯中蒙神保守，但以理在獅子坑中安然無恙。這些事件都證明了至高者在人的國中掌權，祂能保守那些忠於祂的人，並使祂的名在列國中被尊崇。"
+  },
+  {
+    title: "尼布甲尼撒的夢與四個帝國",
+    range: "但2章",
+    keypoint: "但以理為尼布甲尼撒王解夢，預言了從巴比倫到末世的四個帝國的興衰，以及神國的永恆建立。",
+    verse: "那時，天上的神必另立一國，永不敗壞，也不歸別國的人，卻要打碎滅絕那一切國，這國必存到永遠。（但2:44）",
+    detail: "尼布甲尼撒王夢見一個大像，但以理解釋這個像的各部分代表了巴比倫、瑪代波斯、希臘和羅馬四個帝國。最終，一塊非人手鑿出來的石頭（代表神的國）將打碎這個像，並存到永遠。這異象宣告了神對人類歷史的完全掌管，以及祂國度的最終勝利。"
+  },
+  {
+    title: "伯沙撒王的宴樂與牆上的字",
+    range: "但5章",
+    keypoint: "伯沙撒王褻瀆聖物，牆上出現神秘文字，但以理解釋其意，預言巴比倫的滅亡。",
+    verse: "你被稱在天平裡，顯出你的虧欠。（但5:27）",
+    detail: "伯沙撒王在宴樂中褻瀆聖殿器皿，牆上突然出現神秘文字。但以理被召來解釋，指出王因驕傲和不敬畏神而虧欠，他的國度將被瑪代波斯所取代。當夜，巴比倫城陷落，伯沙撒王被殺。這事件再次強調了神對列國的審判，以及祂對歷史的絕對主權。"
+  },
+  {
+    title: "四獸異象與人子降臨",
+    range: "但7章",
+    keypoint: "但以理看見四個巨獸的異象，代表四個帝國，最終有一位像人子的來到，得了永遠的國度。",
+    verse: "我在夜間的異象中觀看，見有一位像人子的，駕著天雲而來，被領到亙古常在者面前，得了權柄、榮耀、國度，使各方、各國、各族的人都事奉他。他的權柄是永遠的，不能廢去；他的國必不敗壞。（但7:13-14）",
+    detail: "但以理看見四個巨獸從海中上來，分別代表巴比倫、瑪代波斯、希臘和羅馬帝國。這些獸都充滿了殘暴和權力慾。然而，異象的高潮是『像人子的』來到，從亙古常在者那裡得了永遠的國度。這『人子』的形象預表了彌賽亞耶穌基督，祂的國度將取代所有世上的國度，存到永遠。"
+  },
+  {
+    title: "七十個七的預言",
+    range: "但9章",
+    keypoint: "但以理為百姓禱告，天使加百列向他啟示『七十個七』的預言，精確預言了彌賽亞的來臨和受死。",
+    verse: "為你本國之民和你聖城，已經定了七十個七。要止住罪過，除淨罪惡，贖盡罪孽，引進永義，封住異象和預言，並膏至聖者。（但9:24）",
+    detail: "但以理為耶路撒冷的荒涼禱告時，天使加百列向他啟示了這個極為重要的預言。它將歷史劃分為精確的時期，預言了彌賽亞的來臨、受死，以及耶路撒冷的重建和最終的毀滅。這個預言是理解舊約彌賽亞預言和新約基督成就救贖的關鍵，也指向了末世的事件。"
+  },
+  {
+    title: "末世的異象與復活的盼望",
+    range: "但10-12章",
+    keypoint: "但以理看見關於末世列國爭戰的異象，以及死人復活的應許。",
+    verse: "你且去等候結局，因為你必安歇。到了末期，你必起來，享受你的分。（但12:13）",
+    detail: "但以理書的最後部分，充滿了關於末世的複雜異象，涉及波斯、希臘、羅馬等帝國的興衰，以及敵基督的出現。這些異象強調了在人類歷史的背後，有屬靈的爭戰在進行。然而，最終的勝利屬於神。但以理書以死人復活的應許作結，給予所有忠心信徒最終的盼望：在末期，他們將從死裡復活，享受神所預備的永恆福分。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那在人的國中掌權的至高者，堅固您的信心。願您在但以理書的預言中，看見神對歷史的完全掌管，並在末世的挑戰中，持守忠心，直到那像人子的來到，享受祂國度裡永遠的福分。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

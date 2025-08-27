@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>撒迦利亞書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-zechariah">
+  <h1>撒迦利亞書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《撒迦利亞書》是舊約小先知書的第十一卷，先知撒迦利亞與哈該同期，在猶大百姓從巴比倫被擄歸回後，向他們傳講信息。本書充滿了異象、象徵和預言，其核心主題是「彌賽亞的降臨」與「耶路撒冷的復興」。撒迦利亞透過一系列的夜間異象，鼓勵百姓重建聖殿，並預言彌賽亞將以君王和祭司的身份降臨，帶來真正的平安和公義。本書信充滿了對神主權的宣告、對百姓悔改的呼喚，以及對末後神國降臨的榮耀預言。它是理解彌賽亞預言和末世論的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "夜間的異象與重建聖殿",
+    range: "亞1-6章",
+    keypoint: "撒迦利亞看見一系列夜間異象，鼓勵百姓悔改，並應許神將與他們同在，重建聖殿。",
+    verse: "萬軍之耶和華說：『不是倚靠勢力，不是倚靠才能，乃是倚靠我的靈方能成事。』（亞4:6）",
+    detail: "撒迦利亞書以神呼籲百姓回轉開篇。接著，先知看見了八個夜間異象，這些異象充滿了象徵意義，預示了神對耶路撒冷的復興、對列國的審判，以及彌賽亞的降臨。這些異象旨在鼓勵百姓在重建聖殿的過程中，不要灰心，因為成事不是倚靠人的勢力才能，乃是倚靠神的靈。"
+  },
+  {
+    title: "禁食的真義與彌賽亞的降臨",
+    range: "亞7-8章",
+    keypoint: "神教導百姓禁食的真義，並應許將來耶路撒冷將成為真理的城，萬民將歸向神。",
+    verse: "萬軍之耶和華如此說：『你們要按至理判斷，各人以慈愛憐憫弟兄。』（亞7:9）",
+    detail: "百姓詢問是否還要繼續禁食，神透過撒迦利亞教導他們，禁食的真義在於行公義、好憐憫，而不是外在的儀式。神應許，將來耶路撒冷將成為真理的城，萬民將從各方來到耶路撒冷尋求神，並與猶大人一同敬拜神。這預言了彌賽亞國度中普世性的敬拜。"
+  },
+  {
+    title: "彌賽亞的第一次降臨",
+    range: "亞9-11章",
+    keypoint: "預言彌賽亞將騎著驢駒進入耶路撒冷，被三十塊錢出賣，並被擊打。",
+    verse: "錫安的民哪，應當大大喜樂；耶路撒冷的民哪，應當歡呼。看哪，你的王來到你這裡！他是公義的，並且施行拯救，謙謙和和地騎著驢，騎著驢駒。（亞9:9）",
+    detail: "這部分包含了一系列關於彌賽亞第一次降臨的預言。撒迦利亞預言彌賽亞將以謙卑的姿態騎驢進入耶路撒冷，這在耶穌基督身上得到了應驗。他也預言彌賽亞將被三十塊錢出賣，並被擊打，羊群將分散。這些預言都精確地指向了耶穌基督的受難。"
+  },
+  {
+    title: "彌賽亞的第二次降臨與最終的勝利",
+    range: "亞12-14章",
+    keypoint: "預言耶路撒冷將被圍困，但神將為祂的子民爭戰；彌賽亞將再次降臨，腳踏橄欖山，建立祂的國度。",
+    verse: "那日，必有活水從耶路撒冷出來，一半往東海流，一半往西海流；冬夏都是如此。（亞14:8）",
+    detail: "撒迦利亞書的最後部分，充滿了關於彌賽亞第二次降臨和末世的預言。他預言耶路撒冷將被列國圍困，但神將為祂的子民爭戰。彌賽亞將再次降臨，腳踏橄欖山，帶來徹底的潔淨和復興。耶路撒冷將成為聖潔的城，活水將從其中流出，滋潤全地。最終，耶和華將作全地的王，祂的名是獨一無二的。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那掌管歷史、施行公義的耶和華神，藉著撒迦利亞書的真理，使您更深認識祂的信實與主權。願您在彌賽亞的預言中，看見耶穌基督的榮耀，並在祂的應許中，堅信祂的國度終將完全降臨。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

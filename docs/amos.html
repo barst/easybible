@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>阿摩司書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-amos">
+  <h1>阿摩司書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《阿摩司書》是舊約小先知書的第三卷，先知阿摩司是一位來自猶大提哥亞的牧人，卻被神呼召去向北國以色列傳講信息。當時北國正處於經濟繁榮的時期，但社會卻充滿了不公義、壓迫窮人、道德敗壞和虛假的宗教。阿摩司書的核心主題是「社會公義」與「神的審判」。阿摩司以其直言不諱的風格，嚴厲地斥責以色列的罪惡，宣告神對他們的審判是不可避免的。然而，在審判的信息中，也隱含著神對最終復興的應許。本書是理解神對社會公義要求的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "列國與以色列的罪惡",
+    range: "摩1-2章",
+    keypoint: "神宣告對周邊列國的審判，最終將審判的焦點轉向猶大和以色列，特別是他們對社會公義的漠視。",
+    verse: "耶和華如此說：『以色列人三番四次的犯罪，我必不免去他們的刑罰；因為他們為銀子賣了義人，為一雙鞋賣了窮人。』（摩2:6）",
+    detail: "阿摩司以神對周邊列國的審判開篇，讓聽眾感到共鳴，但隨後將矛頭指向猶大和以色列。他特別強調以色列的罪惡，不是偶像崇拜，而是對社會公義的漠視——富人壓迫窮人，法庭上行賄受賄，道德敗壞。神宣告，祂對以色列的審判是不可避免的，因為他們違背了與神所立的約。"
+  },
+  {
+    title: "神對以色列的控訴",
+    range: "摩3-6章",
+    keypoint: "神透過阿摩司控訴以色列的罪惡，包括虛假的敬拜、對先知的拒絕、奢華宴樂和對窮人的壓迫。",
+    verse: "惟願公平如大水滾滾，使公義如江河滔滔。（摩5:24）",
+    detail: "阿摩司以一系列的『耶和華如此說』，揭露以色列的罪行。他們雖然有宗教儀式，但內心卻遠離神，對窮人的呼求充耳不聞。神宣告，祂厭惡他們的節期和祭物，因為他們沒有公義。這部分也包含對以色列領袖和富人的嚴厲斥責，他們在錫安安逸，卻對社會的不公視而不見。"
+  },
+  {
+    title: "五個異象與審判的確定",
+    range: "摩7-9章",
+    keypoint: "阿摩司看見五個異象（蝗蟲、火、鉛垂線、夏天的果子、壇邊），預示神對以色列的審判是確定且不可避免的。",
+    verse: "我必不再寬恕他們。（摩7:8）",
+    detail: "這五個異象清晰地描繪了神對以色列的審判。蝗蟲和火的異象，因阿摩司的代求而暫緩；但鉛垂線的異象表明以色列的罪惡已經達到不可挽回的地步，神將不再寬恕。夏天的果子象徵以色列的結局已到。壇邊的異象則預示聖所將被毀滅，百姓將被分散。"
+  },
+  {
+    title: "最終的復興",
+    range: "摩9章後半",
+    keypoint: "在審判之後，神應許將來要復興大衛倒塌的帳幕，招聚以色列餘民歸回，並使他們在應許之地得享豐盛。",
+    verse: "到那日，我必建立大衛倒塌的帳幕，堵住其中的破口，把那破壞的建立起來，重新修造，像古時一樣。（摩9:11）",
+    detail: "儘管阿摩司書充滿了審判的信息，但它最終以神對復興的應許作結。神應許要重建大衛的國度，招聚分散的以色列餘民歸回，使他們在應許之地得享豐盛的收成，不再被拔出。這顯明了神在公義審判之後，仍有不變的慈愛和信實，祂的救贖計劃終將成就。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那施行公義的耶和華神，藉著阿摩司書的真理，使您更深認識祂對社會公義的要求。願您能活出公平與公義，不壓迫貧窮，不偏待人，並在祂的審判中看見祂的信實，在祂的應許中得著盼望。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

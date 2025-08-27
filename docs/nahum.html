@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>那鴻書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-nahum">
+  <h1>那鴻書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《那鴻書》是舊約小先知書的第七卷，先知那鴻主要向亞述帝國的首都尼尼微城傳講信息。與約拿書不同，那鴻書的核心主題是「神的忿怒」與「尼尼微的毀滅」。尼尼微曾因約拿的傳道而悔改，但後來又重蹈覆轍，其殘暴和邪惡達到頂點。那鴻書以詩歌體裁，生動地描繪了神對尼尼微的審判是不可避免的，因為神是忌邪施報的神，祂必為祂的子民伸冤。本書是理解神公義審判和祂對惡者報應的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "神的忿怒與公義",
+    range: "鴻1章",
+    keypoint: "神是忌邪施報的神，祂的忿怒如火，但祂向敬畏祂的人是良善的，是患難時的保障。",
+    verse: "耶和華是忌邪施報的神。耶和華施報大有忿怒；向他的敵人施報，向他的仇敵懷怒。（鴻1:2）",
+    detail: "那鴻書以宣告神公義的屬性開篇。神是忌邪施報的神，祂的忿怒是真實的，祂必向那些抵擋祂、欺壓祂子民的敵人施行報應。然而，在祂的忿怒中，祂也是良善的，是患難時的保障，祂認識那些投靠祂的人。這章為接下來對尼尼微的審判奠定了神學基礎。"
+  },
+  {
+    title: "尼尼微的毀滅",
+    range: "鴻2-3章",
+    keypoint: "那鴻生動地描繪了尼尼微城被攻陷、被毀滅的景象，因為它的殘暴、淫亂和偶像崇拜。",
+    verse: "尼尼微啊，你的牧人睡覺；你的貴冑安歇。你的人民在山上分散，無人招聚。（鴻3:18）",
+    detail: "那鴻以詩歌體裁，生動地預言了尼尼微城的徹底毀滅。他描繪了敵軍攻城的場景，尼尼微的防禦被攻破，財富被掠奪，人民被分散。尼尼微因其殘暴、欺壓列國、淫亂和偶像崇拜而罪惡滔天。神宣告，尼尼微的結局是不可避免的，它將成為一個永遠的荒場，無人為它哀哭。這顯明了神對惡者的公義審判。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那忌邪施報又滿有良善的耶和華神，藉著那鴻書的真理，使您更深認識祂的公義與主權。願您在祂的審判中看見祂的威嚴，並在祂的良善中，投靠祂，得著患難時的保障。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

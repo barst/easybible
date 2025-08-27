@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>以西結書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-ezekiel">
+  <h1>以西結書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《以西結書》是舊約中的一卷大先知書，作者是以西結，他是一位祭司，在猶大國被巴比倫擄掠期間，與第一批被擄的百姓一同被帶到迦巴魯河邊。本書充滿了異象、象徵和預言，其核心信息是「神的榮耀」和「以色列的復興」。以西結在書中嚴厲地指責以色列的罪惡和偶像崇拜，預言耶路撒冷的徹底毀滅，並強調個人要為自己的罪負責。然而，在審判的信息中，也穿插著神對以色列將來復興的應許，包括枯骨復生、新心新靈的賜予，以及神榮耀重歸聖殿的異象。本書是理解被擄時期神學和末世預言的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "神的榮耀與先知的蒙召",
+    range: "結1-3章",
+    keypoint: "以西結看見神榮耀的異象，被呼召作以色列家的守望者，傳講神的信息。",
+    verse: "我對他們或聽或不聽，他們必知道在他們中間有了先知。（結2:5）",
+    detail: "以西結在被擄之地看見了神榮耀的異象，這異象充滿了神的主權、威嚴和無所不在。神呼召他作以色列家的守望者，無論百姓是否聽從，他都要忠實地傳達神的話語。這是一個艱鉅的任務，因為百姓是悖逆的，但神應許賜予他力量和勇氣。"
+  },
+  {
+    title: "耶路撒冷的罪惡與毀滅",
+    range: "結4-24章",
+    keypoint: "以西結透過各種象徵性行動和異象，揭露耶路撒冷的罪惡和偶像崇拜，預言其將被徹底毀滅，神的榮耀離開聖殿。",
+    verse: "我必將我的忿怒傾倒在你身上，用我烈怒的火燒你，將你交在殘害你的人手中。（結21:31）",
+    detail: "這部分充滿了以西結的象徵性行動（如躺臥、剃髮、吃不潔的餅）和令人震驚的異象（如耶路撒冷的污穢、神的榮耀離開聖殿）。他詳細揭露了以色列人從領袖到百姓的各種罪惡，特別是偶像崇拜和道德敗壞。神宣告祂的審判是公義的，耶路撒冷將被徹底毀滅，神的榮耀也將離開聖殿。"
+  },
+  {
+    title: "列國的審判",
+    range: "結25-32章",
+    keypoint: "神宣告對周邊列國的審判，包括亞捫、摩押、以東、非利士、推羅、西頓和埃及，顯明神掌管萬國。",
+    verse: "我必將我的忿怒傾倒在你身上，用我烈怒的火燒你，將你交在殘害你的人手中。（結25:7）",
+    detail: "這部分信息表明，神不僅審判以色列，也審判周邊的列國。這些國家因著對以色列的敵意、驕傲和偶像崇拜，都將受到神的懲罰。這再次強調了神是全地的主宰，祂的公義審判將臨到所有抵擋祂的勢力。"
+  },
+  {
+    title: "以色列的復興與新心新靈",
+    range: "結33-39章",
+    keypoint: "神應許以色列將來要復興，賜給他們新心新靈，使枯骨復生，並將他們從列國中招聚歸回。",
+    verse: "我也要賜給你們一個新心，將新靈放在你們裡面，又從你們的肉體中除掉石心，賜給你們肉心。（結36:26）",
+    detail: "在審判之後，以西結書轉向了復興的應許。神應許要作以色列的牧者，招聚他們歸回，賜給他們一個新的心和新的靈，使他們能夠遵守神的律例。枯骨復生的異象，更是象徵著以色列民族將從死亡中被神重新建立起來。神也預言了歌革和瑪各的最終失敗，確保以色列的平安。"
+  },
+  {
+    title: "神榮耀重歸聖殿的異象",
+    range: "結40-48章",
+    keypoint: "以西結看見新聖殿的異象，神的榮耀重歸聖殿，生命河從聖殿流出，滋潤全地。",
+    verse: "他帶我到殿門，見水從殿的門檻下流出，往東流去。這水從壇的右邊，殿的南邊往下流。（結47:1）",
+    detail: "這部分是全書的高潮，以西結看見了一個宏偉的新聖殿異象。這個異象不僅是物質的聖殿，更是神榮耀同在的象徵。神的榮耀從東門進入聖殿，生命河從聖殿流出，所到之處都帶來生命和醫治。這預示了神將來在彌賽亞國度中與祂子民的完全同在，以及祂的祝福將遍及全地。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那榮耀的上帝，藉著以西結書的真理，使您更深認識祂的聖潔與主權。願您在祂的審判中看見祂的公義，在祂的復興應許中得著盼望，並被祂的新靈充滿，活出榮耀祂名的生命。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

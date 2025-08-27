@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>俄巴底亞書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-obadiah">
+  <h1>俄巴底亞書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《俄巴底亞書》是舊約小先知書中最短的一卷，全書只有一章。先知俄巴底亞主要向以東國傳講信息。以東是以掃的後代，與以色列是兄弟之邦，但他們卻在猶大國遭受巴比倫入侵和耶路撒冷被毀時，袖手旁觀，甚至落井下石，趁火打劫。俄巴底亞書的核心主題是「以東的審判」與「錫安的復興」。神宣告以東的驕傲和對兄弟的殘忍將受到嚴厲的報應，而以色列將來必得復興，並得回自己的產業。本書是理解神對民族關係和公義審判的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "以東的驕傲與審判",
+    range: "俄1-14節",
+    keypoint: "神宣告以東因其驕傲和對兄弟猶大的殘忍行為，將受到徹底的審判。",
+    verse: "你因欺壓你的兄弟雅各，就必蒙羞，永被剪除。（俄10節）",
+    detail: "俄巴底亞書開篇就宣告了神對以東的審判。以東因其居住在高山上的地理優勢而驕傲，並在猶大國遭受災難時，不僅沒有施以援手，反而趁機搶奪、幸災樂禍。神宣告，以東的驕傲將被降卑，他們所信賴的盟友將背叛他們，他們的財富將被掠奪，最終將被徹底剪除。這顯明了神對那些欺壓弱者、缺乏憐憫之心的民族的公義審判。"
+  },
+  {
+    title: "耶和華的日子與錫安的復興",
+    range: "俄15-21節",
+    keypoint: "耶和華的日子臨近萬國，以東將受報應，而錫安山將有餘民，以色列將得回自己的產業。",
+    verse: "必有拯救者上到錫安山，審判以掃的山；國度就歸耶和華了。（俄21節）",
+    detail: "俄巴底亞書以神對以色列的復興應許作結。在耶和華的日子，神將對所有欺壓祂子民的列國施行審判，以東將首當其衝。然而，錫安山將有餘民，以色列將得回自己的產業，並擴展他們的疆界。最終，拯救者將從錫安山興起，審判以掃的山，國度將完全歸於耶和華。這預言了神最終的勝利和祂國度的建立。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那施行公義的耶和華神，藉著俄巴底亞書的真理，使您更深認識祂對驕傲和殘忍的審判。願您能活出憐憫和公義，不對他人的苦難袖手旁觀，並在祂的應許中，堅信祂的國度終將完全降臨。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>
