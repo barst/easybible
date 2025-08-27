@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>啟示錄的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-revelation">
+  <h1>啟示錄的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《啟示錄》是聖經的最後一卷書，是使徒約翰在拔摩島上領受從耶穌基督來的啟示。這是一卷充滿異象、象徵和預言的書，文體屬於「天啟文學」。本書信寫給當時在亞細亞的七個教會，旨在揭示末後必成的事，並在羅馬帝國的逼迫下，堅固和安慰信徒。啟示錄的核心信息是：儘管世界充滿了罪惡、災難和對抗神的勢力，但掌管歷史的終究是那位坐在寶座上的神和被殺的羔羊耶穌基督。祂是得勝的君王，祂必再來，施行最終的審判，並帶來一個再沒有眼淚、死亡和悲哀的新天新地。本書是聖經的榮耀巔峰，宣告了神永恆的得勝。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "榮耀基督的異象與七教會書信",
+    range: "啟1-3章",
+    keypoint: "約翰看見人子榮耀的異象，並奉主的名寫信給亞細亞的七個教會，施行稱讚、責備、警告和應許。",
+    verse: "我是阿拉法，我是俄梅戛，是昔在、今在、以後永在的全能者。（啟1:8）",
+    detail: "啟示錄以榮耀的基督論開篇。約翰所見的人子，不再是加利利海邊的溫柔教師，而是眼目如火焰、口出兩刃利劍的審判之主。祂行走在金燈臺（教會）中間，洞察一切。寫給七教會的信，既是對當時教會具體光景的評估，也預表了歷代教會的縮影。每封信都以『得勝的，我必將…』作結，呼召信徒在任何世代都要持守忠心。"
+  },
+  {
+    title: "天上的敬拜與書卷的奧祕",
+    range: "啟4-5章",
+    keypoint: "約翰被提到天上，看見神寶座的榮耀景象，以及唯有被殺的羔羊才配展開那用七印封嚴的書卷。",
+    verse: "曾被殺的羔羊是配得權柄、豐富、智慧、能力、尊貴、榮耀、頌讚的。（啟5:12）",
+    detail: "這兩章是全書的關鍵，揭示了宇宙的控制中心——神的寶座。天上的敬拜，晝夜不停地環繞著神的聖潔和創造。然而，當關乎人類歷史命運的書卷出現時，天上地下沒有一位配展開。唯有那『被殺過的羔羊』耶穌基督，因祂的救贖大工，才配揭開書卷，掌管歷史的進程。這宣告了救贖是歷史的核心。"
+  },
+  {
+    title: "七印、七號、七碗的災難",
+    range: "啟6-16章",
+    keypoint: "羔羊揭開七印，天使吹響七號，倒下七碗，一系列象徵性的災難傾倒在地上，審判罪惡的世界。",
+    verse: "揭開第六印的時候，我又看見地大震動，日頭變黑像毛布，滿月變紅像血。（啟6:12）",
+    detail: "這是一段充滿象徵性畫面的部分，描繪了在末後時期，神對罪惡世界公義的審判。七印（戰爭、饑荒、死亡）、七號（自然界的災難）和七碗（神大怒的傾倒）層層遞進，強度不斷增加。在災難之間，也穿插著對神子民的保護（如十四萬四千人受印）和天上的敬拜，表明神的審判與拯救是同時進行的。"
+  },
+  {
+    title: "大巴比倫的傾倒",
+    range: "啟17-18章",
+    keypoint: "描寫騎在獸上的大淫婦『巴比倫』的奢華、罪惡和她的傾倒，象徵著抵擋神的屬世體系的最終覆滅。",
+    verse: "巴比倫大城傾倒了！傾倒了！成了鬼魔的住處和各樣污穢之靈的巢穴。（啟18:2）",
+    detail: "『大巴比倫』代表了人類歷史上一切抵擋神、誘惑人、充滿驕傲和物質主義的文明體系。約翰以生動的筆法，描繪了她的罪惡滔天和她在一天之內、一時之間所遭到的徹底毀滅。天上為此發出歡呼，因為神的審判是公義、真實的。這呼召神的子民要從她中間出來，不要在她的罪上有分。"
+  },
+  {
+    title: "羔羊的婚筵與基督的再臨",
+    range: "啟19章",
+    keypoint: "天上為巴比倫的傾倒而歡呼，預備羔羊的婚筵；基督騎著白馬，以萬王之王、萬主之主的身份降臨，施行審判。",
+    verse: "我們要歡喜快樂，將榮耀歸給他。因為，羔羊婚娶的時候到了；新婦也自己預備好了。（啟19:7）",
+    detail: "在審判之後，是榮耀的拯救。教會（新婦）與基督（羔羊）的結合，是歷史的終極愛情故事。緊接著，基督以得勝君王的姿態顯現，祂的名字是『神之道』，祂要用鐵杖轄管萬國，並徹底擊敗那獸和假先知，以及跟隨他們的軍隊。這是全書的高潮，宣告了基督的最終勝利。"
+  },
+  {
+    title: "千禧年與最後的審判",
+    range: "啟20章",
+    keypoint: "撒但被捆綁一千年，聖徒與基督一同作王；千年後撒但被釋放並被徹底擊敗，所有死者都在白色大寶座前受審。",
+    verse: "我又看見一個白色的大寶座與坐在上面的；從他面前天地都逃避，再無可見之處了。（啟20:11）",
+    detail: "本章描述了歷史的終末階段。關於『千禧年』有不同的解釋，但其核心信息是基督的作王和撒但的最終潰敗。白色大寶座的審判，是宇宙歷史的終極法庭，所有不信者都將按著他們的案卷（行為）受審，並被扔在火湖裡，這是第二次的死。"
+  },
+  {
+    title: "新天新地與聖城新耶路撒冷",
+    range: "啟21-22章",
+    keypoint: "神要與人同住，擦去一切的眼淚；聖城由神那裡從天而降，城中有生命水的河和生命樹。",
+    verse: "看哪，神的帳幕在人間。他要與人同住，他們要作他的子民。神要親自與他們同在，作他們的神。神要擦去他們一切的眼淚；不再有死亡，也不再有悲哀、哭號、疼痛，因為以前的事都過去了。（啟21:3-4）",
+    detail: "聖經在一個榮耀、完美的結局中閉幕。歷史的終點，不是回到起初的伊甸園，而是一個更榮耀的聖城。在這個新天新地裡，神與人之間的隔閡被完全除去，神要親自與祂的子民同住。一切因罪而來的咒詛、痛苦和死亡，都將永遠成為過去。生命水的河與生命樹，象徵著神所賜永恆、豐盛的生命。"
+  },
+  {
+    title: "主耶穌啊，我願你來！",
+    range: "啟22章後半",
+    keypoint: "基督宣告祂必快來，聖靈和新婦都發出邀請，全書以一個充滿盼望的禱告結束。",
+    verse: "證明這事的說：『是了，我必快來！』阿們！主耶穌啊，我願你來！（啟22:20）",
+    detail: "在全書的結尾，耶穌親自發出祂必快來的應許。這應許激發了教會（新婦）的回應——一個充滿切慕與盼望的禱告。這也是歷代聖徒在等候中的心聲。聖經的最後一節，以主耶穌的恩惠作為結束，為這本充滿審判與盼望的書，畫下了一個滿有恩典的句點。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願主耶穌基督的恩惠常與眾聖徒同在！願您在祂的啟示中，看見祂的榮耀與權柄，並以警醒、聖潔、盼望的心，等候祂的再來。主耶穌啊，我願你來！阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

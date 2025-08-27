@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>羅馬書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-romans">
+  <h1>羅馬書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《羅馬書》是使徒保羅寫給羅馬教會的一封信，被譽為新約神學的巔峰之作。保羅在書中系統性地闡述了「因信稱義」的核心真理，即人得救是本乎恩、也因著信，而非靠遵守律法。本書從全人類的罪性開始，論證了福音是神的大能，要救一切相信的，不論是猶太人還是外邦人。羅馬書深刻地揭示了神的義、人的罪、基督的救贖、聖靈裡的成聖生活，以及神對以色列的計劃等重大主題。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "福音的大能與普世的罪",
+    range: "羅1-3章",
+    keypoint: "福音是神的大能，顯明神的義；世人都犯了罪，虧缺了神的榮耀。",
+    verse: "我不以福音為恥；這福音本是神的大能，要救一切相信的，先是猶太人，後是希臘人。（羅1:16）",
+    detail: "保羅首先宣告福音的榮耀與能力。接著，他從外邦人的不虔不義，到猶太人的自以為義，進行了全面而深刻的論證，最終得出結論：在神公義的標準下，沒有義人，連一個也沒有。全世界的人都伏在神的審判之下，為『因信稱義』的真理鋪平了道路。"
+  },
+  {
+    title: "因信稱義",
+    range: "羅3-4章",
+    keypoint: "人稱義是本乎恩，因著信，藉著耶穌的救贖，並非靠行律法。亞伯拉罕是因信稱義的典範。",
+    verse: "因為世人都犯了罪，虧缺了神的榮耀；如今卻蒙神的恩典，因基督耶穌的救贖，就白白地稱義。（羅3:23-24）",
+    detail: "這是整本書的核心。在揭示了人的絕望光景後，保羅宣告了神所預備的奇妙出路。神的義在律法之外已經顯明出來，人可以單單藉著相信耶穌基督的流血捨命，就被神宣告為無罪。這恩典是白白賜予的，亞伯拉罕的例子證明，這個原則在律法之前就已存在。"
+  },
+  {
+    title: "稱義的福分",
+    range: "羅5章",
+    keypoint: "因信稱義帶來與神和好、在患難中誇勝的盼望；基督的順服勝過亞當的悖逆。",
+    verse: "惟有基督在我們還作罪人的時候為我們死，神的愛就在此向我們顯明了。（羅5:8）",
+    detail: "稱義不僅是一個法律地位的改變，更帶來一系列豐盛的祝福。信徒從此與神和好，可以坦然來到祂面前，並在聖靈所賜的愛中，對未來滿有榮耀的盼望。保羅將亞當與基督對比，指出因一人的悖逆，罪和死進入世界；也照樣因一人的順服，恩典與生命臨到眾人。"
+  },
+  {
+    title: "與基督聯合：向罪死，向神活",
+    range: "羅6章",
+    keypoint: "藉著洗禮與基督同死同復活，信徒應向罪看自己是死的，向神在基督裡看自己是活的。",
+    verse: "所以，我們藉著洗禮歸入死，和他一同埋葬，原是叫我們一舉一動有新生的樣式，像基督藉著父的榮耀從死裡復活一樣。（羅6:4）",
+    detail: "『我們可以仍在罪中，叫恩典顯多嗎？』保羅斷然回答：『斷乎不可！』他解釋說，信徒在歸信的那一刻，就已經在靈裡與基督聯合，向著罪的權勢死了。因此，信徒有能力，也有責任脫離罪的轄制，將自己獻給神，作義的器具。"
+  },
+  {
+    title: "脫離律法的捆綁",
+    range: "羅7章",
+    keypoint: "律法是聖潔的，但它顯明人的罪性，並不能賜人力量勝過罪。信徒在基督裡脫離了律法的定罪。",
+    verse: "我真是苦啊！誰能救我脫離這取死的身體呢？感謝神，靠著我們的主耶穌基督就能脫離了。（羅7:24-25）",
+    detail: "保羅以第一人稱生動地描寫了內心『兩個律』的交戰：想行善的意志與犯罪的律。這深刻地描繪了靠自己努力與罪爭戰的無奈與失敗。這段經文的目的不是讓人絕望，而是讓人放棄靠自己，並完全投靠在基督裡的釋放與得勝。"
+  },
+  {
+    title: "在聖靈裡的生活",
+    range: "羅8章",
+    keypoint: "在基督裡不定罪，靠著聖靈得生、得引導、得兒子的名分，並在萬事中得勝有餘。",
+    verse: "如今，那些在基督耶穌裡的就不定罪了。（羅8:1）",
+    detail: "這是羅馬書中充滿榮耀與確據的一章。保羅宣告，聖靈的工作使信徒脫離了罪和死的律，得著兒子的心，可以呼叫『阿爸，父』。聖靈幫助我們的軟弱，為我們代求，並且沒有任何事物（患難、困苦、逼迫）能使我們與基督的愛隔絕。"
+  },
+  {
+    title: "神對以色列的計劃",
+    range: "羅9-11章",
+    keypoint: "神的主權與人的責任，以色列人因不信而跌倒，但神並未棄絕他們，外邦人因信被接上，最終以色列全家都要得救。",
+    verse: "你若口裡認耶穌為主，心裡信神叫他從死裡復活，就必得救。（羅10:9）",
+    detail: "保羅懷著極大的悲痛，探討他同胞以色列人的不信問題。他論證神揀選的主權，也強調以色列人因拒絕憑信心而來的義，需要為自己的不信負責。然而，神藉著以色列的失腳，讓救恩臨到外邦人。保羅最終以頌讚結束，深哉，神的智慧和知識！"
+  },
+  {
+    title: "獻上身體為活祭",
+    range: "羅12-15章",
+    keypoint: "勸勉信徒將身體獻上當作活祭，心意更新而變化，並在教會和社會中活出基督徒的倫理。",
+    verse: "所以，弟兄們，我以神的慈悲勸你們，將身體獻上，當作活祭，是聖潔的，是神所喜悅的；你們如此事奉乃是理所當然的。（羅12:1）",
+    detail: "在詳細闡述了偉大的救恩教義之後，保羅轉向實踐性的勸勉。真正的敬拜是將整個生命獻給神。他教導信徒如何運用屬靈恩賜、彼此相愛、順服掌權者、愛人如己，以及如何接納信心軟弱的弟兄。這一切都是對福音的回應。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願又真又活的上帝，藉著羅馬書的真理，堅固您的信心，讓您深知在基督裡的救恩是何等浩大與穩固。願聖靈引導您，使您不僅明白『因信稱義』的道理，更能活出『獻上為祭』的生活，榮耀主名。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

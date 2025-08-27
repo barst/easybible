@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>以弗所書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-ephesians">
+  <h1>以弗所書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《以弗所書》是使徒保羅在羅馬監獄中寫的「監獄書信」之一。這是一封充滿榮耀、奧祕與智慧的書信，其核心主題是「基督與教會」。本書信分為兩大部分：前三章（1-3章）是「教義篇」，闡述了神在創世以前所預定的救贖計劃，以及教​​會在這計劃中的中心地位——即猶太人和外邦人在基督裡合而為一，成為神的居所。後三章（4-6章）是「實踐篇」，勸勉信徒要活出與所蒙的恩相稱的生活，在合一、聖潔、家庭和屬靈爭戰中，見證基督的榮耀。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "天上的各樣屬靈福氣",
+    range: "弗1章",
+    keypoint: "神在創立世界以前，在基督裡揀選了我們，預定我們得兒子的名分，使祂榮耀的恩典得著稱讚。",
+    verse: "願頌讚歸與我們主耶穌基督的父神！他在基督裡曾賜給我們天上各樣屬靈的福氣。（弗1:3）",
+    detail: "以弗所書以一段氣勢磅礴的頌讚開篇。保羅一連串地宣告了神在永恆裡為信徒所預備的福分：揀選、預定、得兒子的名分、蒙救贖、罪得赦免、領受聖靈為印記。這一切都不是偶然的，而是神在基督裡早已計劃好的，其最終目的是為了彰顯祂恩典的榮耀。"
+  },
+  {
+    title: "從死在過犯中到與基督同活",
+    range: "弗2章",
+    keypoint: "我們得救是本乎恩，也因著信；猶太人與外邦人藉著十字架合而為一，同為神家裡的人。",
+    verse: "你們得救是本乎恩，也因著信；這並不是出於自己，乃是神所賜的；也不是出於行為，免得有人自誇。（弗2:8-9）",
+    detail: "本章深刻地描繪了人類在得救前的光景——死在過犯罪惡之中。然而，出於神極大的憐憫與慈愛，祂叫我們與基督一同活過來。這完全是恩典，排除任何人的功勞。並且，這恩典拆毀了猶太人與外邦人之間隔斷的牆，使雙方在基督裡成為一個新人，被建造成為神藉著聖靈居住的所在。"
+  },
+  {
+    title: "教會的奧祕",
+    range: "弗3章",
+    keypoint: "保羅蒙召揭示這奧祕，就是外邦人在基督耶穌裡，得以同為後嗣，同為一體，同蒙應許。",
+    verse: "這奧祕就是外邦人在基督耶穌裡，藉著福音，得以同為後嗣，同為一體，同蒙應許。（弗3:6）",
+    detail: "保羅視自己為這奧祕的執事。在舊約時代，神對外邦人的救贖計劃是隱藏的，但如今在基督裡被完全顯明出來。教會，這個由不同背景的人組成的合一身體，正是神百般智慧的展現。保羅為此屈膝禱告，求神使信徒能明白基督那超越知識的愛，被神一切所充滿的充滿他們。"
+  },
+  {
+    title: "在愛中合一",
+    range: "弗4章",
+    keypoint: "勸勉信徒竭力保守聖靈所賜合而為一的心；基督賜下不同恩賜，為要成全聖徒，建立基督的身體。",
+    verse: "凡事謙虛、溫柔、忍耐，用愛心互相寬容，用和平彼此聯絡，竭力保守聖靈所賜合而為一的心。（弗4:2-3）",
+    detail: "從本章開始，書信轉向生活實踐。合一是教會見證的基礎。保羅呼籲信徒要活出與蒙召的恩相稱的生命，這體現在謙虛、溫柔、忍耐和愛心之中。同時，基督也賜下使徒、先知、傳福音的、牧師和教師等恩賜，目的不是為了個人炫耀，而是為了裝備眾聖徒，使教會在真道上同歸於一，滿有基督長成的身量。"
+  },
+  {
+    title: "穿上新人，活出聖潔",
+    range: "弗5章",
+    keypoint: "要脫去舊人，穿上新人，行事為人要像光明的子女，被聖靈充滿，以詩章、頌詞、靈歌彼此對說。",
+    verse: "要謹慎行事，不要像愚昧人，要像智慧人。要愛惜光陰，因為現今的世代邪惡。不要作糊塗人，要明白主的旨意如何。（弗5:15-17）",
+    detail: "基督徒的生活方式應當與過去的暗昧行為有根本的區別。保羅勸勉信徒要棄絕謊言、憤怒、偷竊和污穢的言語，反要活出恩慈、憐憫和饒恕。他特別強調要被聖靈充滿，這會帶來一個充滿感恩、讚美和彼此順服的群體生活。"
+  },
+  {
+    title: "家庭中的順服與愛",
+    range: "弗5章後半-6章初",
+    keypoint: "教導夫妻、親子、主僕之間，應當如何在主裡彼此相待。",
+    verse: "你們作妻子的，當順服自己的丈夫，如同順服主。你們作丈夫的，要愛你們的妻子，正如基督愛教會，為教會捨己。（弗5:22, 25）",
+    detail: "保羅將基督與教會的關係，作為基督徒家庭倫理的典範。夫妻關係是順服與捨己之愛的結合；親子關係是孝敬與智慧教養的互動；主僕關係（在當代可應用於職場）則是忠誠與公義的體現。這一切關係的核心，都是敬畏基督。"
+  },
+  {
+    title: "穿戴神所賜的全副軍裝",
+    range: "弗6章",
+    keypoint: "我們的爭戰不是屬血氣的，乃是與天空屬靈氣的惡魔爭戰，所以要穿戴神的全副軍裝。",
+    verse: "要穿戴神所賜的全副軍裝，就能抵擋魔鬼的詭計。（弗6:11）",
+    detail: "在書信的結尾，保羅提醒信徒，他們正處於一場屬靈的爭戰中。得勝的關鍵，不是依靠自己的力量，而是依靠神所賜的裝備：真理的腰帶、公義的護心鏡、平安的福音鞋、信德的藤牌、救恩的頭盔和聖靈的寶劍（神的道）。此外，還要靠著聖靈多方禱告祈求，才能在這場爭戰中站立得穩。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願我們主耶穌基督的父神，將那賜人智慧和啟示的靈賞給您，使您真知道祂。願祂照明您心中的眼睛，使您知道祂的恩召有何等指望，祂在聖徒中得的基業有何等豐盛的榮耀，並知道祂向我們這信的人所顯的能力是何等浩大。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

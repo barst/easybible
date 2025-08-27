@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>利未記的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-leviticus">
+  <h1>利未記的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《利未記》是摩西五經的第三卷，其核心主題是「聖潔」。在以色列人出埃及並與神立約之後，神透過這卷書詳細地教導他們如何成為一個聖潔的民族，如何在聖潔的神面前生活和敬拜。本書詳細記載了各種獻祭的條例、祭司的職責、潔淨與不潔淨的規條，以及聖潔生活的倫理規範。利未記雖然充滿了看似繁瑣的律法，但其背後卻蘊含著深刻的神學意義，指向了耶穌基督的完全獻祭，以及神對祂子民聖潔的要求。它是理解舊約獻祭制度和新約基督救贖的重要橋樑。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "五種獻祭的條例",
+    range: "利1-7章",
+    keypoint: "詳細規定了燔祭、素祭、平安祭、贖罪祭和贖愆祭的獻法和意義，教導人如何親近聖潔的神。",
+    verse: "因為活物的生命是在血中。我把這血賜給你們，可以在壇上為你們的生命贖罪；因血裡有生命，所以能贖罪。（利17:11）",
+    detail: "這五種獻祭是神為以色列人預備的親近祂的方式。燔祭代表完全的奉獻，素祭代表感恩與事奉，平安祭代表與神和好的團契，贖罪祭和贖愆祭則處理了罪的問題。這些獻祭都指向了耶穌基督在十字架上一次獻上自己，成為那完全的、最終極的祭物，為人類成就了永遠的贖罪。"
+  },
+  {
+    title: "祭司的設立與職責",
+    range: "利8-10章",
+    keypoint: "亞倫和他的兒子們被膏立為祭司，承擔在神面前事奉的職責；拿答和亞比戶因獻凡火而受審判。",
+    verse: "你們要歸我作祭司的國度，為聖潔的國民。（出19:6）",
+    detail: "祭司是神與人之間的中保，他們的職責是代表百姓親近神，並教導百姓神的律法。祭司的膏立儀式顯明了他們職責的神聖性。拿答和亞比戶的事件，則嚴厲地警告了在聖潔的神面前事奉的嚴肅性，強調必須完全按照神的吩咐行事，不可輕慢。"
+  },
+  {
+    title: "潔淨與不潔淨的條例",
+    range: "利11-15章",
+    keypoint: "詳細規定了潔淨與不潔淨的食物、身體狀況和接觸物，教導以色列人如何在日常生活中保持聖潔。",
+    verse: "你們要聖潔，因為我耶和華你們的神是聖潔的。（利19:2）",
+    detail: "這些條例看似繁瑣，但其目的是為了提醒以色列人，他們是與聖潔的神立約的子民，因此在生活的各個層面都要與世俗分別。這些條例也具有象徵意義，指向了罪的污穢和基督的潔淨。它們教導以色列人認識罪的本質，並引導他們尋求神的潔淨。"
+  },
+  {
+    title: "贖罪日：全國性的潔淨",
+    range: "利16章",
+    keypoint: "規定了每年一次的贖罪日，大祭司進入至聖所，為自己和全以色列民贖罪。",
+    verse: "每年的這一天，你們要為自己贖罪，使你們在耶和華面前得以潔淨，脫離一切的罪。（利16:30）",
+    detail: "贖罪日是舊約中最重要的節期，它強調了罪的嚴重性和神赦罪的恩典。大祭司帶著血進入至聖所，為全民族贖罪，這預表了耶穌基督作為我們的大祭司，一次獻上自己，就成就了永遠的贖罪。贖罪日提醒以色列人，他們需要神的潔淨才能與聖潔的神相交。"
+  },
+  {
+    title: "聖潔生活的倫理規範",
+    range: "利17-27章",
+    keypoint: "神要求以色列人在生活的各個層面都要聖潔，包括獻祭、性道德、社會公義、節期和安息年等。",
+    verse: "你們要聖潔，因為我耶和華你們的神是聖潔的。（利19:2）",
+    detail: "這部分被稱為『聖潔法典』，將聖潔的要求從儀式擴展到日常生活的倫理層面。神要求以色列人不僅在敬拜上聖潔，在人際關係、性道德、商業行為、對待窮人和外人等方面也要聖潔。這些律法是神子民與世俗分別的標誌，也是他們活出神性情的具體體現。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那聖潔的上帝，藉著利未記的真理，使您更深認識祂的聖潔與公義。願您在獻祭的條例中，看見耶穌基督完全的救贖，並被聖靈引導，活出與所蒙的恩相稱的聖潔生活，榮耀祂的名。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

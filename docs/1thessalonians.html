@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帖撒羅尼迦前書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-thessalonians1">
+  <h1>帖撒羅尼迦前書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《帖撒羅尼迦前書》是使徒保羅最早期的書信之一，寫給他第二次宣教旅程中在馬其頓建立的帖撒羅尼迦教會。當時，保羅因遭逼迫而匆匆離開那裡，心中非常掛念初信的信徒們。他差派提摩太前去堅固他們，並在收到提摩太帶回的好消息後，寫了這封信。信中充滿了保羅對他們的稱讚與關愛，並針對他們所關心的問題，特別是關於主耶穌再來的真理和信徒被提的盼望，作了清晰的教導。本書信強調了在盼望中過聖潔、警醒生活的必要性。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "信望愛的榜樣",
+    range: "帖前1章",
+    keypoint: "稱讚帖撒羅尼迦信徒因信心所做的工夫，因愛心所受的勞苦，因盼望我們主耶穌基督所存的忍耐。",
+    verse: "並且你們在大難之中，蒙了聖靈所賜的喜樂，領受真道，就效法我們，也效法了主；甚至你們作了馬其頓和亞該亞所有信主之人的榜樣。（帖前1:6-7）",
+    detail: "保羅以滿溢的感恩開始，稱讚帖撒羅尼迦教會是他事奉的喜樂和冠冕。他們在極大的患難中，依然滿有喜樂地接受福音，並且他們的信心和見證迅速傳開，成為其他地區教會的典範。這證明了福音的大能，以及聖靈在信徒生命中的真實工作。"
+  },
+  {
+    title: "牧者的心腸",
+    range: "帖前2章",
+    keypoint: "保羅回顧他在他們中間的服事，如同母親乳養、父親勸勉自己的兒女。",
+    verse: "只在你們中間存心溫柔，如同母親乳養自己的孩子。我們既是這樣愛你們，不但願意將神的福音給你們，連自己的性命也願意給你們，因你們是我們所疼愛的。（帖前2:7-8）",
+    detail: "為要駁斥那些詆毀他動機的敵人，保羅提醒帖撒羅尼迦信徒，他在他們中間的服事是無私、聖潔和無可指摘的。他沒有求自己的榮耀或利益，而是像慈母和嚴父一樣，用溫柔的愛和真理的勸誡來牧養他們，期望他們行事為人能對得起那召他們進祂國、得祂榮耀的神。"
+  },
+  {
+    title: "患難中的堅固",
+    range: "帖前3章",
+    keypoint: "保羅因他們的信心得安慰，切切禱告，願主使他們的愛心和聖潔都堅固，直到主來。",
+    verse: "願主叫你們彼此相愛的心，並愛眾人的心都能增長，充足，如同我們愛你們一樣，好使你們當我們主耶穌同他眾聖徒來的時候，在我們父神面前，心裡堅固，成為聖潔，無可責備。（帖前3:12-13）",
+    detail: "保羅表達了他對帖撒羅尼迦教會深切的掛念。當他得知他們在逼迫中信心依然穩固時，他得到了極大的安慰和鼓舞。這激勵他更加迫切地為他們禱告，求主使他們在愛心上不斷增長，並在聖潔上毫無瑕疵，以預備好自己，坦然無懼地迎接主的再來。"
+  },
+  {
+    title: "聖潔的生活與主再來的盼望",
+    range: "帖前4章",
+    keypoint: "勸勉信徒要遠避淫行，追求聖潔，並論到主再來時，已睡的信徒將首先復活被提。",
+    verse: "因為主必親自從天降臨，有呼叫的聲音和天使長的聲音，又有神的號吹響；那在基督裡死了的人必先復活。以後我們這活著還存留的人必和他們一同被提到雲裡，在空中與主相遇。這樣，我們就要和主永遠同在。（帖前4:16-17）",
+    detail: "這是聖經中關於信徒被提最清晰、最寶貴的教導之一。當時，帖撒羅尼迦信徒因擔心在主再來之前去世的親友會錯過這榮耀的時刻而憂傷。保羅安慰他們，指出無論是已死的還是活著的信徒，都將一同被提到空中與主相遇。這榮耀的盼望，成為信徒彼此安慰和過聖潔生活的巨大動力。"
+  },
+  {
+    title: "警醒預備主的日子",
+    range: "帖前5章",
+    keypoint: "主的日子來到，好像夜間的賊一樣。信徒是光明之子，應當警醒謹守，用信望愛彼此建立。",
+    verse: "所以，我們不要睡覺，像別人一樣，總要警醒謹守。（帖前5:6）",
+    detail: "既然主再來的日子無人知曉，信徒的生活態度就不應是懶散和沉睡，而是警醒和預備。作為屬於白晝的『光明之子』，我們的生命應當與黑暗的行為有別。保羅最後給出了一系列簡潔而有力的勸勉：要常常喜樂，不住地禱告，凡事謝恩，彼此勸慰，互相建立。這是在盼望中生活的具體實踐。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願賜平安的神親自使您全然成聖！又願您的靈與魂與身子得蒙保守，在我主耶穌基督降臨的時候，完全無可指摘。願您在等候主來的日子裡，常存信望愛，彼此堅固，常常喜樂，凡事謝恩。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

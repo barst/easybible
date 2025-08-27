@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>帖撒羅尼迦後書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-thessalonians2">
+  <h1>帖撒羅尼迦後書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《帖撒羅尼迦後書》是保羅寫給帖撒羅尼迦教會的第二封信，距離前書的時間不長。寫作的主要原因，是為了解決教會中對於「主的日子」所產生的誤解和混亂。當時有人謠傳主的日子已經到了，導致一些信徒驚慌不安，甚至有些人停止工作、遊手好閒。保羅在這封短信中，一方面為他們在患難中所顯的信心和愛心感謝神，另一方面則糾正他們對末世論的錯誤觀念，並勸勉他們要堅守真道、恆心行善、安靜做工。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "患難中的榮耀與公義",
+    range: "帖後1章",
+    keypoint: "神在信徒的患難中顯為公義，主耶穌再來時，要報應那不認識神的人，並在聖徒身上得榮耀。",
+    verse: "這正是神公義判斷的明證，叫你們可算配得神的國；你們就是為這國受苦。神既是公義的，就必將患難報應那加患難給你們的人。（帖後1:5-6）",
+    detail: "保羅首先肯定了帖撒羅尼迦信徒在極大的逼迫和患難中，信心和愛心仍在增長。他安慰他們，神是公義的，祂必會伸張正義。信徒今日所受的苦，正是他們配得神國的明證。當主耶穌帶著能力、駕雲降臨的時候，一切都將被翻轉：作惡的將受刑罰，而受苦的聖徒將得安息，並成為主榮耀的彰顯。"
+  },
+  {
+    title: "主來之前的預兆",
+    range: "帖後2章",
+    keypoint: "在主的日子來到以先，必有離道反教的事，並有那大罪人（沉淪之子）顯露出來。",
+    verse: "人不拘用什麼法子，你們總不要被他誘惑；因為那日子以前，必有離道反教的事，並有那大罪人，就是沉淪之子，顯露出來。（帖後2:3）",
+    detail: "為糾正『主的日子現今到了』的謠言，保羅給出了清晰的時間線索。他指出，在末日主來臨之前，會有大規模的背道反教事件，並且一個被稱為『大罪人』的敵基督人物將會出現，他會高抬自己，抵擋真神。但他的結局是註定的，主耶穌來臨時，要用口中的氣滅絕他。這段教導旨在穩定信徒，讓他們不要輕易被謠言動搖。"
+  },
+  {
+    title: "堅守真道與安靜做工",
+    range: "帖後3章",
+    keypoint: "勸勉信徒要為真道站立得穩，並要遠離那些遊手好閒、不按規矩而行的人。",
+    verse: "弟兄們，你們行善不可喪志。……我們靠主耶穌基督吩咐、勸戒這樣的人，要安靜做工，吃自己的飯。（帖後3:13, 12）",
+    detail: "在澄清了教義之後，保羅轉向實際的生活勸勉。他命令教會要對那些因錯誤的末日觀而懶惰不做工、專管閒事的人，施行溫和的紀律，暫時不與他們交往，以喚醒他們。保羅以自己親身晝夜做工、不白吃人飯的榜樣，教導信徒要持守敬虔而負責的生活態度，恆心行善，直到主來。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願主耶穌基督自己，和那愛我們、開恩將永遠的安慰並美好的盼望賜給我們的父神，安慰你們的心，並且在一切善行善言上堅固你們。願你們能站立得穩，堅守真道，行善不喪志。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>彼得後書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-peter2">
+  <h1>彼得後書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《彼得後書》是使徒彼得的臨終遺言，是他寫給信徒的最後一封信。當時，教會正受到假師傅的嚴重威脅，這些假師傅傳講異端、生活放蕩，並且譏誚主再來的應許。因此，彼得寫這封信的目的，就是要竭力地提醒和警告信徒，要防備假師傅的錯謬，並要在真知識上不斷長進，堅固自己對主再來的盼望。本書信語氣嚴厲，充滿了緊迫感，呼籲信徒要在敗壞的世代中，持守聖潔與警醒。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "在知識和德行上長進",
+    range: "彼後1章",
+    keypoint: "神已將一切關乎生命和虔敬的事賜給我們，我們應當分外地殷勤，在信心、德行、知識、節制、忍耐、虔敬、愛心上不斷長進。",
+    verse: "正因這緣故，你們要分外地殷勤；有了信心，又要加上德行；有了德行，又要加上知識……（彼後1:5）",
+    detail: "彼得首先提醒信徒，神已經賜給他們得勝生活的全部資源，使他們得與神的性情有分。因此，信徒的責任是在此根基上，積極地追求生命的成長，結出品格的果子。他以自己親眼見過主在登山變像時的榮光，以及聖經中先知更確的預言，來印證所傳之道的真實性，勉勵信徒要堅固所蒙的恩召。"
+  },
+  {
+    title: "假師傅的敗壞與審判",
+    range: "彼後2章",
+    keypoint: "預言將有假師傅出現，他們引進陷害人的異端，生活淫亂貪婪，結局是自取速速的滅亡。",
+    verse: "他們滿眼是淫色，止不住犯罪，引誘那心不堅固的人，心中習慣了貪婪，正是被咒詛的種類。（彼後2:14）",
+    detail: "這是聖經中對假教師最嚴厲、最生動的描寫之一。彼得毫不留情地揭露了這些人的本質：他們是信仰的投機者，用花言巧語在信徒身上取利；他們是慾望的奴隸，應許人自由，自己卻被敗壞所轄制。彼得引用挪亞時代的洪水、所多瑪蛾摩拉的焚燒等例子，嚴正地宣告，神對這些背道者的審判，是絕對不會遲延的。"
+  },
+  {
+    title: "主再來的應許與等候",
+    range: "彼後3章",
+    keypoint: "針對好譏誚的人，重申主再來的應許是真實的。主所應許的尚未成就，乃是寬容，不願有一人沉淪。",
+    verse: "主所應許的尚未成就，有人以為他是耽延，其實不是耽延，乃是寬容你們，不願有一人沉淪，乃願人人都悔改。（彼後3:9）",
+    detail: "面對末世懷疑論者的譏諷（『主降臨的應許在哪裡呢？』），彼得給出了兩個重要的回答。第一，神的時間觀與人不同，主看一日如千年。第二，主的『耽延』，恰恰是祂慈愛與寬容的彰顯，為要給更多人悔改的機會。然而，主的日子終將像賊一樣來到，屆時天地都要被烈火銷化。因此，信徒應當聖潔、敬虔地生活，切切仰望並預備那日的來臨。"
+  },
+  {
+    title: "在新天新地裡盼望",
+    range: "彼後3章後半",
+    keypoint: "我們照主的應許，盼望新天新地，有義居在其中。",
+    verse: "但我們照他的應許，盼望新天新地，有義居在其中。親愛的弟兄啊，你們既盼望這些事，就當殷勤，使自己沒有玷污，無可指摘，安然見主。（彼後3:13-14）",
+    detail: "在宣告了舊天地的結局之後，彼得將信徒的目光引向最終的榮耀盼望——一個被公義所充滿的新天新地。這個終極的盼望，應當成為信徒今日生活的準則和動力。他勸勉信徒，要將主的長久忍耐看為得救的機會，並要在我們主救主耶穌基督的恩典和知識上有長進，將榮耀歸給祂，直到永遠。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願您在我們主救主耶穌基督的恩典和知識上有長進，在彎曲悖謬的世代中，堅守祂確的預言。願您能分外殷勤，追求生命的長進，沒有玷污，無可指摘，安然見主。願榮耀歸給祂，從今直到永遠。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

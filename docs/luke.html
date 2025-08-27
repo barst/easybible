@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>路加福音的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-luke">
+  <h1>路加福音的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《路加福音》的作者是醫生路加，他也是《使徒行傳》的作者。這是一卷經過仔細考查、按著次序寫成的福音書，旨在讓讀者確知所學之道的真實性。路加福音特別描繪了耶穌作為「人子」的形象——祂是全人類的救主，充滿憐憫與恩典，尤其關懷社會中的邊緣群體，如窮人、婦女、稅吏和外邦人。本書充滿了禱告、聖靈的工作以及喜樂的主題，並以耶穌走向耶路撒冷的旅程作為其結構中心。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "人子的降生與童年",
+    range: "路1-2章",
+    keypoint: "詳細記載施洗約翰與耶穌的降生預告、馬利亞的順服之歌、耶穌的誕生與在聖殿的童年事蹟。",
+    verse: "因有一嬰孩為我們而生；有一子賜給我們……他名稱為奇妙策士、全能的神、永在的父、和平的君。（賽9:6）",
+    detail: "路加福音以充滿詩意和頌讚的筆觸，詳細記錄了救主降生的序曲。從馬利亞的《尊主頌》到西面的《西面頌》，處處洋溢著對神救贖計劃的盼望與喜樂。耶穌的降生，被描繪為關乎萬民的大喜信息。"
+  },
+  {
+    title: "人子的預備與宣告",
+    range: "路3-4章",
+    keypoint: "耶穌的家譜追溯至亞當，祂受洗、勝過試探，並在家鄉拿撒勒宣告祂的彌賽亞使命。",
+    verse: "主的靈在我身上，因為他用膏膏我，叫我傳福音給貧窮的人；差遣我報告：被擄的得釋放，瞎眼的得看見，叫那受壓制的得自由。（路4:18）",
+    detail: "路加將耶穌的家譜上溯至人類的始祖亞當，強調祂是為全人類而來的救主。在拿撒勒會堂，耶穌引用以賽亞書，清晰地宣告了祂的服事綱領：帶來釋放、醫治和自由，特別是向那些被社會遺忘的群體。"
+  },
+  {
+    title: "人子的權柄與呼召",
+    range: "路5-6章",
+    keypoint: "呼召彼得撇下所有跟從祂，設立十二使徒，在平原上教導門徒（平原寶訓）。",
+    verse: "耶穌對西門說：『不要怕！從今以後，你要得人了。』（路5:10）",
+    detail: "耶穌的呼召帶著徹底改變生命的能力。祂呼召漁夫成為「得人的漁夫」，並揀選十二位使徒作為天國運動的核心。祂的教導（如愛仇敵、不要論斷）顛覆了世界的價值觀，為門徒群體立下根基。"
+  },
+  {
+    title: "人子的憐憫與大能",
+    range: "路7-8章",
+    keypoint: "醫治百夫長的僕人，赦免有罪的女人，平靜風浪，醫治被鬼附的人。",
+    verse: "你的信救了你；平平安安地去吧！（路7:50）",
+    detail: "路加細膩地描繪了耶穌的憐憫之心。祂稱讚外邦百夫長的信心，接納並赦免被社會唾棄的罪人，祂的能力不僅彰顯在自然界和靈界，更深刻地體現在祂對每一個卑微靈魂的觸摸與醫治上。"
+  },
+  {
+    title: "走向耶路撒冷的旅程",
+    range: "路9-19章",
+    keypoint: "耶穌定意走向耶路撒冷，途中教導門徒代價、禱告，並講述許多著名比喻。",
+    verse: "耶穌被接上升的日子將到，他就定意向耶路撒冷去。（路9:51）",
+    detail: "這是路加福音的中心部分。耶穌的旅程不僅是地理上的移動，更是祂走向十字架的屬靈進程。在這段旅程中，祂講述了好撒馬利亞人、浪子回頭、法利賽人與稅吏等深刻比喻，揭示了神國的真義。"
+  },
+  {
+    title: "好撒馬利亞人的比喻",
+    range: "路10章",
+    keypoint: "愛神與愛鄰舍是最大的誡命，真正的鄰舍是那位動了慈心的人。",
+    verse: "你要盡心、盡性、盡力、盡意愛主－你的神；又要愛鄰舍如同自己。（路10:27）",
+    detail: "這個比喻挑戰了狹隘的宗教和種族觀念。耶穌重新定義了「鄰舍」的含義，指出愛不是口頭的，而是具體的、付諸行動的憐憫。它呼召跟從者跨越邊界，去關懷那些有需要的人。"
+  },
+  {
+    title: "浪子回頭的比喻",
+    range: "路15章",
+    keypoint: "透過失羊、失錢、失子的比喻，描繪天父對罪人悔改的極大喜悅與接納。",
+    verse: "我告訴你們，一個罪人悔改，在天上也要這樣為他歡喜，較比為九十九個不用悔改的義人歡喜更大。（路15:7）",
+    detail: "這是福音中恩典的最高峰。路加用三個比喻，生動地刻畫了天父那份不計代價、滿有慈愛的尋找與等待。無論人偏離多遠，只要願意轉回，天父的家門永遠敞開，並以盛大的筵席來慶祝。"
+  },
+  {
+    title: "稅吏撒該的悔改",
+    range: "路19章",
+    keypoint: "耶穌主動尋找並接納被厭棄的稅吏長撒該，帶來生命的徹底轉變。",
+    verse: "人子來，為要尋找、拯救失喪的人。（路19:10）",
+    detail: "撒該的故事是路加福音主題的完美縮影。耶穌無視群眾的議論，主動進入這位「罪人」的家，祂的接納帶來了撒該真實的悔改與生命的更新。這宣告了福音是為每一個失喪者而預備的。"
+  },
+  {
+    title: "人子的受難與死亡",
+    range: "路22-23章",
+    keypoint: "設立聖餐，客西馬尼園的禱告，在十字架上為仇敵禱告，赦免同釘的犯人。",
+    verse: "父啊！赦免他們；因為他們所做的，他們不曉得。（路23:34）",
+    detail: "路加筆下的十架場景，充滿了耶穌的憐憫與恩典。即使在極大的痛苦中，祂依然為釘祂的人禱告，並向悔改的犯人發出天國的應許。祂的死亡，是祂憐憫服事的最高體現。"
+  },
+  {
+    title: "復活與升天",
+    range: "路24章",
+    keypoint: "向以馬忤斯路上的門徒顯現並講解聖經，差遣門徒，應許聖靈，然後升天。",
+    verse: "於是耶穌開他們的心竅，使他們能明白聖經。（路24:45）",
+    detail: "復活的主不僅是身體的顯現，更是真理的啟示者。祂親自解開門徒的心竅，讓他們明白整本舊約是指向祂的受死與復活。最後，祂將見證的使命交給門徒，並應許賜下聖靈的能力，為使徒行傳揭開序幕。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願主耶穌這位滿有憐憫的人子，觸摸您的生命。願您在祂的故事裡，看見天父對每一個靈魂的珍視與慈愛，並被祂的恩典激勵，去關懷身邊有需要的人，成為祂在地上愛的管道。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

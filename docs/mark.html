@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>馬可福音的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-mark">
+  <h1>馬可福音的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《馬可福音》是四福音中篇幅最短、節奏最快的一卷，傳統上認為作者是馬可（約翰·馬可），他記錄了使徒彼得的宣講。本書的核心是展現耶穌作為「神的僕人」的形象，祂不斷地服事、醫治、教導，最終為世人的罪走上十字架。馬可福音充滿動感，常用「立刻」、「就」等詞語，強調耶穌行動的迅速與權柄。本書旨在回答「耶穌是誰？」以及「作門徒意味著什麼？」這兩個核心問題。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "僕人的預備與登場",
+    range: "可1章",
+    keypoint: "施洗約翰預備道路，耶穌受洗受試探，呼召首批門徒，開始權能服事。",
+    verse: "神的兒子，耶穌基督福音的起頭。（可1:1）",
+    detail: "馬可福音開門見山，直接宣告耶穌是神的兒子。祂以僕人之姿接受洗禮，並在曠野得勝試探。隨後，祂立刻展開服事，呼召門徒，並以無比的權柄醫病趕鬼，顯明祂非凡的身份。"
+  },
+  {
+    title: "僕人權柄的彰顯與衝突",
+    range: "可2-3章",
+    keypoint: "醫治癱子並赦罪，與法利賽人辯論安息日，設立十二門徒。",
+    verse: "人子來，並不是要受人的服事，乃是要服事人，並且要捨命作多人的贖價。（可10:45）",
+    detail: "耶穌的服事挑戰了當時的宗教權威。祂赦罪的權柄、對安息日的新詮釋，以及與罪人同席，都引發了法利賽人的敵意。在衝突中，祂設立十二門徒，為建立新的神國群體預備核心團隊。"
+  },
+  {
+    title: "天國的比喻與奧祕",
+    range: "可4章",
+    keypoint: "撒種的比喻，解釋為何眾人反應不同；平靜風浪，顯明祂掌管自然。",
+    verse: "神國的奧祕只叫你們知道；若是對外人講，凡事就用比喻。（可4:11）",
+    detail: "耶穌用比喻教導天國的真理，這真理向願意聆聽的心敞開，卻向硬心的人隱藏。在風浪中，門徒驚恐，耶穌卻一言平息風浪，讓門徒反思：『這到底是誰，連風和海也聽從他了？』"
+  },
+  {
+    title: "僕人能力的巔峰",
+    range: "可5章",
+    keypoint: "趕出群鬼入豬群，醫治血漏婦人，叫睚魯的女兒復活。",
+    verse: "不要怕，只要信！（可5:36）",
+    detail: "本章記載了三個震撼人心的神蹟，將耶穌的權能展現得淋漓盡致。祂勝過邪靈的捆綁、長年疾病的折磨，甚至死亡的權勢。這一切都指向一個核心信息：在耶穌裡，沒有任何絕境是不能被翻轉的，只要信。"
+  },
+  {
+    title: "僕人的被拒與差遣",
+    range: "可6章",
+    keypoint: "家鄉人厭棄祂，差遣十二門徒出外傳道，五餅二魚餵飽五千人。",
+    verse: "大凡先知，除了本地、親屬、本家之外，沒有不被人尊敬的。（可6:4）",
+    detail: "即使是滿有能力的僕人，也會面臨拒絕。然而，這並未阻止祂的使命。祂差遣門徒擴展天國的工作，並用五餅二魚的神蹟，顯明祂是那位能供應一切需要的豐盛之主。"
+  },
+  {
+    title: "潔淨的真義與外邦的信心",
+    range: "可7章",
+    keypoint: "論斷古人的遺傳，指出污穢是從人心發出；稱讚敘利非尼基婦人的信心。",
+    verse: "從外面進去的不能污穢人，惟有從裡面出來的乃能污穢人。（可7:15）",
+    detail: "耶穌將屬靈的焦點從外在的禮儀轉向內心的潔淨。祂的教導打破了傳統的框架。同時，祂與敘利非尼基婦人的對話，顯明了救恩的廣闊，它臨到一切憑信心來到祂面前的人，不論其背景。"
+  },
+  {
+    title: "彌賽亞的身份與十架之路",
+    range: "可8章",
+    keypoint: "彼得認耶穌為基督，耶穌首次預言受難與復活，教導門徒的代價。",
+    verse: "若有人要跟從我，就當捨己，背起他的十字架來跟從我。（可8:34）",
+    detail: "這是馬可福音的轉捩點。在彼得正確宣告祂的身份後，耶穌立刻揭示祂的彌賽亞使命——不是榮耀的君王，而是受苦的僕人。祂呼召跟從者走同樣的道路：一條捨己、背負十架的道路。"
+  },
+  {
+    title: "僕人的榮耀與謙卑",
+    range: "可9章",
+    keypoint: "登山變像顯出榮耀，趕出頑固的鬼，教導門徒要謙卑如小孩。",
+    verse: "若有人願意作首先的，他必作眾人末後的，作眾人的用人。（可9:35）",
+    detail: "登山變像讓核心門徒預見了耶穌本體的榮耀，堅固他們的信心。然而，耶穌再次將他們的目光從權力與地位，轉向服事與謙卑。在祂的國度裡，真正的偉大在於成為眾人的僕人。"
+  },
+  {
+    title: "走向耶路撒冷的最後教導",
+    range: "可10章",
+    keypoint: "論婚姻、為小孩祝福、與富有的官談永生，再次預言受難。",
+    verse: "在人是不能，在神卻不然，因為神凡事都能。（可10:27）",
+    detail: "在前往耶路撒冷的路上，耶穌密集地教導關於天國的價值觀。祂看重婚姻的神聖、祝福被人輕視的小孩，並挑戰人對財富的依賴。祂的核心信息是：進入神的國，需要徹底地信靠神的大能，而非人的努力。"
+  },
+  {
+    title: "僕人的受難、死亡與復活",
+    range: "可14-16章",
+    keypoint: "最後的晚餐，被捕，受審，被釘死，婦女發現空墳墓。",
+    verse: "我的神！我的神！為什麼離棄我？（可15:34）",
+    detail: "馬可福音用近三分之一的篇幅，詳細記述了耶穌受難的過程。這位服事眾人的僕人，最終以自己的生命為贖價，承擔了世人的罪。祂在十架上的呼喊，表達了祂承擔罪的極致痛苦。然而，墳墓不是結局，婦女們發現的空墳墓，宣告了祂已勝過死亡，帶來了復活的盼望。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願主耶穌這位僕人君王，激勵您我活出服事的生命。願我們能像祂一樣，不求被服事，乃是去服事人，並在捨己的道路上，經歷祂復活的大能與真實的喜樂。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>申命記的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-deuteronomy">
+  <h1>申命記的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《申命記》是摩西五經的最後一卷，也是摩西在約旦河東岸，即將進入迦南地之前，對新一代以色列人所作的最後一系列講論。本書的核心是「重申律法」和「呼籲順服」。摩西回顧了以色列人在曠野的歷史，重申了西乃山所頒布的律法，並強調了遵守律法所帶來的祝福和悖逆所帶來的咒詛。申命記充滿了摩西對百姓的深情勸勉，呼籲他們要盡心、盡性、盡力愛耶和華他們的神，並將神的誡命銘記在心，傳給後代。它是舊約律法書的總結，也是進入應許之地前的重要訓誨。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "回顧歷史與重申律法",
+    range: "申1-4章",
+    keypoint: "摩西回顧以色列人出埃及和曠野漂流的歷史，提醒他們神的信實和人的悖逆，並重申十誡。",
+    verse: "以色列啊，你要聽！耶和華我們神是獨一的主。你要盡心、盡性、盡力愛耶和華你的神。（申6:4-5）",
+    detail: "摩西以一位年邁的領袖身份，向即將進入應許之地的新一代以色列人，進行了深情的告別講論。他回顧了神在曠野中對他們的帶領和管教，提醒他們不要忘記神的恩典和自己的失敗。他重申了十誡，強調神是獨一的主，並呼籲百姓要盡心盡力愛神，這是所有律法的總綱。"
+  },
+  {
+    title: "律法的精義與生活應用",
+    range: "申5-11章",
+    keypoint: "摩西詳細解釋律法的精義，強調順服神所帶來的祝福，以及悖逆所帶來的咒詛。",
+    verse: "我今日所吩咐你的這一切話，你要記在心上，也要殷勤教訓你的兒女。無論你坐在家裡，行在路上，躺下，起來，都要談論。（申6:6-7）",
+    detail: "這部分是申命記的核心。摩西不僅重申了律法，更解釋了律法背後的精神——愛神和愛人。他強調，遵守律法不是為了得救，而是對神救贖恩典的回應。他勸勉百姓要將神的誡命刻在心上，並在日常生活中不斷教導兒女，使神的道代代相傳。他以生命和死亡的選擇，呼籲百姓選擇生命。"
+  },
+  {
+    title: "聖潔的國民與社會公義",
+    range: "申12-26章",
+    keypoint: "詳細規定了以色列人在進入迦南地後，如何在敬拜、社會、家庭和個人生活中活出聖潔和公義。",
+    verse: "你不可在弟兄中作高利貸的債主，借錢給他，不可向他取利。（申23:19）",
+    detail: "這部分律法涵蓋了以色列人生活的方方面面，從敬拜的中心（獨一的聖所）、防備偶像崇拜、飲食條例，到對待窮人、孤兒寡婦、寄居者的公義，以及婚姻、戰爭、司法等。這些律法旨在塑造以色列人成為一個與眾不同、彰顯神聖潔和公義的國度。"
+  },
+  {
+    title: "祝福與咒詛",
+    range: "申27-30章",
+    keypoint: "神清楚地陳明了順服所帶來的祝福和悖逆所帶來的咒詛，呼籲百姓選擇生命。",
+    verse: "我今日將生與福，死與禍，陳明在你面前，所以你要揀選生命，使你和你的後裔都得存活。（申30:19）",
+    detail: "在進入應許之地前，摩西再次強調了順服與悖逆的後果。他以基利心山和以巴路山為象徵，宣告了神對順服者的祝福和對悖逆者的咒詛。這是一個嚴肅的選擇，神呼籲百姓要選擇生命，這生命在於愛耶和華他們的神，聽從祂的話，專靠祂。"
+  },
+  {
+    title: "摩西的告別與傳承",
+    range: "申31-34章",
+    keypoint: "摩西將領導權交給約書亞，唱出摩西之歌，祝福以色列各支派，並從毘斯迦山遙望應許之地後去世。",
+    verse: "從此以後，以色列中再沒有興起先知像摩西的。他是耶和華面對面所認識的。（申34:10）",
+    detail: "申命記以摩西的告別和去世作結。他將領導的重任交給約書亞，並以一首充滿預言和頌讚的歌，回顧了神的信實和以色列的歷史。他從毘斯迦山遙望應許之地，雖然自己不能進入，但他對神的忠心和對百姓的愛，成為永恆的榜樣。他的去世，標誌著一個時代的結束，也預示著以色列即將進入新的篇章。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那愛您、揀選您的耶和華神，將祂的誡命銘刻在您的心版上。願您能盡心、盡性、盡力愛祂，並在祂的律法中得著智慧和生命。願您選擇生命，順服祂的旨意，得著祂所應許的一切豐盛祝福。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提摩太前書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-timothy1">
+  <h1>提摩太前書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《提摩太前書》、《提摩太後書》和《提多書》合稱為「教牧書信」，是使徒保羅寫給他兩位年輕同工——提摩太和提多的個人信函。在《提摩太前書》中，保羅囑咐他屬靈的真兒子提摩太，要留守在以弗所教會，處理當時教會內部因異端教訓所引發的各種問題。本書信的核心目的，是指導提摩太如何治理教會，確保教會在真理的根基上，成為「真理的柱石和根基」。內容涉及防備異端、設立教會領袖的資格、公共敬拜的秩序，以及如何對待教會中不同群體等實際問題。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "持守真道，抵擋異端",
+    range: "提前1章",
+    keypoint: "保羅囑咐提摩太要持守無虧的良心和無偽的信心，去抵擋那些傳異教、專注於無稽之談的人。",
+    verse: "但命令的總歸就是愛；這愛是從清潔的心和無虧的良心，無偽的信心生出來的。（提前1:5）",
+    detail: "保羅開宗明義，指出純正教義的目標是生發愛。他警告提摩太，要防備那些偏離真道，想要作教法師，卻不明白自己所講論的為何物的人。律法的功用是為罪人設立的，而福音的核心是恩典。保羅以自己是『罪魁』卻蒙憐憫為例，彰顯了基督耶穌的無限忍耐和恩典。"
+  },
+  {
+    title: "教會的禱告與敬拜秩序",
+    range: "提前2章",
+    keypoint: "勸勉信徒首要為萬人禱告，特別是為君王和一切在位的；並教導男女在公共敬拜中的合宜角色。",
+    verse: "我願男人無忿怒，無爭論，舉起聖潔的手，隨處禱告。又願女人廉恥、自守，以正派衣裳為妝飾……專心學道，一味地順服。（提前2:8-9, 11）",
+    detail: "保羅強調禱告的普世性，因為神願意萬人得救，明白真道。耶穌基督是神與人之間唯一的中保。接著，他針對當時教會的混亂，提出了公共敬拜的秩序：男性應以聖潔的態度帶領禱告，女性則應以端莊、敬虔的品格為妝飾，並在教導的權柄上持守合宜的次序。"
+  },
+  {
+    title: "教會領袖的資格",
+    range: "提前3章",
+    keypoint: "詳細列明擔任監督（長老）和執事的資格，強調他們必須在品格和家庭生活上有美好的見證。",
+    verse: "人若想要得監督的職分，就是羨慕善工。……作監督的，必須無可指責……好好管理自己的家，使兒女凡事端莊順服。（提前3:1-2, 4）",
+    detail: "教會的健康與其領袖的素質息息相關。保羅指出，教會領袖的首要資格不是才幹或魅力，而是無可指摘的個人品格、成熟的靈命和合宜的家庭管理。他們必須在信仰上穩固，在行為上節制，在教會內外都享有好名聲。這些標準確保了教會能被託付在可靠的人手中。"
+  },
+  {
+    title: "敬虔的奧祕與操練",
+    range: "提前4章",
+    keypoint: "預言末世必有離棄真道之事，勸勉提摩太要在敬虔上操練自己，成為信徒的榜樣。",
+    verse: "不可叫人小看你年輕，總要在言語、行為、愛心、信心、清潔上，都作信徒的榜樣。（提前4:12）",
+    detail: "面對假教師禁止嫁娶和禁戒食物的錯誤教導，保羅強調凡神所造的物都是好的。他勸勉提摩太，不要專注於這些虛假的禁慾主義，而要在『敬虔』這更大的事上操練自己。操練身體益處還少，唯獨敬虔，凡事都有益處，因有今生和來生的應許。他鼓勵年輕的提摩太要用生命活出榜樣。"
+  },
+  {
+    title: "對待教會中不同群體的智慧",
+    range: "提前5章",
+    keypoint: "教導如何對待教會中的長者、寡婦、長老，並設立處理控告長老的程序。",
+    verse: "那善於管理教會的長老，當以為配受加倍的敬奉；那勞苦傳道教導人的，更當如此。（提前5:17）",
+    detail: "本章充滿了治理教會的實踐智慧。保羅教導提摩太要尊敬長者如同父母，並設立了教會關懷真寡婦的具體標準。他特別強調要敬奉和供應那些忠心服事的長老，同時也設立了嚴謹的程序來處理對領袖的指控，以保護教會的秩序和公正。"
+  },
+  {
+    title: "知足常樂與錢財的迷惑",
+    range: "提前6章",
+    keypoint: "敬虔加上知足的心便是大利了；貪財是萬惡之根，信徒要為真道打那美好的仗。",
+    verse: "然而，敬虔加上知足的心便是大利了；因為我們沒有帶什麼到世上來，也不能帶什麼去。只要有衣有食，就當知足。（提前6:6-8）",
+    detail: "保羅嚴厲地警告那些以為敬虔是得利門路的假教師。他指出，貪愛錢財會使人陷入迷惑，被愁苦刺透。他勸勉屬神的人要追求公義、敬虔、信心、愛心、忍耐、溫柔，並為永生打那美好的仗。對於富足的信徒，他則勸他們不要倚靠無定的錢財，而要倚靠神，並在好事上富足，甘心施捨。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願又真又活的上帝保守您，在混亂的世代中能持守真道，常存清潔的心、無虧的良心和無偽的信心。願您在敬虔上操練自己，在凡事上成為他人的榜樣，為真道打那美好的仗，持定永生。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

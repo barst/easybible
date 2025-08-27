@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>傳道書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-ecclesiastes">
+  <h1>傳道書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《傳道書》是聖經中的智慧文學，作者自稱為「在耶路撒冷作王、大衛的兒子」，傳統上認為是所羅門王。本書以「虛空的虛空，凡事都是虛空」這句名言，探討了在日光之下（即脫離神的人生）勞碌、智慧、財富和享樂的短暫與無益。然而，傳道書並非導向虛無主義，而是在揭示了人生的種種無奈後，將人的目光引向上帝，指出敬畏神、謹守祂的誡命，才是人生的本分與最終的意義所在。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "凡事都是虛空",
+    range: "傳1-2章",
+    keypoint: "傳道者探索智慧、享樂、勞碌，結論是在日光之下並無新事，一切都是虛空，都是捕風。",
+    verse: "虛空的虛空，虛空的虛空，凡事都是虛空。（傳1:2）",
+    detail: "作者以一個探索者的身份，親身試驗了世人所追求的一切：智慧、知識、狂歡、美酒、偉大的工程和無盡的財富。然而，當他回顧這一切時，發現它們都不能帶來終極的滿足。死亡的結局使這一切的努力都顯得短暫而虛幻。"
+  },
+  {
+    title: "凡事都有定時",
+    range: "傳3章",
+    keypoint: "神讓萬事萬物在祂的時間裡發生，人應當在當下享受神的恩賜。",
+    verse: "凡事都有定期，天下萬務都有定時。生有時，死有時…（傳3:1）",
+    detail: "這段著名的詩歌描繪了人生的種種對立面，並指出這一切都在神的主權和時間表之下。人無法完全掌控自己的命運，但可以在神的安排中，享受每日的工作與生活，並將其視為神的禮物。神也將永恆的意識放在人心裡，使人尋求超越時間的意義。"
+  },
+  {
+    title: "日光之下的無奈",
+    range: "傳4-6章",
+    keypoint: "探討欺壓、嫉妒、孤獨、財富的無常，以及人心的不知足。",
+    verse: "兩個人總比一個人好，因為二人勞碌同得美好的果效。（傳4:9）",
+    detail: "傳道者觀察到社會中的種種不公與痛苦。他看見人因競爭而勞碌，因孤獨而無助，因貪愛錢財而不得安寧。他肯定了友誼與合作的價值，但也深刻地指出，若沒有神，人心永遠無法從對物質的追求中得到真正的滿足。"
+  },
+  {
+    title: "智慧的價值與局限",
+    range: "傳7-8章",
+    keypoint: "稱讚智慧勝過愚昧，但承認智慧無法完全解釋世上的不公（如義人受苦，惡人亨通）。",
+    verse: "智慧使有智慧的人比城中十個官長更有能力。（傳7:19）",
+    detail: "智慧能幫助人洞察事物，應對人生的挑戰，帶來益處。然而，傳道者也坦承，單靠人的智慧無法解決所有問題，特別是面對世上善惡報應顛倒的現象時，智慧顯得無能為力。這驅使人必須仰望更高的主宰。"
+  },
+  {
+    title: "死亡的必然與活著的態度",
+    range: "傳9章",
+    keypoint: "義人與惡人都將面臨死亡，所以活著的人當盡力、喜樂地生活。",
+    verse: "凡你手所當做的事，要盡力去做；因為在你所必去的陰間，沒有工作，沒有謀算，沒有知識，也沒有智慧。（傳9:10）",
+    detail: "死亡是所有人都無法逃避的共同結局，這是日光之下最公平也最無奈的事。既然如此，傳道者勸勉人不要消極，反而要積極地把握現在，在神所賜的年日中，與所愛的人享受生命，並在工作中找到喜樂。"
+  },
+  {
+    title: "當記念造你的主",
+    range: "傳11-12章",
+    keypoint: "勸勉年輕人要趁年幼記念造物主，因為衰敗和審判終將來臨。",
+    verse: "你趁著年幼、衰敗的日子尚未來到……當記念造你的主。（傳12:1）",
+    detail: "這是一段充滿詩意又極為深刻的勸告。傳道者用生動的比喻描寫了年老體衰的景象，提醒年輕人生命短暫，不要等到一切都失去活力時才尋求神。青春的時光，是敬畏神、為永恆做預備的最好時機。"
+  },
+  {
+    title: "人生的總結",
+    range: "傳12章",
+    keypoint: "全書的最終結論：敬畏神，謹守祂的誡命，這是人當盡的本分。",
+    verse: "這些事都已聽見了，總意就是：敬畏神，謹守他的誡命，這是人所當盡的本分。因為人所做的事，連一切隱藏的事，無論是善是惡，神都必審問。（傳12:13-14）",
+    detail: "在探索了人生的一切可能性之後，傳道者得出了最終的答案。人生的意義不在於日光之下的任何事物，而在於與日光之上的神建立正確的關係。敬畏神、順服祂的話語，並為自己的一切行為向祂負責，這才是超越虛空的永恆價值所在。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願智慧的上帝開啟您的心，讓您在看似虛空的人生中，找到那永恆不變的意義。願您不被日光之下的事務所困，而是學會享受當下、記念造您的主，並在敬畏祂的裡面，得著真正的滿足與喜樂。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

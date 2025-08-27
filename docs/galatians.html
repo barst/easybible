@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>加拉太書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-galatians">
+  <h1>加拉太書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《加拉太書》是使徒保羅所寫的一封充滿激情和辯護性的書信，又被稱為「基督徒的自由大憲章」。當時，在加拉太的眾教會中，有猶太主義的假教師滲透進來，鼓吹外邦信徒必須遵守摩西律法（如行割禮）才能得救。保羅為此心急如焚，寫下此信，重申「因信稱義」的福音真理，竭力捍衛基督徒在恩典中所享有的真自由。本書信是辨明福音核心、反對律法主義的關鍵書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "獨一的福音",
+    range: "加1章",
+    keypoint: "保羅辯護他所傳的福音是直接從耶穌基督啟示而來，並咒詛任何傳講『別的福音』的人。",
+    verse: "但無論是我們，是天上來的使者，若傳福音給你們，與我們所傳給你們的不同，他就應當被咒詛。（加1:8）",
+    detail: "保羅以異常嚴厲的口氣開篇，他省略了慣常的感恩問候，直奔主題。他強調自己所傳的福音，其權威來源不是任何人，而是神的直接啟示。這為他接下來辯護『因信稱義』的真理，立下了不可動搖的權威根基。任何在基督的恩典之外，添加律法功勞的教導，都是應當被拒絕的『別的福音』。"
+  },
+  {
+    title: "使徒的印證",
+    range: "加2章",
+    keypoint: "保羅的使徒身份得到耶路撒冷教會領袖的認可；他當面責備彼得在安提阿的偽裝行為。",
+    verse: "我已經與基督同釘十字架，現在活著的不再是我，乃是基督在我裡面活著；並且我如今在肉身活著，是因信神的兒子而活；他是愛我，為我捨己。（加2:20）",
+    detail: "保羅憶述他與彼得、雅各、約翰等教會柱石的會面，證明他所傳給外邦人的福音，與他們所傳的並無二致。他更以當面指正彼得的事件，來顯明福音真理（即外邦信徒與猶太信徒在基督裡是平等的）是絕不可妥協的。本章結尾處的經文，是基督徒與主聯合、憑信而活的經典宣告。"
+  },
+  {
+    title: "因信稱義的辯護",
+    range: "加3章",
+    keypoint: "你們既靠聖靈入門，如今還靠肉身成全嗎？律法是訓蒙的師傅，引我們到基督那裡。",
+    verse: "可見那以信為本的人，就是亞伯拉罕的子孫。……所以，你們因信基督耶穌都是神的兒子。（加3:7, 26）",
+    detail: "保羅質問加拉太信徒，他們領受聖靈，是靠行律法還是靠聽信福音？他引用亞伯拉罕的例子，證明『因信稱義』自古就是神的法則。律法的功能，如同孩童時期的監護人和老師，它的目的是引導人認識自己的罪，並把人帶到基督面前，使人因信得稱為義。如今基督既已來到，人就不再在律法之下了。"
+  },
+  {
+    title: "兒子的名分與自由",
+    range: "加4章",
+    keypoint: "信徒不再是律法下的奴僕，乃是神的兒子，領受了兒子的靈；用夏甲和撒拉的比喻說明為奴的和自主的。",
+    verse: "可見，你從此以後不是奴僕，乃是兒子了；既是兒子，就靠著神為後嗣。（加4:7）",
+    detail: "保羅用生動的比喻，對比了在律法之下為奴的光景，和在基督裡為子的自由。信徒心中有聖靈，可以親密地呼叫神為『阿爸，父』。他以夏甲（代表律法之約）和撒拉（代表應許之約）為例，勸勉加拉太信徒要站穩在應許和自由的地位上，不要再回到為奴的軛中去。"
+  },
+  {
+    title: "聖靈裡的真自由",
+    range: "加5章",
+    keypoint: "基督釋放了我們，是為叫我們得自由，但不可將自由當作放縱情慾的機會，乃要憑著愛心互相服事。",
+    verse: "基督釋放了我們，叫我們得以自由。所以要站立得穩，不要再被奴僕的軛挾制。（加5:1）",
+    detail: "這是本書的應用核心。保羅清楚定義了基督裡的自由：這自由不是為所欲為，而是使人有能力去愛和服事。他將『情慾的事』與『聖靈的果子』（仁愛、喜樂、和平、忍耐等）作了鮮明的對比，指出真正的自由，是順從聖靈的引導，活出基督的品格。"
+  },
+  {
+    title: "結果子的生命",
+    range: "加6章",
+    keypoint: "信徒應當彼此擔當重擔，順著聖靈撒種，行善不可喪志。",
+    verse: "不要自欺，神是輕慢不得的。人種的是什麼，收的也是什麼。順著情慾撒種的，必從情慾收敗壞；順著聖靈撒種的，必從聖靈收永生。（加6:7-8）",
+    detail: "在書信的結尾，保羅給出了一系列實際的勸勉。他鼓勵信徒要以溫柔的心挽回軟弱的肢體，並要分辨自己生命的撒種方向。他強調，我們誇口的，不應是外在的記號（如割禮），而只應誇基督的十字架。因著十字架，我們成了新造的人，這才是最重要的。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願主耶穌基督釋放您，使您真正在祂的恩典裡得以自由。願聖靈引導您，使您不靠肉身成全，乃是順從聖靈而行，結出仁愛、喜樂、和平的果子。願您站立得穩，不再被任何奴僕的軛挾制，單單誇耀主的十字架。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

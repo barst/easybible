@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>腓立比書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-philippians">
+  <h1>腓立比書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《腓立比書》是使徒保羅在羅馬監獄中寫給腓立比教會的書信，因此也被稱為「監獄書信」之一。儘管身陷囹圄，這封信卻充滿了無可抑制的喜樂與感恩，因此也被譽為「喜樂的書信」。腓立比教會是保羅在歐洲建立的第一間教會，他們與保羅的關係非常親密，並在經濟上多次支持保羅的事工。保羅寫這封信，旨在感謝他們的饋贈，並藉此機會鼓勵他們在患難中要同心合意、效法基督的謙卑、追求生命的長進，並在主裡常常喜樂。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "為福音同心合意",
+    range: "腓1章",
+    keypoint: "保羅為腓立比信徒感恩，深信神必成全他們裡面的善工；無論環境如何，總叫基督被顯大。",
+    verse: "因為我活著就是基督，我死了就有益處。（腓1:21）",
+    detail: "保羅的禱告和喜樂，不是建立在順利的環境上，而是建立在福音的廣傳和信徒的長進上。他被捆鎖，反倒使福音更加興旺。他將自己的生死置之度外，唯一的心志，就是無論生是死，總叫基督在他身上照常顯大。這種以基督為中心的生命，是他喜樂的根源。"
+  },
+  {
+    title: "以基督的心為心",
+    range: "腓2章",
+    keypoint: "勸勉信徒要同心合意，效法基督的謙卑虛己；祂本有神的形象，卻取了奴僕的形象，以至於死。",
+    verse: "你們當以基督耶穌的心為心。（腓2:5）",
+    detail: "本章包含了一首壯麗的『基督頌歌』，描繪了基督從至高降為至卑，再被神升為至高的偉大歷程。這是基督徒群體生活的典範。保羅勸勉信徒，要放下自私的野心，存心謙卑，看別人比自己強。這種捨己的態度，是教會合一與興旺的秘訣。"
+  },
+  {
+    title: "以認識基督為至寶",
+    range: "腓3章",
+    keypoint: "保羅將先前以為有益的（如律法上的義），都當作有損的，為要得著基督。",
+    verse: "不但如此，我也將萬事當作有損的，因我以認識我主基督耶穌為至寶。我為他已經丟棄萬事，看作糞土，為要得著基督。（腓3:8）",
+    detail: "面對假教師的攪擾，保羅以自己的經歷為見證。他擁有當時猶太人所誇耀的一切資本，但他如今將這一切都視為虧損。他的人生價值觀發生了根本性的轉變，唯一追求的目標，就是更深地認識基督，並得著祂復活的大能。他勸勉信徒要忘記背後，努力面前，向著標竿直跑。"
+  },
+  {
+    title: "在主裡常常喜樂",
+    range: "腓4章",
+    keypoint: "勸勉信徒要靠主站立得穩，在主裡喜樂，並學習一無掛慮的秘訣。",
+    verse: "你們要靠主常常喜樂。我再說，你們要喜樂。（腓4:4）",
+    detail: "這是本書最著名的鑰節之一。保羅教導信徒，喜樂不是一種情緒，而是一種選擇和操練。克服憂慮的秘訣，是藉著禱告、祈求和感謝，將所要的告訴神。神所賜出人意外的平安，必在基督耶穌裡保守他們的心懷意念。最後，保羅分享了他『隨事隨在』都知足的秘訣——靠著那加給我力量的，凡事都能做。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那賜出人意外平安的神，保守您的心懷意念。願您能以基督耶穌的心為心，不論環境順逆，都能學習知足的功課，經歷『靠主常喜樂』的真實。願您以認識基督為至寶，向著標竿直跑，直到得著神在基督耶穌裡從上面召您來得的獎賞。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

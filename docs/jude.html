@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>猶大書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-jude">
+  <h1>猶大書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《猶大書》的作者是「雅各的弟兄猶大」，他很可能也是主耶穌的弟弟。這是一封充滿戰鬥氣息、措辭嚴厲的書信，與《彼得後書》第二章的內容非常相似。猶大原本打算寫一封關於救恩的信，但因假師傅已經潛入教會，傳播錯謬、敗壞信徒，他不得不改變計劃，寫下這封信，竭力地勸勉信徒要「為從前一次交付聖徒的真道，竭力地爭辯」。本書信揭露了假師傅的邪惡本質和必然結局，並教導真信徒如何在末世持守信仰，保守自己常在神的愛中。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "為真道竭力爭辯",
+    range: "猶1-25節",
+    keypoint: "勸勉信徒要為真道爭辯，防備那些將神的恩變作放縱情慾機會的假師傅，並要在至聖的真道上造就自己。",
+    verse: "親愛的弟兄啊，我想盡心寫信給你們，論我們同得救恩的時候，就不得不寫信勸你們，要為從前一次交付聖徒的真道，竭力地爭辯。（猶3節）",
+    detail: "猶大書的核心信息，就是一個緊急的呼籲。面對那些偷著進入教會、不認獨一主宰耶穌基督的假師傅，信徒不能保持沉默或妥協。猶大引用了舊約中以色列人、墮落天使和所多瑪等例子，證明神對背道者的審判是嚴厲且必然的。他用生動的比喻（沒有水的雲彩、沒有果子的樹、流蕩的星）描繪了這些假師傅的虛空本質和最終結局。在這樣的背景下，猶大勸勉真信徒，要在信仰上積極地自我建造：在真道上扎根，在聖靈裡禱告，保守自己常在神的愛中，並仰望主的憐憫，直到永生。同時，也要存著憐憫和智慧，去挽救那些被迷惑的人。最後，他以一首榮耀的頌讚結束，將一切榮耀歸給那能保守我們不失腳的獨一救主神。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那能保守您不失腳、叫您無瑕無疵、歡歡喜喜站在祂榮耀之前的我們獨一的救主神，堅固您的信心，使您能在至聖的真道上造就自己，在聖靈裡禱告，保守自己常在神的愛中，仰望我們主耶穌基督的憐憫，直到永生。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

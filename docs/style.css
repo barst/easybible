@@ -1,0 +1,397 @@
+/* General Body and Layout */
+body {
+  font-family: Arial, sans-serif;
+  background: #f9fafb;
+  margin: 0;
+  padding: 20px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.intro, .footer {
+  max-width: 900px;
+  margin: 20px auto;
+  text-align: center;
+  color: #374151;
+  font-size: 16px;
+  line-height: 1.75;
+}
+
+.footer {
+    margin-top: 32px;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+a {
+    color: #1d4ed8;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Main Title */
+h1 {
+  text-align: center;
+}
+
+/* Card Styling */
+.card {
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.title {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.range {
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.keypoint {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.verse {
+  font-style: italic;
+  font-size: 14px;
+}
+
+/* Modal Styling */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 720px;
+  max-height: 80vh;
+  overflow-y: auto;
+  position: relative;
+  cursor: pointer;
+}
+
+/* Back to Home Link */
+.home-link {
+    display: block;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+/* --- Theme for Acts --- */
+.theme-acts h1 { color: #1d4ed8; }
+.theme-acts .card { background: linear-gradient(135deg, #dbeafe, #ffffff); }
+.theme-acts .title { color: #1d4ed8; }
+.theme-acts .range { color: #2563eb; }
+.theme-acts .verse { color: #374151; }
+
+/* --- Theme for John Gospel --- */
+.theme-john h1 { color: #065f46; }
+.theme-john .card { background: linear-gradient(135deg, #d1fae5, #ffffff); }
+.theme-john .title { color: #065f46; }
+.theme-john .range { color: #10b981; }
+.theme-john .verse { color: #374151; }
+
+/* --- Theme for Hebrews --- */
+.theme-hebrews h1 { color: #3730a3; }
+.theme-hebrews .card { background: linear-gradient(135deg, #e0e7ff, #ffffff); }
+.theme-hebrews .title { color: #3730a3; }
+.theme-hebrews .range { color: #6366f1; }
+.theme-hebrews .verse { color: #4b5563; }
+
+/* --- Theme for Job --- */
+.theme-job h1 { color: #3730a3; } /* Same as Hebrews */
+.theme-job .card { background: linear-gradient(135deg, #e0e7ff, #ffffff); } /* Same as Hebrews */
+.theme-job .title { color: #3730a3; } /* Same as Hebrews */
+.theme-job .range { font-size: 12px; color: #6366f1; } /* Job has a smaller font size for range */
+.theme-job .verse { font-style: italic; color: #4b5563; font-size: 13px; } /* Job has a smaller font size for verse */
+.theme-job .modal-content { max-width: 600px; } /* Job has a smaller modal */
+
+/* --- Theme for Index Page --- */
+.theme-index h1 { color: #334155; }
+.theme-index .card { background: linear-gradient(135deg, #e2e8f0, #ffffff); }
+.theme-index .card a { text-decoration: none; }
+.theme-index .card .title { color: #1e293b; font-size: 24px; text-align: center; }
+
+/* --- Theme for Matthew --- */
+.theme-matthew h1 { color: #4a148c; } /* Deep Purple */
+.theme-matthew .card { background: linear-gradient(135deg, #ede7f6, #ffffff); }
+.theme-matthew .title { color: #4a148c; }
+.theme-matthew .range { color: #6a1b9a; }
+.theme-matthew .verse { color: #311b92; }
+
+/* --- Theme for Mark --- */
+.theme-mark h1 { color: #b71c1c; } /* Deep Red */
+.theme-mark .card { background: linear-gradient(135deg, #ffebee, #ffffff); }
+.theme-mark .title { color: #b71c1c; }
+.theme-mark .range { color: #c62828; }
+.theme-mark .verse { color: #880e4f; }
+
+/* --- Theme for Luke --- */
+.theme-luke h1 { color: #1b5e20; } /* Deep Green */
+.theme-luke .card { background: linear-gradient(135deg, #e8f5e9, #ffffff); }
+.theme-luke .title { color: #1b5e20; }
+.theme-luke .range { color: #2e7d32; }
+.theme-luke .verse { color: #004d40; }
+
+.section-title {
+  text-align: center;
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #ffffff;
+  background-color: #475569;
+  padding: 15px 10px;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.subsection-title {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #475569;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  text-align: center;
+  border-bottom: 1px solid #cbd5e1;
+  padding-bottom: 8px;
+}
+
+.subsection-description {
+  font-size: 0.9em;
+  color: #64748b;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* --- Theme for Genesis --- */
+.theme-genesis h1 { color: #4A148C; } /* Deep Purple */
+.theme-genesis .card { background: linear-gradient(135deg, #ede7f6, #ffffff); }
+.theme-genesis .title { color: #4A148C; }
+.theme-genesis .range { color: #6A1B9A; }
+.theme-genesis .verse { color: #311B92; }
+
+/* --- Theme for Exodus --- */
+.theme-exodus h1 { color: #BF360C; } /* Deep Orange */
+.theme-exodus .card { background: linear-gradient(135deg, #fbe9e7, #ffffff); }
+.theme-exodus .title { color: #BF360C; }
+.theme-exodus .range { color: #D84315; }
+.theme-exodus .verse { color: #A1887F; }
+
+/* --- Theme for Leviticus --- */
+.theme-leviticus h1 { color: #1B5E20; } /* Deep Green */
+.theme-leviticus .card { background: linear-gradient(135deg, #e8f5e9, #ffffff); }
+.theme-leviticus .title { color: #1B5E20; }
+.theme-leviticus .range { color: #2E7D32; }
+.theme-leviticus .verse { color: #004D40; }
+
+/* --- Theme for Numbers --- */
+.theme-numbers h1 { color: #0D47A1; } /* Deep Blue */
+.theme-numbers .card { background: linear-gradient(135deg, #e3f2fd, #ffffff); }
+.theme-numbers .title { color: #0D47A1; }
+.theme-numbers .range { color: #1565C0; }
+.theme-numbers .verse { color: #1A237E; }
+
+/* --- Theme for Deuteronomy --- */
+.theme-deuteronomy h1 { color: #B71C1C; } /* Deep Red */
+.theme-deuteronomy .card { background: linear-gradient(135deg, #ffebee, #ffffff); }
+.theme-deuteronomy .title { color: #B71C1C; }
+.theme-deuteronomy .range { color: #C62828; }
+.theme-deuteronomy .verse { color: #880E4F; }
+
+/* --- Theme for Isaiah --- */
+.theme-isaiah h1 { color: #4a0072; } /* Deep Purple */
+.theme-isaiah .card { background: linear-gradient(135deg, #f3e5f5, #ffffff); }
+.theme-isaiah .title { color: #4a0072; }
+.theme-isaiah .range { color: #6a1b9a; }
+.theme-isaiah .verse { color: #311b92; }
+
+/* --- Theme for Ecclesiastes --- */
+.theme-ecclesiastes h1 { color: #3e2723; } /* Deep Brown */
+.theme-ecclesiastes .card { background: linear-gradient(135deg, #efebe9, #ffffff); }
+.theme-ecclesiastes .title { color: #3e2723; }
+.theme-ecclesiastes .range { color: #4e342e; }
+.theme-ecclesiastes .verse { color: #5d4037; }
+
+/* --- Theme for Romans --- */
+.theme-romans h1 { color: #BF360C; } /* Deep Orange */
+.theme-romans .card { background: linear-gradient(135deg, #fbe9e7, #ffffff); }
+.theme-romans .title { color: #BF360C; }
+.theme-romans .range { color: #d84315; }
+.theme-romans .verse { color: #a1887f; }
+
+/* --- Theme for 1 Corinthians --- */
+.theme-corinthians1 h1 { color: #0D47A1; } /* Deep Blue */
+.theme-corinthians1 .card { background: linear-gradient(135deg, #e3f2fd, #ffffff); }
+.theme-corinthians1 .title { color: #0D47A1; }
+.theme-corinthians1 .range { color: #1565c0; }
+.theme-corinthians1 .verse { color: #1a237e; }
+
+/* --- Theme for 2 Corinthians --- */
+.theme-corinthians2 h1 { color: #6A1B9A; } /* Deep Purple */
+.theme-corinthians2 .card { background: linear-gradient(135deg, #f3e5f5, #ffffff); }
+.theme-corinthians2 .title { color: #6A1B9A; }
+.theme-corinthians2 .range { color: #7b1fa2; }
+.theme-corinthians2 .verse { color: #4a148c; }
+
+/* --- Theme for Galatians --- */
+.theme-galatians h1 { color: #2E7D32; } /* Strong Green */
+.theme-galatians .card { background: linear-gradient(135deg, #e8f5e9, #ffffff); }
+.theme-galatians .title { color: #2E7D32; }
+.theme-galatians .range { color: #388e3c; }
+.theme-galatians .verse { color: #1b5e20; }
+
+/* --- Theme for Ephesians --- */
+.theme-ephesians h1 { color: #311B92; } /* Deep Purple */
+.theme-ephesians .card { background: linear-gradient(135deg, #ede7f6, #ffffff); }
+.theme-ephesians .title { color: #311B92; }
+.theme-ephesians .range { color: #4527a0; }
+.theme-ephesians .verse { color: #4a148c; }
+
+/* --- Theme for Philippians --- */
+.theme-philippians h1 { color: #E65100; } /* Amber */
+.theme-philippians .card { background: linear-gradient(135deg, #fff8e1, #ffffff); }
+.theme-philippians .title { color: #E65100; }
+.theme-philippians .range { color: #f57c00; }
+.theme-philippians .verse { color: #bf360c; }
+
+/* --- Theme for Colossians --- */
+.theme-colossians h1 { color: #004D40; } /* Teal */
+.theme-colossians .card { background: linear-gradient(135deg, #e0f2f1, #ffffff); }
+.theme-colossians .title { color: #004D40; }
+.theme-colossians .range { color: #00695c; }
+.theme-colossians .verse { color: #004d40; }
+
+/* --- Theme for 1 Thessalonians --- */
+.theme-thessalonians1 h1 { color: #D84315; } /* Deep Orange */
+.theme-thessalonians1 .card { background: linear-gradient(135deg, #fbe9e7, #ffffff); }
+.theme-thessalonians1 .title { color: #D84315; }
+.theme-thessalonians1 .range { color: #e64a19; }
+.theme-thessalonians1 .verse { color: #bf360c; }
+
+/* --- Theme for 2 Thessalonians --- */
+.theme-thessalonians2 h1 { color: #A1887F; } /* Brown Grey */
+.theme-thessalonians2 .card { background: linear-gradient(135deg, #efebe9, #ffffff); }
+.theme-thessalonians2 .title { color: #A1887F; }
+.theme-thessalonians2 .range { color: #8d6e63; }
+.theme-thessalonians2 .verse { color: #5d4037; }
+
+/* --- Theme for 1 Timothy --- */
+.theme-timothy1 h1 { color: #006064; } /* Cyan */
+.theme-timothy1 .card { background: linear-gradient(135deg, #e0f7fa, #ffffff); }
+.theme-timothy1 .title { color: #006064; }
+.theme-timothy1 .range { color: #00838f; }
+.theme-timothy1 .verse { color: #004d40; }
+
+/* --- Theme for 2 Timothy --- */
+.theme-timothy2 h1 { color: #4E342E; } /* Brown */
+.theme-timothy2 .card { background: linear-gradient(135deg, #efebe9, #ffffff); }
+.theme-timothy2 .title { color: #4E342E; }
+.theme-timothy2 .range { color: #5d4037; }
+.theme-timothy2 .verse { color: #3e2723; }
+
+/* --- Theme for Titus --- */
+.theme-titus h1 { color: #37474F; } /* Blue Grey */
+.theme-titus .card { background: linear-gradient(135deg, #eceff1, #ffffff); }
+.theme-titus .title { color: #37474F; }
+.theme-titus .range { color: #455a64; }
+.theme-titus .verse { color: #263238; }
+
+/* --- Theme for Philemon --- */
+.theme-philemon h1 { color: #00695C; } /* Teal */
+.theme-philemon .card { background: linear-gradient(135deg, #e0f2f1, #ffffff); }
+.theme-philemon .title { color: #00695C; }
+.theme-philemon .range { color: #00796b; }
+.theme-philemon .verse { color: #004d40; }
+
+/* --- Theme for James --- */
+.theme-james h1 { color: #3E2723; } /* Brown */
+.theme-james .card { background: linear-gradient(135deg, #efebe9, #ffffff); }
+.theme-james .title { color: #3E2723; }
+.theme-james .range { color: #5d4037; }
+.theme-james .verse { color: #4e342e; }
+
+/* --- Theme for 1 Peter --- */
+.theme-peter1 h1 { color: #1A237E; } /* Indigo */
+.theme-peter1 .card { background: linear-gradient(135deg, #e8eaf6, #ffffff); }
+.theme-peter1 .title { color: #1A237E; }
+.theme-peter1 .range { color: #283593; }
+.theme-peter1 .verse { color: #303f9f; }
+
+/* --- Theme for 2 Peter --- */
+.theme-peter2 h1 { color: #546E7A; } /* Blue Grey */
+.theme-peter2 .card { background: linear-gradient(135deg, #cfd8dc, #ffffff); }
+.theme-peter2 .title { color: #546E7A; }
+.theme-peter2 .range { color: #607d8b; }
+.theme-peter2 .verse { color: #455a64; }
+
+/* --- Theme for 1 John --- */
+.theme-john1 h1 { color: #B71C1C; } /* Red */
+.theme-john1 .card { background: linear-gradient(135deg, #ffebee, #ffffff); }
+.theme-john1 .title { color: #B71C1C; }
+.theme-john1 .range { color: #c62828; }
+.theme-john1 .verse { color: #d32f2f; }
+
+/* --- Theme for 2 John --- */
+.theme-john2 h1 { color: #C62828; } /* Red */
+.theme-john2 .card { background: linear-gradient(135deg, #ffcdd2, #ffffff); }
+.theme-john2 .title { color: #C62828; }
+.theme-john2 .range { color: #d32f2f; }
+.theme-john2 .verse { color: #b71c1c; }
+
+/* --- Theme for 3 John --- */
+.theme-john3 h1 { color: #AD1457; } /* Pink */
+.theme-john3 .card { background: linear-gradient(135deg, #fce4ec, #ffffff); }
+.theme-john3 .title { color: #AD1457; }
+.theme-john3 .range { color: #c2185b; }
+.theme-john3 .verse { color: #880e4f; }
+
+/* --- Theme for Jude --- */
+.theme-jude h1 { color: #212121; } /* Grey */
+.theme-jude .card { background: linear-gradient(135deg, #e0e0e0, #ffffff); }
+.theme-jude .title { color: #212121; }
+.theme-jude .range { color: #424242; }
+.theme-jude .verse { color: #616161; }
+
+/* --- Theme for Revelation --- */
+.theme-revelation h1 { color: #BF360C; } /* Deep Orange */
+.theme-revelation .card { background: linear-gradient(135deg, #f1f8e9, #ffffff); }
+.theme-revelation .title { color: #BF360C; }
+.theme-revelation .range { color: #f57c00; }
+.theme-revelation .verse { color: #e65100; }

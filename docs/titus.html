@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提多書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-titus">
+  <h1>提多書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《提多書》是「教牧書信」之一，是使徒保羅寫給他信實的同工提多的一封信。當時，保羅將提多留在克里特島，目的是要他整頓那裡教會的秩序，並在各城設立長老。克里特島的社會風氣敗壞，教會也受到假教師的攪擾。因此，保羅在這封簡短有力的書信中，強調了「純正教義」與「美好善行」之間密不可分的關係。本書信的核心信息是：神的恩典不僅拯救我們，更教訓我們要活出敬虔、端莊和熱心為善的生活，為福音作美好的見證。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "設立長老，抵擋異端",
+    range: "多1章",
+    keypoint: "保羅指示提多要在各城設立合格的長老，並要嚴厲地責備那些傳講虛謊教訓的假教師。",
+    verse: "因為監督是神的管家，必須無可指責……堅守所教真實的道理，就能將純正的教訓勸化人，又能把爭辯的人駁倒了。（多1:7, 9）",
+    detail: "面對克里特教會的混亂，保羅首先強調建立健康領導層的重要性。他列出了作長老（監督）的資格，與提摩太前書相似，核心在於無可指摘的品格和對真道的忠誠。一個合格的領袖，必須有能力用純正的教義來牧養信徒，並抵擋那些只為不義之財而敗壞人家庭的假師傅。"
+  },
+  {
+    title: "純正教義與社會倫理",
+    range: "多2章",
+    keypoint: "教導教會中不同年齡和性別的群體（老年人、婦女、年輕人、僕人），都應活出與福音相稱的品行。",
+    verse: "好在凡事上都尊榮我們救主神的道。（多2:10下）",
+    detail: "本章的核心是『純正的道理』如何在日常生活中體現出來。保羅指示提多，要具體地教導教會中的各個群體：老年男人要莊重，老年婦女要作榜樣，年輕婦女要治家，年輕男子要謹守，僕人要順服。這一切美好品行的總目標，是為了讓福音的真理，因著信徒的好行為而得著稱讚和尊榮，使神的名得榮耀。"
+  },
+  {
+    title: "神恩典的顯明",
+    range: "多2章後半-3章",
+    keypoint: "神的恩典已經顯明出來，教訓我們除去不敬虔的心，等候所盼望的福，就是主耶穌基督的顯現。",
+    verse: "他為我們捨了自己，要贖我們脫離一切罪惡，又潔淨我們，特作自己的子民，熱心為善。（多2:14）",
+    detail: "這是本書信的神學高峰。保羅闡明，基督徒美好行為的動力，不是出於懼怕或律法主義，而是源於對神救贖恩典的回應。神的恩典有兩個目的：一是『救贖』我們脫離罪惡，二是『教訓』我們活出聖潔。我們得救不是因為自己的義行，而是藉著聖靈的更新。蒙恩得救的人，理當成為一個『熱心為善』的子民。"
+  },
+  {
+    title: "作眾人的榜樣",
+    range: "多3章",
+    keypoint: "提醒信徒要順服執政掌權的，預備行各樣的善事，並要遠避愚拙的辯論和紛爭。",
+    verse: "你要提醒眾人，叫他們順服作官的、掌權的，遵他的命，預備行各樣的善事。（多3:1）",
+    detail: "在信的結尾，保羅再次強調善行在基督徒見證中的重要性。信徒不僅要在教會內部活出好行為，也要在社會中作順服、和平的好公民。他勸勉提多要將這些真理切實地教導信徒，同時也要智慧地遠離那些無益的、分裂教會的辯論和家譜的空談，專注於建立信徒的德行。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願我們救主神的恩惠，教導並潔淨您，使您成為祂特選的子民，脫離不敬虔和世俗的情慾，在今世自守、公義、敬虔度日，並熱心為善，在凡事上尊榮祂的道，等候那榮耀的盼望。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

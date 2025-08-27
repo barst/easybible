@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>提摩太後書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-timothy2">
+  <h1>提摩太後書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《提摩太後書》是使徒保羅的「天鵝之歌」，是他寫給他最親密的同工、屬靈的兒子提摩太的最後一封信。當時，保羅在羅馬第二次被囚，深知自己殉道的日子近了。在這樣的情境下，這封信充滿了臨終囑託的溫情、對同工的思念，以及對福音使命的傳承。保羅勉勵提摩太要剛強壯膽，忠心持守所領受的真道，忍受苦難，完成職事。本書信是對所有基督的工人，在任何世代，最深刻、最有力的勸勉與激勵。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "剛強、仁愛、謹守的心",
+    range: "提後1章",
+    keypoint: "保羅勸勉提摩太要將神所賜的恩賜再如火挑旺起來，不要以福音為恥，要靠著聖靈，牢守善道。",
+    verse: "因為神賜給我們，不是膽怯的心，乃是剛強、仁愛、謹守的心。（提後1:7）",
+    detail: "在信的開頭，保羅表達了對提摩太真誠信心的懷念。面對提摩太可能因保羅被囚而感到的膽怯，保羅提醒他，神所賜的聖靈是剛強的。他鼓勵提摩太，要為福音的緣故，與他一同受苦，並要堅定地持守那從使徒所領受的純正話語規模，這是一份需要靠著聖靈來守護的寶貴託付。"
+  },
+  {
+    title: "作基督的精兵",
+    range: "提後2章",
+    keypoint: "用基督的精兵、比武的選手和勞力的農夫三個比喻，勸勉提摩太要忠心、專注、忍耐地服事。",
+    verse: "你要和我同受苦難，好像基督耶穌的精兵。凡在軍中當兵的，不將世務纏身，好叫那招他當兵的人喜悅。（提後2:3-4）",
+    detail: "保羅用一系列生動的比喻，教導提摩太一個忠心的事奉者應有的品格。如同精兵，要專注討元帥的喜悅；如同選手，要按規矩競賽；如同農夫，要辛勤勞動才能得糧食。他勸勉提摩太要將所聽見的，交託那忠心能教導別人的人，如此將真道傳承下去。同時，也要作無愧的工人，按著正意分解真理的道。"
+  },
+  {
+    title: "末世的危險與聖經的價值",
+    range: "提後3章",
+    keypoint: "預言末世必有危險的日子，人心敗壞；但聖經都是神所默示的，於教訓、督責、使人歸正、教導人學義都是有益的。",
+    verse: "聖經都是神所默示的，於教訓、督責、使人歸正、教導人學義都是有益的，叫屬神的人得以完全，預備行各樣的善事。（提後3:16-17）",
+    detail: "保羅描繪了末世人心的險惡光景，提醒提摩太要遠避那些有敬虔外貌卻背了敬虔實意的人。在這樣混亂的世代中，持守真道的根基是什麼？就是聖經。保羅在此作出了關於聖經屬性最重要、最權威的宣告。聖經源於神的啟示，是信徒信仰與生活的全備指南，能使屬神的人裝備齊全，去行各樣的善工。"
+  },
+  {
+    title: "務要傳道",
+    range: "提後4章",
+    keypoint: "保羅在神面前鄭重地囑咐提摩太，務要傳道，無論得時不得時，總要專心。",
+    verse: "務要傳道，無論得時不得時，總要專心，並用百般的忍耐、各樣的教訓責備人，警戒人，勸勉人。（提後4:2）",
+    detail: "這是保羅對提摩太，也是對歷代傳道人最核心的囑託。面對末世人厭煩純正道理的趨勢，傳道人的責任不是迎合聽眾的口味，而是忠心地、恆切地、忍耐地傳講神的話語。這是一個莊嚴的命令，也是一個緊迫的使命。"
+  },
+  {
+    title: "美好的仗",
+    range: "提後4章後半",
+    keypoint: "保羅回顧自己的一生，宣告他那美好的仗已經打過了，當跑的路已經跑盡了，所信的道已經守住了。",
+    verse: "那美好的仗我已經打過了，當跑的路我已經跑盡了，所信的道我已經守住了。從此以後，有公義的冠冕為我存留。（提後4:7-8）",
+    detail: "這是保羅這位偉大使徒臨終前榮耀的凱歌。他的一生，是一場為福音的爭戰，一場信心的賽跑。儘管在信的結尾，他提到了人事已非的孤單（底馬離棄他，同工們四散），但他心中沒有苦毒，只有對將來公義冠冕的確信和盼望。這為所有跟隨基督的人，立下了最感人的榜樣。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願主耶穌基督感動您，效法祂忠心的僕人保羅，領受那剛強、仁愛、謹守的心。願您能靠著聖經的真理裝備自己，作無愧的工人，為真道打那美好的仗，跑盡當跑的路，守住所信的道，直到得著那公義的冠冕。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

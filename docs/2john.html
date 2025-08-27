@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>約翰二書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-john2">
+  <h1>約翰二書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《約翰二書》是新約聖經中最短的書卷之一，是使徒約翰寫給一位被稱為「蒙揀選的太太和她的兒女」的信。這可能指某位教會中的傑出女信徒及其家庭，也可能是一種象徵性的說法，指代某個地方教會。當時，正有傳講異端邪說的假師傅四處遊行，試圖進入信徒家中傳播錯謬。因此，約翰寫這封信的核心目的，就是要提醒信徒，要在真理和愛心中行事，並要警醒，拒絕接待那些不承認耶穌基督是道成肉身的假教師，以免在他們的惡行上有分。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "在真理與愛中行事",
+    range: "約貳1-13節",
+    keypoint: "勸勉信徒要彼此相愛，這就是遵行神的命令；同時要警惕那些不認耶穌基督是成了肉身來的假教師，不要接待他們。",
+    verse: "愛你們是為真理的緣故，這真理存在我們裡面，也必永遠與我們同在。……我們若照他的命令行，這就是愛。（約貳2, 6節）",
+    detail: "這封極短的書信，完美地平衡了愛與真理這兩個基督徒生命的重要支柱。約翰為信徒能『在真理中行事』而感到極大喜樂。他重申，彼此相愛是我們從起初所受的命令。然而，愛並不是盲目的。當面對那些傳講『基督不是道成肉身』這種核心異端的人時，愛就體現為一種『分別的智慧』。約翰嚴厲地警告，不可接待這些假師傅，甚至連問安都不可，因為這等於在他們的惡行上有分。這教導我們，真正的愛，必須建立在持守真理的根基之上，對真理的妥協，就是對神和對人的不愛。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願恩惠、憐憫、平安從父神和祂兒子耶穌基督，在真理和愛心上常與您同在。願您能行在真理中，活在愛中，並有智慧分辨諸靈，為真道站立得穩。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

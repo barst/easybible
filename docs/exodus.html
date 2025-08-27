@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>出埃及記的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-exodus">
+  <h1>出埃及記的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《出埃及記》是摩西五經的第二卷，緊接《創世記》的敘事，講述了以色列民族從埃及為奴之地被神拯救出來，並在西乃山與神立約，成為神的選民的歷史。本書的核心主題是「救贖」與「立約」。神透過十災、過紅海等神蹟奇事，彰顯祂的大能和信實，將以色列人從法老的奴役下拯救出來。在西乃山，神頒布十誡和律法，教導以色列人如何成為一個聖潔、順服神的子民，並指示他們建造會幕，使神可以住在他們中間。出埃及記是理解神救贖歷史和律法的重要基礎。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "以色列人在埃及的苦難與摩西的興起",
+    range: "出1-4章",
+    keypoint: "以色列人在埃及受奴役，神興起摩西，呼召他帶領百姓出埃及。",
+    verse: "耶和華說：『我的百姓在埃及所受的困苦，我實在看見了；他們因受督工的轄制所發的哀聲，我也聽見了。我原知道他們的痛苦。』（出3:7）",
+    detail: "約瑟去世後，以色列人在埃及的地位急轉直下，淪為奴隸，飽受壓迫。神聽見了他們的哀聲，並在荊棘火焰中呼召摩西，啟示祂的名字『我是自有永有的』。摩西雖有懼怕和推辭，但神應許與他同在，並賜予他行神蹟的權柄，預備他成為拯救以色列的領袖。"
+  },
+  {
+    title: "十災：神對埃及的審判",
+    range: "出5-12章",
+    keypoint: "神藉摩西降下十災，擊打埃及和法老，彰顯祂的權能，迫使法老釋放以色列人。",
+    verse: "我要將我的手伸在埃及，將以色列人從他們中間領出來。（出7:4）",
+    detail: "十災是神對埃及偶像的審判，也是祂向以色列人顯明祂是獨一真神的方式。每一災都針對埃及的一個神祇，最終的逾越節之災，更是神救贖計劃的核心。逾越節的羔羊預表了基督的代贖，其血塗在門楣上，使以色列人免於滅命之災，為他們的出埃及奠定了基礎。"
+  },
+  {
+    title: "過紅海與曠野的供應",
+    range: "出13-18章",
+    keypoint: "神分開紅海，使以色列人安然走過，埃及軍隊被淹沒；在曠野中，神供應嗎哪、鵪鶉和磐石出水。",
+    verse: "耶和華必為你們爭戰；你們只管靜默，不要作聲。（出14:14）",
+    detail: "過紅海是神大能救贖的最高潮，徹底將以色列人從埃及的奴役中解救出來。在曠野中，神以超自然的方式供應他們一切所需，包括食物和水，並以雲柱火柱引導他們。然而，百姓也屢次發怨言，顯明他們信心的不足，但神依然信實地帶領他們。"
+  },
+  {
+    title: "西乃山立約與十誡",
+    range: "出19-24章",
+    keypoint: "神在西乃山向以色列人顯現，頒布十誡和律法，與他們立約，使他們成為神的選民。",
+    verse: "如今你們若實在聽從我的話，遵守我的約，就要在萬民中作屬我的子民，因為全地都是我的。（出19:5）",
+    detail: "西乃山是神與以色列人建立特殊關係的聖地。神以雷轟、閃電、密雲和角聲的威嚴顯現，頒布了十誡，這是神對祂子民道德要求的核心。這些律法不僅規範了人與神的關係，也規範了人與人之間的關係。以色列人承諾遵守神的約，正式成為神的選民。"
+  },
+  {
+    title: "會幕的建造與神的同在",
+    range: "出25-40章",
+    keypoint: "神指示摩西建造會幕，詳細規定其樣式、材料和祭司的服事，使神可以住在百姓中間。",
+    verse: "又當為我造聖所，使我可以住在他們中間。（出25:8）",
+    detail: "會幕是神在曠野中與祂子民同在的具體象徵。它的每一個細節，從尺寸、材料到祭司的服飾，都充滿了屬靈的意義，預表了基督的救贖和神聖潔的本性。會幕的完成，標誌著神與以色列人關係的深化，祂的榮耀充滿會幕，引導他們在曠野的旅程。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那帶領以色列人出埃及的耶和華神，也帶領您脫離一切的捆綁與轄制。願您在祂的律法中看見祂的聖潔與慈愛，並在祂的同在中，經歷祂的供應與引導，成為祂聖潔的子民。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

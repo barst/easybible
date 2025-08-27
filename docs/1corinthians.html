@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哥林多前書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-corinthians1">
+  <h1>哥林多前書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《哥林多前書》是使徒保羅寫給哥林多教會的信，這是一個充滿恩賜但也充滿問題的教會。當時的哥林多是一個繁華的港口城市，充斥著各種異教文化和敗壞的道德風氣。保羅寫這封信，旨在處理教會內部的紛爭、道德敗壞、訴訟、婚姻、飲食和敬拜等實際問題。本書的核心是將福音的原則應用在基督徒生活的各個層面，呼籲信徒在凡事上都為榮耀神而行，並強調愛是超越一切恩賜的最大之道。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "教會的紛爭與十字架的智慧",
+    range: "林前1-4章",
+    keypoint: "責備教會分門結黨，高舉人的智慧；保羅強調他只傳釘十字架的基督，這才是神的大能和智慧。",
+    verse: "因為十字架的道理，在那滅亡的人為愚拙；在我們得救的人，卻為神的大能。（林前1:18）",
+    detail: "哥林多教會內部出現了跟隨不同領袖（保羅、亞波羅、磯法）的紛爭。保羅指出，這種分裂源於屬世的智慧。他將教會的目光重新聚焦在十字架上，這在世人看來是愚拙的道理，卻是神拯救世人的唯一方法。他提醒信徒，他們不過是神的同工，根基只有耶穌基督一個。"
+  },
+  {
+    title: "教會的聖潔與紀律",
+    range: "林前5-6章",
+    keypoint: "處理教會中淫亂的罪，勸勉信徒不可彼此告狀，並強調身體是聖靈的殿。",
+    verse: "豈不知你們的身子就是聖靈的殿嗎？這聖靈是從神而來，住在你們裡頭的；並且你們不是自己的人，因為你們是重價買來的。所以，要在你們的身子上榮耀神。（林前6:19-20）",
+    detail: "保羅嚴厲地責備教會容忍罪惡，要求他們施行紀律，以保持教會的聖潔。他也勸戒信徒不要將內部爭端帶到外邦法官面前，這是有損主名的行為。最後，他以一個崇高的真理總結：信徒的身體是聖靈居住的所在，因此必須在身體上活出聖潔，榮耀神。"
+  },
+  {
+    title: "婚姻與獨身的教導",
+    range: "林前7章",
+    keypoint: "針對婚姻、離婚、守獨身等問題提供屬靈原則，鼓勵信徒在各自的蒙召身份中為主而活。",
+    verse: "我願你們無所掛慮。沒有娶妻的，是為主的事掛慮，想怎樣叫主喜悅。（林前7:32）",
+    detail: "保羅在此回應哥林多教會關於婚姻的提問。他肯定婚姻的神聖，也闡明在特定情況下（如為了更專心服事主），獨身是一種蒙福的恩賜。他的核心原則是，無論處於何種身份，信徒都應當以討主喜悅為首要目標，並在所處的環境中持守信仰。"
+  },
+  {
+    title: "基督徒的自由與愛心",
+    range: "林前8-10章",
+    keypoint: "探討吃祭偶像之物的問題，指出知識叫人自高自大，惟有愛心能造就人。自由的行使應以不絆倒他人為原則。",
+    verse: "凡事都可行，但不都有益處。凡事都可行，但不都造就人。無論何人，不要求自己的益處，乃要求別人的益處。（林前10:23-24）",
+    detail: "在是否可以吃祭偶像之物的問題上，保羅闡明了一個重要原則：基督徒的自由不是絕對的。我們的行為不僅要考慮自己是否『可以』做，更要考慮是否對他人有『益處』，是否能『造就』人。為了軟弱弟兄的緣故，甘願放棄自己的權利，這才是愛心的表現。"
+  },
+  {
+    title: "教會的敬拜與聖餐",
+    range: "林前11章",
+    keypoint: "教導婦女在聚會中蒙頭的原則，並糾正哥林多教會在守聖餐時的混亂與紛爭。",
+    verse: "你們每逢吃這餅，喝這杯，是表明主的死，直等到他來。（林前11:26）",
+    detail: "保羅處理了當時教會公共敬拜中的秩序問題。他特別強調，守聖餐是為了記念主的死，是一個省察自己、表達合一的嚴肅時刻。哥林多教會將其變為吃喝宴樂、彼此隔閡的場合，是完全違背了聖餐的意義，因此受到嚴厲的責備。"
+  },
+  {
+    title: "屬靈的恩賜與身體的合一",
+    range: "林前12章",
+    keypoint: "聖靈隨己意將不同恩賜分給各人，為要建立基督的身體，肢體間應彼此配搭，互相尊重。",
+    verse: "就如身子是一個，卻有許多肢體；而且肢體雖多，仍是一個身子；基督也是這樣。（林前12:12）",
+    detail: "為了解決哥林多教會對屬靈恩賜的誤用和攀比，保羅用身體的比喻來教導教會的本質。他指出，恩賜雖多，卻源於同一位聖靈。每個信徒都是身體上不可或缺的一部分，沒有高低貴賤之分。教會的健康在於所有肢體都能各司其職，彼此相顧。"
+  },
+  {
+    title: "最大的恩賜：愛",
+    range: "林前13章",
+    keypoint: "描寫了愛的真諦：愛是恆久忍耐，又有恩慈…凡事包容，凡事相信，凡事盼望，凡事忍耐。愛是永不止息。",
+    verse: "如今常存的有信，有望，有愛這三樣，其中最大的是愛。（林前13:13）",
+    detail: "這章被譽為『愛的詩篇』，是整本聖經中最優美的篇章之一。在討論了各種屬靈恩賜之後，保羅指出了一條『最妙的道』。如果沒有愛，一切的恩賜、知識和犧牲都歸於無有。愛是所有恩賜的動機和目的，是基督徒生命最核心的標誌。"
+  },
+  {
+    title: "復活的確據與盼望",
+    range: "林前15章",
+    keypoint: "系統性地論證基督復活的歷史性與重要性，並闡明信徒將來復活的奧祕。",
+    verse: "死啊！你得勝的權勢在哪裡？死啊！你的毒鉤在哪裡？……感謝神，使我們藉著我們的主耶穌基督得勝。（林前15:55, 57）",
+    detail: "面對教會中有人否認復活的錯誤教導，保羅以基督的復活為基石，堅定地宣告這是福音的核心。如果基督沒有復活，信徒的信仰便是枉然。他詳細地闡述了基督的復活如何保證了信徒將來的復活，並在最後發出了得勝的宣告，極大地堅固了信徒的盼望。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願三一真神將屬天的智慧賜給您，使您能分辨屬世的價值與十字架的道理。願聖靈將那永不止息的愛澆灌在您心中，使您懂得如何運用恩賜、建立教會、造就他人。願基督復活的大能，成為您每日生活的力量與盼望。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

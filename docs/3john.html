@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>約翰三書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-john3">
+  <h1>約翰三書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《約翰三書》與約翰二書一樣，是新約中篇幅極短的書信。這是使徒約翰寫給一位名叫「該猶」的教會領袖的私人信函。信中，約翰稱讚該猶在真理上的忠心，以及他對往來傳道人熱情、慷慨的接待。與此同時，約翰也警告他要防備教會中一位名叫「丟特腓」的領袖，此人好為首、不接待弟兄，甚至惡言攻擊使徒。本書信的核心，是鼓勵信徒要效法善，不要效法惡，並強調接待、支持那些為真理作工的傳道人，就是與真理一同做工，是極其寶貴的事奉。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "稱讚與警告",
+    range: "約叁1-14節",
+    keypoint: "稱讚該猶按真理行事，並熱心接待傳道人；警告丟特腓的驕傲和惡行，勸勉該猶要效法善。",
+    verse: "親愛的兄弟啊，你凡事忠心，所行的又是向那作客旅之弟兄行的，這就是善。……可見，我們應當接待這樣的人，叫我們與他們一同為真理做工。（約叁5, 8節）",
+    detail: "這封信生動地展現了初期教會中兩種截然不同的領袖榜樣。一位是該猶，他愛慕真理，並將信仰化為實際的行動，慷慨地支持那些巡迴的傳道人。約翰稱讚他，指出接待客旅的傳道人，就是參與在真理的聖工之中。另一位是丟特腓，他驕傲自大，喜好掌控權力，不但自己不接待弟兄，還阻止別人接待。約翰以此勸勉該猶和所有信徒，要分辨善惡，效法那屬神的善行，而不是效法那屬惡的壞榜樣。這封信強調了謙卑、好客和支持福音事工，是基督徒美好品格的重要標誌。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>親愛的兄弟啊，願你凡事興盛，身體健壯，正如你的靈魂興盛一樣。願你常存真理，按真理而行，樂意接待屬神的人，與真理一同做工，並效法善，遠離惡。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

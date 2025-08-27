@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>以賽亞書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-isaiah">
+  <h1>以賽亞書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《以賽亞書》是舊約篇幅最長的先知書，被譽為「舊約中的福音書」。先知以賽亞在猶大國面臨亞述和巴比倫帝國威脅的動盪時期傳講信息。本書內容結合了對罪惡的嚴厲審判、對悔改的呼喚，以及對未來彌賽亞君王和神榮耀國度的輝煌預言。全書分為兩大部分：前半部（1-39章）聚焦於審判與禍哉，後半部（40-66章）則充滿安慰、拯救與新天新地的盼望。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "聖潔的呼召與審判",
+    range: "賽1-6章",
+    keypoint: "指責猶大的罪，呼籲悔改；以賽亞蒙召，看見主聖潔的榮耀。",
+    verse: "我又聽見主的聲音說：『我可以差遣誰呢？誰肯為我們去呢？』我說：『我在這裡，請差遣我！』（賽6:8）",
+    detail: "以賽亞書開篇就如法庭陳詞，指控以色列民虛假的敬拜與社會的不公。神呼籲百姓悔改歸正。在異象中，以賽亞親見神的聖潔，深感自己的不潔，卻蒙赦免與差遣，領受了向硬心百姓傳講信息的艱鉅任務。"
+  },
+  {
+    title: "以馬內利的預言",
+    range: "賽7-12章",
+    keypoint: "亞哈斯王不信，神仍賜下『以馬內利』（神與我們同在）的兆頭；預言彌賽亞的降生與和平國度。",
+    verse: "因此，主自己要給你們一個兆頭，必有童女懷孕生子，給他起名叫以馬內利。（賽7:14）",
+    detail: "面對政治危機，亞哈斯王選擇依靠人的計謀而非神。然而，神的救贖計劃不止息，祂賜下關於『以馬內利』的偉大預言，並在後續章節中，詳細描繪了這位出自耶西之根的君王所帶來的智慧、公平與和平。"
+  },
+  {
+    title: "列國的審判",
+    range: "賽13-23章",
+    keypoint: "宣告對巴比倫、亞述、埃及等周邊列國的審判，顯明神掌管萬國。",
+    verse: "主耶和華的籌算必立定；他的手伸出，誰能使他收回呢？（賽14:27）",
+    detail: "這部分信息清楚地表明，以色列的神不僅是他們自己的神，更是掌管天下萬國的至高主宰。無論這些帝國多麼強盛，它們的驕傲與罪惡終將受到審判。神的主權超越國界，祂的計劃終將成就。"
+  },
+  {
+    title: "末日的審判與拯救",
+    range: "賽24-27章",
+    keypoint: "描寫末後神對全地的審判，以及祂為子民預備的筵席和吞滅死亡的應許。",
+    verse: "他已經吞滅死亡直到永遠。主耶和華必擦去各人臉上的眼淚。（賽25:8）",
+    detail: "這段被稱為『小啟示錄』，將眼光從當時的歷史事件，擴展到末後的未來。它描繪了神對普世罪惡的終極審判，但也帶來了榮耀的盼望：神將為祂的子民擺設救恩的筵席，並徹底戰勝死亡。"
+  },
+  {
+    title: "安慰的信息：曠野開道路",
+    range: "賽40-48章",
+    keypoint: "宣告被擄之民將得安慰與釋放，神是獨一的創造主和救贖主。",
+    verse: "但那等候耶和華的必從新得力。他們必如鷹展翅上騰；他們奔跑卻不困倦，行走卻不疲乏。（賽40:31）",
+    detail: "書卷的後半部風格轉為安慰與盼望。先知向被擄到巴比倫、心灰意冷的百姓宣告，神沒有忘記他們。祂是全能的創造主，也是信實的救贖主，祂將在曠野中開闢道路，帶領祂的子民歸回。"
+  },
+  {
+    title: "受苦的僕人",
+    range: "賽49-53章",
+    keypoint: "四首僕人之歌，描繪了這位僕人的使命、順服、受苦、被棄絕，以及祂的死所帶來的代贖功效。",
+    verse: "哪知他為我們的過犯受害，為我們的罪孽壓傷。因他受的刑罰，我們得平安；因他受的鞭傷，我們得醫治。（賽53:5）",
+    detail: "這是舊約對耶穌基督最清晰、最深刻的預言。這位僕人不是透過武力，而是透過無辜地受苦和死亡，來成就神的救贖。祂承擔了眾人的罪孽，祂的犧牲帶來了醫治與和平，成為新約福音的核心。"
+  },
+  {
+    title: "普世的救恩與永約",
+    range: "賽54-56章",
+    keypoint: "呼召萬民來就近神，領受祂白白的恩典，神的殿要成為萬民禱告的殿。",
+    verse: "你們當就近我來；側耳而聽，就必得活。我必與你們立永約，就是應許大衛那可靠的恩典。（賽55:3）",
+    detail: "救恩的邀請從以色列擴展到萬國萬民。神呼召所有飢渴慕義的人，來領受祂無條件的恩典。祂的救贖計劃是普世性的，祂的聖殿將向所有願意尋求祂的人開放，打破了種族的壁壘。"
+  },
+  {
+    title: "新天新地",
+    range: "賽65-66章",
+    keypoint: "神創造新天新地，其中充滿公義、喜樂與和平，神的榮耀遍滿全地。",
+    verse: "看哪！我造新天新地；從前的事不再被記念，也不再追想。（賽65:17）",
+    detail: "以賽亞書在一個榮耀的盼望中達到高潮。歷史的終點不是毀滅，而是神榮耀的再創造。在神所造的新天新地裡，悲傷、哭泣和痛苦都將過去，神的子民將永遠享受與祂同在的喜樂與平安。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願聖潔、全能又滿有慈愛的上帝，藉著以賽亞書向您說話。願您在審判中看見祂的公義，在安慰中經歷祂的恩典，並在受苦僕人的預言中，更深認識主耶穌基督的救贖。願新天新地的盼望，成為您今日的力量。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雅各書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-james">
+  <h1>雅各書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《雅各書》的作者是耶穌的弟弟雅各，他是耶路撒冷教會的領袖。這是一封充滿實踐智慧的書信，風格類似舊約的箴言。雅各書的核心主題是「信心的實踐」，他強調真實的信心必然會產生好行為，一個沒有行為的信心是死的。本書信針對當時信徒生活中遇到的各種實際挑戰，如試探、言語、偏心、紛爭和財富等問題，給出了具體而有力的勸勉。它挑戰信徒，要將所聽的道行出來，成為一個名副其實的基督徒。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "試煉中的智慧與忍耐",
+    range: "雅1章",
+    keypoint: "在百般試煉中都要以為大喜樂，因為信心經過試驗，就生忍耐。人若缺少智慧，應當求神。",
+    verse: "我的弟兄們，你們落在百般試煉中，都要以為大喜樂；因為知道你們的信心經過試驗，就生忍耐。但忍耐也當成功，使你們成全、完備，毫無缺欠。（雅1:2-4）",
+    detail: "雅各以一個看似矛盾的勸勉開篇：在試煉中要喜樂。他指出，試煉的目的不是要擊垮我們，而是要塑造我們的品格，使我們生命成熟。面對試煉，我們需要從神而來的智慧，而神樂意厚賜給那些憑信心求問的人。他也警告，私慾是試探的根源，並勸勉信徒要快快地聽，慢慢地說，慢慢地動怒。"
+  },
+  {
+    title: "聽道與行道",
+    range: "雅1章後半",
+    keypoint: "聽道而不行道，就像人對著鏡子看，走後隨即忘了自己的相貌。真實的虔誠體現在勒住舌頭、看顧孤兒寡婦上。",
+    verse: "只是你們要行道，不要單單聽道，自己欺哄自己。（雅1:22）",
+    detail: "這是雅各書的核心思想之一。他尖銳地指出，單單在頭腦裡認同真理是沒有用的，這是一種自我欺騙。真正的信仰必須轉化為實際的行動。他給出了兩個具體的例子：控制自己的言語，以及用實際的行動去關懷社會中最軟弱無助的人。這才是神眼中看為清潔沒有玷污的虔誠。"
+  },
+  {
+    title: "不可按外貌待人",
+    range: "雅2章",
+    keypoint: "責備信徒重富輕貧，偏心待人，這違背了『愛人如己』的至尊律法。",
+    verse: "我的弟兄們，你們信奉我們榮耀的主耶穌基督，便不可按著外貌待人。（雅2:1）",
+    detail: "雅各舉了一個生動的例子：如果一個穿戴華麗的富人和一個衣衫襤褸的窮人同時進到會堂，信徒們便熱情招待富人，卻藐視窮人。雅各指出，這種行為完全違背了基督的信仰。神揀選了貧窮人，叫他們在信上富足。偏心待人，就是干犯了那『愛人如己』的最高律法。"
+  },
+  {
+    title: "信心沒有行為是死的",
+    range: "雅2章後半",
+    keypoint: "身體沒有靈魂是死的，信心沒有行為也是死的。亞伯拉罕和喇合都是因行為稱義的例子。",
+    verse: "可見，信心是與他的行為並行，而且信心因著行為才得成全。……身體沒有靈魂是死的，信心沒有行為也是死的。（雅2:22, 26）",
+    detail: "這段經文常被拿來與保羅的『因信稱義』作比較，但兩者並無矛盾。保羅強調的是稱義的『根基』（信心），而雅各強調的是稱義的『果子』（行為）。雅各指出，一種只停留在口頭上、沒有任何實際行動的信心，是虛假無益的，連鬼魔也信，卻是戰驚。真實的、使人得救的信心，必然會透過順服的行為彰顯出來。"
+  },
+  {
+    title: "勒住舌頭的智慧",
+    range: "雅3章",
+    keypoint: "舌頭雖小，卻能點著最大的火，是個不止息的惡物，滿了害死人的毒氣。",
+    verse: "若有人在話語上沒有過失，他就是完全人，也能勒住自己的全身。（雅3:2）",
+    detail: "雅各用一系列生動的比喻（嚼環、船舵、火），來形容舌頭這個小小肢體所擁有的巨大破壞力。他指出，從一個泉源裡不能發出甜苦兩樣的水，同樣，一個人的口中，不應當既發出頌讚又發出咒詛。他對比了屬地的、屬情慾的智慧（帶來紛爭嫉妒），和從上頭來的智慧（帶來和平、溫良、憐憫）。"
+  },
+  {
+    title: "與世俗為友就是與神為敵",
+    range: "雅4章",
+    keypoint: "教會中的鬥毆爭戰，是從私慾來的。勸勉信徒要順服神，抵擋魔鬼，親近神。",
+    verse: "你們親近神，神就必親近你們。有罪的人哪，要潔淨你們的手！心懷二意的人哪，要清潔你們的心！（雅4:8）",
+    detail: "雅各一針見血地指出，人際關係衝突的根源，在於人內心的私慾和驕傲。他嚴厲地警告，貪愛世界、與世俗為友，就是站在神的對立面。他呼籲信徒要謙卑下來，在神面前承認自己的罪，抵擋魔鬼的誘惑。他也提醒信徒不可彼此論斷，也不可為明天自誇，因為生命如同一片雲霧。"
+  },
+  {
+    title: "忍耐等候主來",
+    range: "雅5章",
+    keypoint: "警戒富足的人，因他們的不義必遭審判。勸勉受苦的信徒要忍耐，效法農夫和眾先知。",
+    verse: "弟兄們哪，你們要忍耐，直到主來。看哪，農夫忍耐等候地裡寶貴的出產，直到得了秋雨春雨。（雅5:7）",
+    detail: "在書信的結尾，雅各再次回到試煉與忍耐的主題。他嚴厲地斥責那些欺壓窮人、只顧自己奢華宴樂的富人。同時，他鼓勵那些在苦難中的信徒，要像農夫等候收成一樣，耐心等候主的再來。他也強調了禱告的大能，指出義人祈禱所發的力量，是大有功效的，並鼓勵信徒要彼此認罪，互相代求。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願厚賜百物、賜人智慧的上帝，幫助您在百般試煉中生出忍耐，並賜您從上頭來的智慧。願您不僅是聽道的人，更是行道的人，勒住舌頭，存溫柔的心，活出那沒有行為就死的真信心，直到主來。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

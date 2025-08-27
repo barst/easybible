@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>約翰一書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-john1">
+  <h1>約翰一書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《約翰一書》的作者是使徒約翰，他也被稱為「愛的使徒」。寫作此信時，教會正受到早期「諾斯底主義」的異端思想影響，這種思想否認耶穌基督道成肉身的真實性，並主張一種脫離身體和道德的「屬靈知識」。約翰寫這封信的目的，就是要駁斥這種錯謬，並為信徒提供確據，讓他們知道自己所信的是真實的，並且擁有永生。本書信以「神就是光」和「神就是愛」為兩大核心，透過三個檢驗真假信仰的標記——真理的標記（信耶穌是基督）、公義的標記（遵守神的命令）和慈愛的標記（彼此相愛），來堅固信徒的信心。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "神就是光，在光明中相交",
+    range: "約壹1章",
+    keypoint: "神就是光，我們若在光明中行，就與神相交，耶穌的血也洗淨我們一切的罪。",
+    verse: "神就是光，在他毫無黑暗。這是我們從主所聽見、又報給你們的信息。（約壹1:5）",
+    detail: "約翰以親身經歷見證那『太初原有、眼看手摸過的生命之道』，以此確立信仰的歷史真實性。他宣告了神聖潔的本質——神就是光。這帶來一個必然的結果：一個真正與神相交的人，必然會活在光明中，承認自己的罪。而認罪帶來的是赦免與潔淨的應許，這應許的根基在於耶穌基督的寶血。"
+  },
+  {
+    title: "遵守主道與彼此相愛",
+    range: "約壹2章",
+    keypoint: "人若說認識祂，卻不遵守祂的誡命，便是說謊話的。愛弟兄的，就是住在光明中。",
+    verse: "人若說他住在主裡面，就該自己照主所行的去行。（約壹2:6）",
+    detail: "約翰提出了檢驗真信仰的第二和第三個標記。第一，是順服的行為。一個真正認識神的人，必然會以遵守祂的命令為樂。第二，是彼此相愛。這是一條舊命令，也是一條新命令。因為對弟兄的愛，是我們是否真正住在光明裡、是否真正愛神的直接體現。他也警告信徒不要愛世界，並要防備那些否認基督的敵基督者。"
+  },
+  {
+    title: "神的兒女與魔鬼的兒女",
+    range: "約壹3章",
+    keypoint: "凡從神生的，就不犯罪，因神的道存在他心裡。凡不行義的，就不屬神，不愛弟兄的也是如此。",
+    verse: "你看父賜給我們是何等的慈愛，使我們得稱為神的兒女；我們也真是他的兒女。（約壹3:1）",
+    detail: "約翰將兩種生命作了鮮明的對比。神的兒女，因著對將來基督顯現時『必像祂』的盼望，會潔淨自己，並從生命本質上脫離罪的轄制。而魔鬼的兒女，則以犯罪和恨弟兄為特徵。他以該隱為例，說明恨的源頭。他再次強調，愛不應只在言語上，總要在行為和誠實上。"
+  },
+  {
+    title: "察驗諸靈與神就是愛",
+    range: "約壹4章",
+    keypoint: "一切的靈，你們不可都信，總要試驗。凡靈認耶穌基督是成了肉身來的，就是出於神的。",
+    verse: "親愛的弟兄啊，我們應當彼此相愛，因為愛是從神來的。凡有愛心的，都是由神而生，並且認識神。沒有愛心的，就不認識神，因為神就是愛。（約壹4:7-8）",
+    detail: "面對假教師的攪擾，約翰給出了察驗真假師傅的關鍵標準：是否承認耶穌基督道成肉身的真理。接著，他發表了關於神本質最偉大的宣告：『神就是愛』。這不是說愛就是神，而是說神是愛的終極源頭。神差祂的兒子為我們的罪作了挽回祭，這就是愛的極致彰顯。我們經歷了這愛，理當也彼此相愛。"
+  },
+  {
+    title: "信心的得勝與永生的確據",
+    range: "約壹5章",
+    keypoint: "凡從神生的，就勝過世界。使我們勝了世界的，就是我們的信心。",
+    verse: "我將這些話寫給你們信奉神兒子之名的人，要叫你們知道自己有永生。（約壹5:13）",
+    detail: "在書信的結尾，約翰總結道，對耶穌是神兒子的信心，是我們得勝世界的關鍵。這信心不是空洞的，而是有聖靈、水（耶穌的洗禮）和血（耶穌的死）作見證的。最後，他清晰地陳明瞭寫這封信的目的：就是要讓那些真正信靠神兒子之名的人，可以滿有確據地知道，他們已經擁有永生。這為所有在信仰中掙扎、疑惑的信徒，帶來了極大的安慰和保證。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願神使您確信，祂就是光，也是愛。願您常在光明中與祂相交，活出彼此相愛的生命，並堅信那在我們裡面的，比那在世界上的更大，好叫您滿有確據地知道自己有永生，並得勝有餘。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

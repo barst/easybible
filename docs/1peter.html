@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>彼得前書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-peter1">
+  <h1>彼得前書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《彼得前書》是使徒彼得寫給散居在本都、加拉太等小亞細亞地區的信徒。當時，這些信徒正因為他們的基督徒身份而面臨著來自社會的敵意、毀謗和逼迫。因此，彼得寫這封信的核心目的，是為了堅固和鼓勵這些在苦難中的信徒。他提醒他們，他們所領受的救恩是何等榮耀，他們擁有活潑的盼望，並且受苦是與基督一同受苦，是暫時的、有益的。本書信充滿了盼望、聖潔和忍耐的主題，教導信徒如何在一個充滿敵意的世界中，活出美好的見證，榮耀神。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "活潑的盼望與信心的試煉",
+    range: "彼前1章",
+    keypoint: "神藉耶穌基督從死裡復活，重生了我們，叫我們有活潑的盼望。信徒的信心既被試驗，就比金子更顯寶貴。",
+    verse: "願頌讚歸與我們主耶穌基督的父神！他曾照自己的大憐憫，藉耶穌基督從死裡復活，重生了我們，叫我們有活潑的盼望，可以得著不能朽壞、不能玷污、不能衰殘、為你們存留在天上的基業。（彼前1:3-4）",
+    detail: "彼得以一段榮耀的頌讚，為整封信奠定了盼望的基調。他提醒受苦的信徒，他們的身份已經被改變，他們的未來是有保障的。今生暫時的百般試煉，不過是為了煉淨他們的信心，使他們在耶穌基督顯現的時候，可以得著稱讚、榮耀、尊貴。這永恆的盼望，是信徒在苦難中喜樂的力量源泉。"
+  },
+  {
+    title: "聖潔的國民與活石靈宮",
+    range: "彼前2章",
+    keypoint: "信徒是被揀選的族類，是君尊的祭司，是聖潔的國度，是屬神的子民。",
+    verse: "惟有你們是被揀選的族類，是有君尊的祭司，是聖潔的國度，是屬神的子民，要叫你們宣揚那召你們出黑暗入奇妙光明者的美德。（彼前2:9）",
+    detail: "彼得用一系列舊約中形容以色列的尊貴稱號，來描述新約信徒的身份。他稱信徒為『活石』，被建造成為屬靈的殿，耶穌基督是那寶貴的房角石。這個新的身份，帶來一個神聖的使命：就是要透過聖潔的生活和美好的品行，在世上為神作見證，宣揚祂的榮美。"
+  },
+  {
+    title: "在世寄居的品行",
+    range: "彼前2章後半-3章",
+    keypoint: "勸勉信徒要品行端正，順服在上掌權的，並效法基督受苦的榜樣。",
+    verse: "你們蒙召原是為此；因基督也為你們受過苦，給你們留下榜樣，叫你們跟隨他的腳蹤行。（彼前2:21）",
+    detail: "面對外邦人的毀謗，彼得指出，最好的回應不是爭辯，而是無可指摘的好品行。他勸勉信徒，無論作為公民、僕人、妻子或丈夫，都要在各自的角色上活出順服和敬重。他特別以基督為終極榜樣，耶穌在無辜受苦時，沒有咒罵，也不威嚇，只將自己交託那按公義審判的主。這為所有在不公義對待中受苦的信徒，提供了跟隨的腳蹤。"
+  },
+  {
+    title: "為義受苦是有福的",
+    range: "彼前3章後半-4章",
+    keypoint: "有人問你們心中盼望的緣由，就要常作準備，以溫柔、敬畏的心回答各人。",
+    verse: "你們就是為義受苦，也是有福的。不要怕人的威嚇，也不要驚慌；只要心裡尊主基督為聖。（彼前3:14-15）",
+    detail: "彼得轉而直接處理受苦的主題。他指出，為行善、為義受苦，在神看來是有福的。信徒不應懼怕，反而要將這視為一次作見證的機會。當別人因我們在苦難中的盼望和喜樂而感到好奇時，我們就要準備好，以謙和的態度分享我們的信仰。基督既在肉身受苦，我們也當將這樣的心志作為兵器，與罪惡斷絕。"
+  },
+  {
+    title: "警醒謹守，抵擋魔鬼",
+    range: "彼前5章",
+    keypoint: "勸勉長老要按著神旨意牧養群羊；年輕人要順服；眾人都要以謙卑束腰，抵擋魔鬼。",
+    verse: "務要謹守，警醒。因為你們的仇敵魔鬼，如同吼叫的獅子，遍地遊行，尋找可吞吃的人。你們要用堅固的信心抵擋他。（彼前5:8-9）",
+    detail: "在書信的結尾，彼得給出了對教會群體的具體勸勉。他勸長老要甘心樂意地服事，而非出於轄制；勸年輕人要謙卑順服。他提醒所有人，他們正處於一場屬靈的爭戰中，仇敵魔鬼正伺機攻擊。得勝之道在於警醒、謹守，並以堅固的信心和謙卑的心來抵擋。最後，他以一個榮耀的祝福作結：那賜諸般恩典的神，必親自成全、堅固、賜力量給他們。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那賜諸般恩典的神，曾在基督裡召您得享祂永遠的榮耀，在您暫受苦難之後，親自成全您，堅固您，賜力量給您。願您有活潑的盼望，聖潔的生命，在百般的試煉中，信心更顯寶貴，直到主耶穌基督顯現的日子。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

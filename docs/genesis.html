@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>創世記的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-genesis">
+  <h1>創世記的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《創世記》是聖經的第一卷書，也是摩西五經的開篇。它不僅是人類歷史的開端，更是神與人關係的基礎。本書從宇宙的創造開始，講述了人類的墮落、罪惡的蔓延、洪水的審判，以及神對亞伯拉罕、以撒、雅各和約瑟等列祖的揀選與應許。創世記揭示了神的創造主權、祂的信實、祂對罪惡的恨惡，以及祂救贖計劃的開端。它是理解整本聖經的關鍵，因為所有重要的神學主題，如神、人、罪、救贖、盟約、應許等，都在這裡奠定了基礎。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "創造與墮落",
+    range: "創1-3章",
+    keypoint: "神創造天地萬物和人類，人卻因悖逆犯罪墮落，罪進入世界，人與神關係破裂。",
+    verse: "神說：『我們要照著我們的形像、按著我們的樣式造人，使他們管理海裡的魚、空中的鳥、地上的牲畜，和全地，並地上所爬的一切昆蟲。』（創1:26）",
+    detail: "創世記以神創造的宏偉敘事開篇，宣告神是萬有的源頭，人是按神形像所造，擁有尊貴的地位和管理的權柄。然而，人類的悖逆帶來了罪惡、死亡和咒詛，人與神、人與人、人與自然之間的和諧關係被破壞。但即使在墮落之後，神也預言了女人的後裔將傷蛇的頭，預示了救贖的盼望。"
+  },
+  {
+    title: "罪惡的蔓延與洪水的審判",
+    range: "創4-9章",
+    keypoint: "該隱殺亞伯，罪惡在人類中迅速蔓延；神因人的罪惡而後悔，用洪水審判世界，唯有挪亞一家蒙恩。",
+    verse: "凡有血氣的人，在地上都敗壞了行為。神就對挪亞說：『凡有血氣的人，他的盡頭已經來到我面前；因為遍地滿了他們的強暴，我要把他們和地一併毀滅。』（創6:12-13）",
+    detail: "從該隱殺害亞伯開始，人類的罪惡不斷加劇，達到神無法容忍的地步。神用洪水審判了敗壞的世界，但祂也因著挪亞的義，為人類留下了餘種。洪水之後，神與挪亞立約，以彩虹為記號，應許不再用洪水毀滅全地，這顯明了神的公義與慈愛。"
+  },
+  {
+    title: "巴別塔與列國的起源",
+    range: "創10-11章",
+    keypoint: "人類因驕傲建造巴別塔，神變亂他們的口音，使他們分散全地，形成不同的民族和語言。",
+    verse: "因為耶和華在那裡變亂天下人的言語，使眾人分散在全地上，所以那城名叫巴別。（創11:9）",
+    detail: "在洪水之後，人類再次聯合起來，企圖建造一座通天塔，為要傳揚自己的名，抵擋神的旨意。神變亂了他們的語言，使他們分散到世界各地，形成了不同的民族和語言。這解釋了人類多樣性的起源，也再次顯明了神對人類驕傲的審判。"
+  },
+  {
+    title: "亞伯拉罕的蒙召與應許",
+    range: "創12-25章",
+    keypoint: "神呼召亞伯拉罕，與他立約，應許他將成為大國，他的後裔將蒙福，地上的萬族都將因他得福。",
+    verse: "我必叫你成為大國。我必賜福給你，叫你的名為大；你也要叫別人得福。為你祝福的，我必賜福與他；那咒詛你的，我必咒詛他。地上的萬族都要因你得福。（創12:2-3）",
+    detail: "在人類普遍墮落的背景下，神揀選了亞伯拉罕，與他建立特殊的盟約關係。神應許他土地、後裔和祝福，並透過他將祝福帶給全人類。亞伯拉罕的信心和順服，成為所有信徒的榜樣。他與神同行，經歷了信心的考驗，也看見了神信實的應許。"
+  },
+  {
+    title: "以撒與雅各：應許的傳承",
+    range: "創25-36章",
+    keypoint: "神信實地將應許傳給以撒和雅各，雅各與神摔跤，生命被改變，以色列民族的雛形形成。",
+    verse: "你的名不要再叫雅各，要叫以色列，因為你與神與人較力，都得了勝。（創32:28）",
+    detail: "神對亞伯拉罕的應許，在以撒和雅各身上繼續傳承。雅各的生命充滿了掙扎和詭詐，但他與神摔跤的經歷，標誌著他生命的轉折點，從『抓奪者』變成了『與神較力者』，並被賜名為以色列。他的十二個兒子，成為以色列十二支派的祖先，為以色列民族的形成奠定了基礎。"
+  },
+  {
+    title: "約瑟的故事：神的護理與救贖",
+    range: "創37-50章",
+    keypoint: "約瑟被兄弟出賣，卻在埃及被神高升，最終成為家族的拯救者，顯明神的護理和救贖計劃。",
+    verse: "從前你們的意思是要害我，但神的意思原是好的，要保全許多人的性命，成就今日的光景。（創50:20）",
+    detail: "約瑟的故事是創世記的高潮，也是神護理的完美體現。儘管約瑟經歷了被出賣、被奴役、被誣陷的苦難，但神始終與他同在，並將他高升為埃及的宰相。最終，他成為了拯救全家免於饑荒的關鍵人物。約瑟的生命見證了，即使在人的惡意中，神也能將其轉化為美善，成就祂的救贖計劃。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願創造天地萬物的上帝，在您的生命中顯明祂的主權與信實。願您在創世記的故事中，看見神對人類不變的愛與救贖計劃，並在祂的應許中，得著活潑的盼望與堅定的信心。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

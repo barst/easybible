@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>哥林多後書的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-corinthians2">
+  <h1>哥林多後書的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《哥林多後書》是保羅書信中最充滿個人情感的一卷。在寫完前書後，保羅與哥林多教會的關係經歷了嚴峻的考驗，假教師的滲透使他的使徒權柄受到質疑。因此，這封信不僅是神學教導，更充滿了一位屬靈父親的眼淚、辯護、關愛與真情流露。保羅在信中深刻地闡述了基督徒事奉的本質——一個在患難中經歷神安慰、瓦器裡藏著寶貝、軟弱中反顯神大能的弔詭過程。本書是所有事奉者在面對誤解、攻擊和軟弱時，極大的安慰與指引。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "患難中的安慰與事奉",
+    range: "林後1-2章",
+    keypoint: "神是賜各樣安慰的神，我們在患難中所受的安慰，能去安慰那遭各樣患難的人。",
+    verse: "我們在一切患難中，他就安慰我們，叫我們能用神所賜的安慰去安慰那遭各樣患難的人。（林後1:4）",
+    detail: "保羅以自身的經歷開篇，指出基督徒的事奉是一個傳遞安慰的管道。神允許我們經歷患難，是為了讓我們親身領受祂的安慰，從而能以同理心去服事其他在痛苦中的人。這確立了本書『軟弱與剛強』並存的基調。"
+  },
+  {
+    title: "新約的執事與榮光",
+    range: "林後3章",
+    keypoint: "新約的執事不是憑著字句（律法），乃是憑著精意（聖靈）。這職事帶著更大的榮光。",
+    verse: "他叫我們能承當這新約的執事，不是憑著字句，乃是憑著精意；因為那字句是叫人死，精意是叫人活。（林後3:6）",
+    detail: "面對假教師的挑戰，保羅對比了舊約（刻在石版上的律法）與新約（刻在心版上的聖靈）的職事。舊約的職事帶著定罪的榮光，尚且令人敬畏；那叫人稱義、賜人生命的聖靈的職事，其榮光豈不更大嗎？這極大地肯定了福音事工的尊貴。"
+  },
+  {
+    title: "瓦器裡的寶貝",
+    range: "林後4章",
+    keypoint: "我們如同瓦器，為要顯明福音這莫大的能力是出於神，不是出於我們。",
+    verse: "我們有這寶貝放在瓦器裡，要顯明這莫大的能力是出於神，不是出於我們。（林後4:7）",
+    detail: "這是一個極其深刻的比喻，描繪了基督徒事奉的本質。事奉者如同脆弱、卑微的瓦器，常常經歷四面受敵、心裡作難的處境。然而，這正是為了彰顯在我們裡面的福音『寶貝』的能力。我們的軟弱，反而成為神大能的舞台。"
+  },
+  {
+    title: "和好的職分",
+    range: "林後5章",
+    keypoint: "基督替我們死，使我們成為新造的人，並領受了勸人與神和好的職分。",
+    verse: "若有人在基督裡，他就是新造的人，舊事已過，都變成新的了。……神使那無罪的，替我們成為罪，好叫我們在他裡面成為神的義。（林後5:17, 21）",
+    detail: "這是對福音核心的精闢總結。神在基督裡成就了代贖的工作，使罪人得以與祂和好，並被稱為義。所有蒙恩的人，都領受了一個神聖的使命——成為基督的使者，去勸導世人也來與神和好。"
+  },
+  {
+    title: "分別為聖的呼召",
+    range: "林後6-7章",
+    keypoint: "勸勉信徒不要與不信的原不相配，當從他們中間出來，分別為聖。",
+    verse: "你們務要從他們中間出來，與他們分別；不要沾不潔淨的物，我就收納你們。（林後6:17）",
+    detail: "在闡述了恩典的福音後，保羅立刻發出聖潔生活的呼召。作為神的兒女和聖靈的殿，信徒在價值觀和核心認同上，不能再與不信的世界同流合污。這種『分別』不是指與世隔絕，而是在世上活出屬天的聖潔樣式。"
+  },
+  {
+    title: "樂捐的榜樣與福分",
+    range: "林後8-9章",
+    keypoint: "以馬其頓教會為榜樣，勸勉哥林多信徒在奉獻的事上，要存甘心樂意的心。",
+    verse: "各人要隨本心所酌定的，不要作難，不要勉強，因為捐得樂意的人是神所喜愛的。（林後9:7）",
+    detail: "保羅教導了基督徒奉獻的重要原則。奉獻不是出於勉強，而是對神恩典的感恩回應。他以主耶穌『本來富足，卻為你們成了貧窮』為榜樣，激勵信徒效法基督的給予。神喜愛甘心樂意的奉獻者，並應許加倍賜福。"
+  },
+  {
+    title: "屬靈的爭戰與使徒的權柄",
+    range: "林後10章",
+    keypoint: "我們爭戰的兵器本不是屬血氣的，乃是在神面前有能力，可以攻破堅固的營壘。",
+    verse: "我們爭戰的兵器本不是屬血氣的，乃是在神面前有能力，可以攻破堅固的營壘。（林後10:4）",
+    detail: "面對假教師的攻擊，保羅開始為他的使徒職分辯護。他指出，他爭戰的對象不是人，而是人心中的驕傲思想和抵擋神的觀念。他爭戰的武器，是來自神的大能話語。他所誇的，不是自己，而是主。"
+  },
+  {
+    title: "愚妄的自誇與刺的恩典",
+    range: "林後11-12章",
+    keypoint: "為對抗假使徒，保羅被迫『愚妄地』誇耀自己的出身和為福音所受的苦；並提到主對他說：『我的恩典夠你用的』。",
+    verse: "他對我說：『我的恩典夠你用的，因為我的能力是在人的軟弱上顯得完全。』所以，我更喜歡誇自己的軟弱，好叫基督的能力覆庇我。（林後12:9）",
+    detail: "這是保羅最無奈也最深刻的自白。為了教會的益處，他不得不列舉自己輝煌的履歷和受苦的清單。然而，他真正要誇的，卻是自己的軟弱。那根肉體上的刺，讓他學會了最寶貴的功課：神的恩典在人的盡頭才顯得最完全，基督的能力在人的軟弱上才得到最大的彰顯。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願賜各樣安慰的父神，親自安慰您生命中的一切患難。願您能深刻體會『瓦器裡有寶貝』的奧祕，不因自己的軟弱而氣餒，反而在軟弱中經歷基督能力的覆庇。願主的恩典成為您每日夠用的力量。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

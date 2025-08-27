@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>民數記的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-numbers">
+  <h1>民數記的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《民數記》是摩西五經的第四卷，記錄了以色列人出埃及後，在曠野漂流近四十年的歷史。本書得名於開篇和結尾的兩次人口普查（數點民數）。它詳細描繪了以色列人在曠野中的旅程，包括他們的組織、行軍、營地佈局，以及他們對神的悖逆、發怨言、不信和所受的懲罰。然而，在這些失敗的背後，民數記也顯明了神對祂子民的信實、忍耐和供應。本書是基督徒靈程的寫照，提醒我們在走向應許之地的過程中，要警惕不信和悖逆，並信靠神的引導和保守。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "曠野的組織與行軍",
+    range: "民1-10章",
+    keypoint: "神數點民數，組織以色列營地和行軍秩序，利未人被分別出來事奉會幕。",
+    verse: "以色列人要各按自己的纛，照他們的父家，在營盤的四圍，對著會幕安營。（民2:2）",
+    detail: "民數記開篇就展現了神對以色列人精密的組織和管理。兩次人口普查不僅是為了軍事目的，也為了確定各支派的職責和產業。利未支派被分別出來，專門事奉會幕，這強調了神聖潔的要求和秩序的重要性。這一切都為以色列人在曠野的旅程和進入應許之地作了預備。"
+  },
+  {
+    title: "從西乃到加低斯：不信與懲罰",
+    range: "民11-14章",
+    keypoint: "以色列人發怨言，不信神的應許，拒絕進入迦南，被神懲罰在曠野漂流四十年。",
+    verse: "你們的屍首必倒在這曠野，並且你們的兒女必在曠野漂流四十年，擔當你們淫行的罪，直到你們的屍首在曠野消滅。（民14:29, 33）",
+    detail: "這是民數記的轉捩點。以色列人從西乃山出發後，很快就開始發怨言，抱怨食物和環境。更嚴重的是，當探子從迦南地回來報告時，他們因懼怕巨人而拒絕相信神的應許，不願進入應許之地。這導致神嚴厲的懲罰：那一代二十歲以上的人，除了迦勒和約書亞，都將倒斃在曠野，無法進入迦南。"
+  },
+  {
+    title: "曠野的悖逆與神的忍耐",
+    range: "民15-21章",
+    keypoint: "可拉黨的背叛，米利暗和亞倫的毀謗，摩西擊打磐石，銅蛇事件。",
+    verse: "摩西在曠野舉蛇，人子也必照樣被舉起來，叫一切信他的都得永生。（約3:14-15，參民21:9）",
+    detail: "在曠野漂流的過程中，以色列人不斷地挑戰神的權柄和摩西的領導。可拉黨的背叛、米利暗和亞倫的毀謗，都顯明了人心的悖逆。摩西因擊打磐石而非說話，也失去了進入迦南的機會。然而，即使在百姓被火蛇咬傷時，神仍指示摩西造銅蛇，使仰望的人得生，這預表了耶穌基督的救贖。這一切都顯明了神在人悖逆中的忍耐和救贖的恩典。"
+  },
+  {
+    title: "摩押平原的事件與第二次數點民數",
+    range: "民22-36章",
+    keypoint: "巴蘭的預言，巴力毗珥的罪，第二次數點民數，約書亞被立為繼承人。",
+    verse: "有星要從雅各出來，有杖要從以色列興起。（民24:17）",
+    detail: "在進入迦南地之前，以色列人在摩押平原再次面臨考驗。摩押王巴勒僱用先知巴蘭咒詛以色列，但神卻使巴蘭口出祝福和關於彌賽亞的預言。然而，以色列人卻在巴力毗珥事件中陷入淫亂和偶像崇拜，再次受到神的懲罰。第二次人口普查顯示了新一代的興起，摩西也按神的指示立約書亞為他的繼承人，預備進入應許之地。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那在曠野中信實引導、供應的耶和華神，也引導您走過人生的曠野。願您警惕不信和悖逆，學習順服和忍耐，並在祂的保守中，經歷祂的信實與大能，最終進入祂所應許的安息之地。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>
