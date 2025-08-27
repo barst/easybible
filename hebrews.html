@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>希伯來書的重點</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9fafb; margin: 0; padding: 20px; }
+    h1 { text-align: center; color: #3730a3; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .card { background: linear-gradient(135deg, #e0e7ff, #ffffff); padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.2s; }
+    .card:hover { transform: scale(1.02); }
+    .title { font-size: 20px; color: #3730a3; margin-bottom: 5px; }
+    .range { font-size: 14px; color: #6366f1; margin-bottom: 5px; }
+    .keypoint { font-size: 14px; margin-bottom: 5px; font-weight: bold; }
+    .verse { font-style: italic; color: #4b5563; font-size: 14px; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center; z-index: 999; }
+    .modal-content { background: white; padding: 20px; border-radius: 10px; max-width: 600px; max-height: 80vh; overflow-y: auto; position: relative; cursor: pointer; }
+  </style>
+</head>
+
+<body>
+  <h1>希伯來書的重點</h1>
+
+  <div style="max-width: 800px; margin: 20px auto; text-align: center; color: #374151; font-size: 16px; line-height: 1.6;">
+    <p><strong>希伯來書簡介：</strong></p>
+    <p>《希伯來書》是新約聖經中一卷充滿神學深度與屬靈洞見的書信，極可能寫於主後60至70年間，作者身份至今未明，傳統上有認為是保羅、路加或巴拿巴所寫，但未有定論。此書主要寫給面對逼迫與信仰動搖的猶太基督徒，幫助他們明白基督超越舊約一切體系與人物（天使、摩西、亞倫、祭司制度等），勉勵信徒堅持到底。</p>
+    <p>希伯來書深入探討耶穌作為永遠的大祭司、祂所成就的新約救恩，以及信心、忍耐與聖潔生活的重要性。全書結合舊約經文與新約應許，強調耶穌是信仰的中心，並透過信心與恩典，使信徒能在任何環境下剛強站立。</p>
+    <p>這卷書是基督徒面對信仰挑戰時的重要指引，幫助人們定睛於耶穌，活出得勝的生命。</p>
+   </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "耶穌超越萬有",
+    range: "希1-3章",
+    keypoint: "耶穌超越天使、摩西、亞倫、祭司與舊約制度",
+    verse: "祂是神榮耀所發的光輝，是神本體的真像，常用祂權能的命令托住萬有。（希1:3）",
+    detail: "希伯來書開篇即宣告耶穌的神性與權能，祂不僅是創造萬有的主，也是神榮耀的具體彰顯。祂遠超過天使和舊約中的偉人如摩西，因為祂是神兒子、萬有的承受者，擁有天上地下一切權柄。希伯來書強調，耶穌是救恩的創始者，也是信徒得勝的保障，祂掌管歷史並成就神的計畫。信徒因認識耶穌的至高無上，能在患難中堅守信仰，不被舊有的宗教制度或世界價值觀所動搖。"
+  },
+  {
+    title: "耶穌是永遠的大祭司",
+    range: "希4-7章",
+    keypoint: "照麥基洗德等次，祂一次獻上自己，成就永遠救贖",
+    verse: "祂是憑著無窮之生命成為祭司的。（希7:16）",
+    detail: "耶穌不是依循亞倫的體系成為祭司，而是照麥基洗德的等次。麥基洗德是舊約中神秘的祭司王，無父無母，無始無終，象徵耶穌祭司身份的超越性與永恆性。舊約的大祭司每年進入至聖所獻祭，但耶穌一次將自己獻上，就成就了永遠有效的贖罪工作。祂如今在天上持續為信徒代求，使信徒能隨時坦然來到神面前得憐恤、蒙恩典。這提醒信徒不需依靠地上的宗教體系或重複的儀式，因耶穌是唯一且永遠有效的中保與大祭司。"
+  },
+  {
+    title: "新約比舊約更美",
+    range: "希8-9章",
+    keypoint: "新約建立在更美的應許上，內心律法、罪得赦免",
+    verse: "我要將我的律法放在他們心裡，寫在他們的裡面。（希8:10）",
+    detail: "舊約的律法刻在石版上，無法徹底改變人的內心，信徒在律法下常感到被定罪與軟弱。新約透過耶穌的獻祭與聖靈的內住，將神的律法寫在信徒心裡，帶來真正的內在更新與轉化。信徒不再是出於懼怕或責任遵行神的話，而是出於愛與神同心合意地活出真理。新約應許信徒罪得赦免，與神建立親密的父子關係，擁有直接親近神的特權，這遠超過舊約時代的制度與規條。"
+  },
+  {
+    title: "耶穌的獻祭與天上聖所",
+    range: "希9-10章",
+    keypoint: "耶穌進入天上的真帳幕，親自為我們成就潔淨與赦免",
+    verse: "祂也曾一次將自己獻為祭，好除掉人的罪。（希9:26）",
+    detail: "舊約中的會幕與聖殿只是天上真會幕的影子。耶穌作為大祭司，進入天上的至聖所，不用牛羊的血，而是親自獻上自己的血，成就了永遠的救贖。這一獻祭的行動不僅潔淨人的良心，也拆除人與神之間的隔閡，信徒可以坦然無懼來到神面前。耶穌的獻祭是一次性的，且在永恆中有效，信徒不再需要透過不斷的宗教儀式或律法才能得蒙潔淨，而是因信接受這救恩即可得著赦罪與新生命。"
+  },
+  
+  {
+    title: "信心的榜樣",
+    range: "希11章",
+    keypoint: "舊約信心偉人榜樣（亞伯拉罕、摩西、挪亞等），信心的定義與實踐",
+    verse: "信就是所望之事的實底，是未見之事的確據。（希11:1）",
+    detail: "希伯來書11章被稱為信心英雄榜，作者列舉了許多舊約中的信心偉人，包括亞伯拉罕、以撒、雅各、摩西、挪亞等。他們雖然未見到神所有的應許完全實現，卻仍憑信心行事，信靠神的話語。他們的生命見證激勵後來的信徒，在等待應許成就的過程中，不因外在環境而動搖，而是定睛於神的信實與應許。這章不僅定義了什麼是信心，也告訴我們，信心是經歷神恩典和應許的途徑。"
+  },
+  {
+    title: "定睛耶穌，忍耐奔跑",
+    range: "希12:1-3",
+    keypoint: "勉勵信徒仰望耶穌，忍受苦難，不退後",
+    verse: "仰望為我們信心創始成終的耶穌。（希12:2）",
+    detail: "信徒的屬靈生活被比作一場馬拉松賽跑，需忍耐並除去一切纏累，特別是罪的重擔。耶穌是我們信仰的創始者與完成者，祂在十字架上忍受羞辱與痛苦，最終坐在神的右邊得著榮耀。信徒應當效法耶穌，不因苦難而失望，而是靠著祂的榜樣與恩典，持續向著標竿直跑。這段經文鼓勵信徒將眼目專注在耶穌身上，無論外在環境如何，心中都不動搖。"
+  },
+  {
+    title: "神的管教與成聖生活",
+    range: "希12:4-17",
+    keypoint: "神管教所愛的兒女，使人成為聖潔",
+    verse: "凡所受的管教，都是神待你們如同待兒子。（希12:7）",
+    detail: "神對信徒的管教不表示祂的拒絕，反而是愛的表現，證明信徒是祂所愛的兒女。管教的目的是讓信徒成聖，分享神的聖潔。雖然當下的管教可能讓人覺得痛苦，但結果卻結出平安的果子，讓人在品格上更像基督。信徒應當以信心接受神的訓練與熬煉，明白苦難背後有神美善的心意，為了成就我們生命的成熟與成長。"
+  },
+  {
+    title: "不可停止聚會，彼此勉勵",
+    range: "希10:23-25",
+    keypoint: "勉勵堅守信仰，彼此相顧，特別在主日或逼迫中更要聚集",
+    verse: "不可停止聚會，好像那些停止慣了的人，倒要彼此勸勉。（希10:25）",
+    detail: "當時的基督徒因面對逼迫與困難，可能選擇遠離信仰群體，作者提醒信徒，聚會是彼此激勵的重要管道。透過聚會，信徒能互相扶持、提醒並激發愛心與善行。特別在末世將臨的時代，信徒更需要彼此勉勵，不可停止聚會。這段經文也強調教會生活的重要性，信徒不是獨行俠，而是基督身體的一部分，需要活在群體中互相成長與守望。"
+  },
+    {
+    title: "實踐信仰與愛心",
+    range: "希13:1-6",
+    keypoint: "彼此相愛、接待客旅、關懷受苦者、尊重婚姻、知足常樂",
+    verse: "你們務要常存弟兄相愛的心。（希13:1）",
+    detail: "信心不僅在思想上認同，更應在行為上實踐。希伯來書13章呼籲信徒彼此相愛，接待客旅，幫助被捆綁與受苦的人，並在婚姻與金錢上持守聖潔與知足。這些都是信徒生活中具體的信仰見證。真正的屬靈生命會在日常行為中流露出來，將信仰與生活結合，成為世人的光與鹽。這段經文提醒信徒，愛的行動是新約信仰的重要表現，也是對神恩典的回應。"
+  },
+  {
+    title: "結語與祝福",
+    range: "希13:20-25",
+    keypoint: "勉勵群體，靠恩典堅固心靈，主是牧人與永約的大牧者",
+    verse: "願賜平安的神，就是那憑永約之血、使群羊的大牧人我主耶穌從死裡復活的神，成全你們各樣善事。（希13:20-21）",
+    detail: "結語以神的祝福作結，提醒信徒我們的信仰是建立在永約的根基上。耶穌是那位從死裡復活的大牧人，祂牧養群羊，引導信徒走在義路中。神賜下平安與恩典，裝備信徒去完成祂的旨意，行各樣善事。這段經文帶來極大的安慰與盼望，信徒無論面對何種挑戰，都能因神的恩典而堅固不動搖，成為榮耀神的器皿。"
+  }
+];
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`; // 這裡新增 ID
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <!-- 放在整頁最底部 -->
+<div style="max-width: 800px; margin: 40px auto 20px auto; text-align: center; color: #374151; font-size: 16px; line-height: 1.6;">
+  <hr style="margin: 20px 0;">
+  <p><strong>祝福禱告：</strong></p>
+  <p>願天父藉著希伯來書中的真理，堅固你內心的信仰，當你面對試煉或疑惑時，能定睛於那位為你信心創始成終的耶穌基督。願你在生活中經歷祂成為你永遠的大祭司，時刻得著祂的恩典、憐憫與幫助。奉主耶穌基督的名，阿們！</p>
+  <hr style="margin: 20px 0;">
+  <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>約伯記的重點</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9fafb; margin: 0; padding: 20px; }
+    h1 { text-align: center; color: #3730a3; }
+    .intro, .footer { max-width: 800px; margin: 20px auto; text-align: center; color: #374151; font-size: 16px; line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+    .card { background: linear-gradient(135deg, #e0e7ff, #ffffff); padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.2s; }
+    .card:hover { transform: scale(1.02); }
+    .title { font-size: 20px; color: #3730a3; margin-bottom: 5px; }
+    .range { font-size: 12px; color: #6366f1; margin-bottom: 5px; }
+    .keypoint { font-size: 14px; margin-bottom: 5px; font-weight: bold; }
+    .verse { font-style: italic; color: #4b5563; font-size: 13px; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center; z-index: 999; }
+    .modal-content { background: white; padding: 20px; border-radius: 10px; max-width: 600px; max-height: 80vh; overflow-y: auto; position: relative; cursor: pointer; }
+  </style>
+</head>
+
+<body>
+  <h1>約伯記的重點</h1>
+  <div class="intro">
+    <p><strong>約伯記簡介：</strong></p>
+    <p>《約伯記》是聖經智慧書之一，主題圍繞著「義人為何受苦」的永恆問題。書中記述敬畏神的義人約伯，在失去財富、家人與健康後，面對朋友的質問與神的回應，最終看見神的全能與主權。約伯記展現人類面對苦難的信仰張力，啟發無數信徒在患難中仍能仰望神的良善與智慧。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願神賜給你從約伯記中得著的智慧與力量，在人生的風暴中不失去信心，學會在患難中倚靠神的主權與慈愛，得著平安與盼望。奉主耶穌基督的名，阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+
+  <script>
+    const verses = [
+      { title: "約伯的敬畏與試煉", range: "約1-2章", keypoint: "約伯敬畏神，面對撒但的挑戰與試煉", verse: "在烏斯地有一個人名叫約伯，那人完全正直，敬畏神，遠離惡事。（約1:1）", detail: "約伯是一位在神眼中完全正直、敬畏神、遠離惡事的人。撒但質疑約伯的信仰，挑戰神允許撒但奪走約伯的財產、子女，甚至攻擊他的健康。然而，即使在失去一切與極大痛苦中，約伯仍沒有咒罵神，展現出敬虔與信心的榜樣。這為整卷書奠定了核心主題：義人為何受苦？信仰是否僅建築在神的祝福上？" },
+      {
+  title: "以利法的責備",
+  range: "約4-5章，15章，22章",
+  keypoint: "以利法認為約伯受苦因為犯罪，勸他悔改",
+  verse: "【以利法】人豈能在神面前算為清潔？婦人所生的豈能算為義？（約15:14）<p>【約伯】我雖無過，也不顧惜自己，卻厭惡我的性命。（約9:21）",
+  detail: "以利法認為約伯必定因隱藏的罪而受苦，強調神不會折磨無辜的人，勸約伯悔改以重得恩典。約伯則反駁說自己無辜，且即便如此仍覺生命苦難重重。雙方的論辯呈現古代智慧文學中的『因果報應論』與義人受苦的信仰困惑。"
+},
+{
+  title: "比勒達的強烈指控",
+  range: "約8章，18章，25章",
+  keypoint: "比勒達更強硬，指約伯的兒女因罪受罰，呼籲他承認錯誤",
+  verse: "【比勒達】神斷不丟棄完全人，也不扶助作惡的人。（約8:20）<p>【約伯】惡人常存活，年日見增，且勢力強盛。（約21:7）",
+  detail: "比勒達認為神必保護義人，暗指約伯與其子女因罪遭報應；約伯則反駁指出，惡人往往長壽興旺，現實與朋友理論不符，強調世上不單純只有因果報應可解釋的事。"
+},
+{
+  title: "瑣法的嚴厲勸誡",
+  range: "約11章，20章",
+  keypoint: "瑣法主張約伯受罰是自取其咎，呼籲他誠心悔改",
+  verse: "【瑣法】神向你所要的罪孽比你所知道的更多。（約11:6）<p>【約伯】你們搖頭藐視我，我的眼已因哭泣昏花。（約17:2）",
+  detail: "瑣法嚴厲指責約伯不認罪，暗示他隱瞞了更深的罪過。約伯則回應自己無辜且被誤解，表達自己孤單、痛苦且被朋友傷害的心情，加深了整體辯論的情緒張力。"
+},
+      { title: "以利戶的智慧指責", range: "約32-37章", keypoint: "以利戶指正約伯與朋友，強調神的偉大與公平", verse: "神行事有奇妙的智慧，並不輕看人，也不偏待人。（約36:5）", detail: "年輕的以利戶插話，指責約伯過於自義，並指責三位朋友對神認識膚淺。他強調神的智慧遠超人類，神用苦難警戒、引導、成長信徒，為神親自發言鋪路。" },
+      { title: "神的回應與約伯悔改", range: "約38-42:6", keypoint: "神揭示創造的奧秘，約伯謙卑悔改", verse: "我從前風聞有你，現在親眼看見你。（約42:5）", detail: "神從旋風中發聲，連續提出自然界的奧秘問題，讓約伯看見自身的渺小與有限，約伯最終悔改，承認神的主權與偉大。" },
+      { title: "神的恢復與祝福", range: "約42:7-17", keypoint: "神恢復約伯的名聲、財產與家人，賞賜加倍", verse: "耶和華賜福給約伯的後半生，比先前更多。（約42:12）", detail: "神指責三位朋友的論調不如約伯正確，約伯為他們代求後，神賜福他，恢復他的財富與名聲，展現神的恩典與公義。" }
+    ];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+</body>
+
+</html>

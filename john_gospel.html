@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>約翰福音的重點</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9fafb; margin: 0; padding: 20px; }
+    h1 { text-align: center; color: #065f46; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .card { background: linear-gradient(135deg, #d1fae5, #ffffff); padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.2s; }
+    .card:hover { transform: scale(1.02); }
+    .title { font-size: 20px; color: #065f46; margin-bottom: 5px; }
+    .range { font-size: 14px; color: #10b981; margin-bottom: 5px; }
+    .keypoint { font-size: 14px; margin-bottom: 5px; font-weight: bold; }
+    .verse { font-style: italic; color: #374151; font-size: 14px; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center; z-index: 999; }
+    .modal-content { background: white; padding: 20px; border-radius: 10px; max-width: 720px; max-height: 80vh; overflow-y: auto; position: relative; cursor: pointer; }
+    .intro { max-width: 900px; margin: 20px auto; text-align: center; color: #374151; font-size: 16px; line-height: 1.75; }
+  </style>
+</head>
+<body>
+  <h1>約翰福音的重點</h1>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《約翰福音》是新約中最具神學深度的四福音之一，傳統認為作者為使徒約翰，可能寫於主後 80–95 年。全書以「信」為核心，從「太初有道」揭開序幕，指認耶穌為道成肉身的神子，並透過「七個神蹟」與「我是」宣告，顯明祂的身分與使命。</p>
+    <p>寫作目的清楚指出：「但記這些事要叫你們信耶穌是基督，是神的兒子，並且叫你們信了祂，就可以因祂的名得生命。」（約20:31）因此，本書不僅是歷史敘述，更是邀請人進入與基督真實關係的見證錄。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "太初有道：道成肉身",
+    range: "約1章",
+    keypoint: "耶穌是道，成了肉身；施洗約翰為祂作見證，首批門徒跟隨",
+    verse: "道成了肉身，住在我們中間，充充滿滿地有恩典，有真理。（約1:14）",
+    detail: "序言宣告耶穌的神性與創造身分，祂是真光、是真理，臨到世人。施洗約翰辨明自己不是基督，只是為主預備道路。耶穌呼召安得烈、彼得、腓力、拿但業，開啟跟隨之旅。整章定下全書基調：看見祂，就看見神的榮耀。"
+  },
+  {
+    title: "加拿神蹟與潔淨聖殿",
+    range: "約2章",
+    keypoint: "把水變酒顯出榮耀；潔淨聖殿彰顯祂對敬拜的主權",
+    verse: "這是耶穌所行的頭一件神蹟，是在加利利的迦拿行的，顯出他的榮耀來。（約2:11）",
+    detail: "耶穌把水變酒，指出新約恩典超越舊有禮儀；祂潔淨聖殿，宣告神家是禱告之處，不容交易玷污。祂以自己為真正聖殿的中心，預告「三日內重建」的復活奧祕。"
+  },
+  {
+    title: "尼哥底母：從上而生",
+    range: "約3章",
+    keypoint: "重生與神愛世人；信子得生命",
+    verse: "神愛世人，甚至將他的獨生子賜給他們，叫一切信他的，不至滅亡，反得永生。（約3:16）",
+    detail: "耶穌教導重生是進入神國的必要，非外在宗教行為可替代。祂以銅蛇為預表，指向十字架救恩。施洗約翰再次作證：祂必興旺，我必衰微。"
+  },
+  {
+    title: "撒馬利亞婦人：活水與真敬拜",
+    range: "約4章",
+    keypoint: "活水源頭與心靈誠實的敬拜；外邦靈魂得尋回",
+    verse: "人若喝我所賜的水，就永遠不渴。（約4:14）",
+    detail: "耶穌越界赴敘加井邊，揭示生命口渴的根本。真敬拜不受地域限制，只在乎以心靈和誠實向父。那婦人成為城中的見證人，門徒則學習跨越成見，收割成熟的莊稼。"
+  },
+  {
+    title: "畢士大池：子的權柄",
+    range: "約5章",
+    keypoint: "醫治顯明主權，子與父同工與同榮",
+    verse: "那聽我話、又信差我來者的，就有永生，不至於定罪，是已經出死入生了。（約5:24）",
+    detail: "耶穌醫治三十八年患病者，引發關於安息日與權柄的爭論。祂自陳與父同工，審判與賜生命的權柄在祂。經文見證祂，然而關鍵在於願不願意到祂這裡得生命。"
+  },
+  {
+    title: "五餅二魚與生命之糧",
+    range: "約6章",
+    keypoint: "餵飽群眾、在海上行走；耶穌是生命之糧",
+    verse: "耶穌說：我就是生命的糧；到我這裡來的，必定不餓；信我的，永遠不渴。（約6:35）",
+    detail: "神蹟喚起群眾，但主指出真正的糧是從天降下、賜生命給世界。人因難以接受而退去，彼得卻宣告：祢有永生之道，我們還歸從誰呢？"
+  },
+  {
+    title: "住棚節與活水之應許",
+    range: "約7章",
+    keypoint: "猶太節期中的身分爭論；聖靈如活水江河",
+    verse: "節期的末日……耶穌站著高聲說：人若渴了，可以到我這裡來喝。（約7:37）",
+    detail: "眾人議論耶穌的來歷與權柄，差役也被祂的話吸引。主在節期宣告活水之應許，指向將賜下的聖靈，使信徒成為流通的管道。"
+  },
+  {
+    title: "世界的光與自由",
+    range: "約8章",
+    keypoint: "赦免與光的宣告；真理使人得以自由",
+    verse: "耶穌又對眾人說：我是世界的光。跟從我的，就不在黑暗裡走，必要得著生命的光。（約8:12）",
+    detail: "在黑暗與控告之中，主以光照明，暴露虛假也帶來恩典。祂宣告：你們必曉得真理，真理必叫你們得以自由；祂的身分超越亞伯拉罕的時代。"
+  },
+  {
+    title: "看見的恩典",
+    range: "約9章",
+    keypoint: "生來瞎眼者得看見；屬靈視力的反轉",
+    verse: "有一件事我知道：從前我是眼瞎的，如今能看見了。（約9:25）",
+    detail: "醫治引發審問，但瞎子單純的見證勝過複雜的理論。自稱看得見的宗教領袖反倒失明，主揭示真正的看見是從祂而來。"
+  },
+  {
+    title: "好牧人為羊捨命",
+    range: "約10章",
+    keypoint: "耶穌是門，也是好牧人；祂認識羊，且為羊捨命",
+    verse: "我是好牧人；好牧人為羊捨命。（約10:11）",
+    detail: "假牧人奪取，真牧人餵養。主強調祂與父原為一，羊聽祂聲音，不被奪去。祂的捨命與捲土而來的大能，是群羊堅固的保障。"
+  },
+  {
+    title: "拉撒路復活：生命主權",
+    range: "約11章",
+    keypoint: "耶穌是復活與生命，叫人從死裡出來",
+    verse: "耶穌對她說：我是復活，我是生命；信我的人雖然死了，也必復活。（約11:25）",
+    detail: "主愛馬大、馬利亞與拉撒路，但祂等候，為顯神的榮耀。祂在淚中命死人出來，並將死亡的陰影轉為信心的宣告，也引出釘十字架的陰謀。"
+  },
+  {
+    title: "榮耀之路：麥子與十架",
+    range: "約12章",
+    keypoint: "進城得榮耀，卻指向以死得生的國度法則",
+    verse: "一粒麥子不落在地裡死了，仍舊是一粒；若是死了，就結出許多子粒來。（約12:24）",
+    detail: "人群歡呼與求看神蹟，耶穌卻指向捨己的道路。世界的王要被趕出去，父要在子的順服中得榮耀。光在不多的時候臨到，要趁光行走。"
+  },
+  {
+    title: "洗腳與新命令",
+    range: "約13章",
+    keypoint: "主以僕人身分洗腳，頒布彼此相愛的新命令",
+    verse: "我賜給你們一條新命令，乃是叫你們彼此相愛；我怎樣愛你們，你們也要怎樣相愛。（約13:34）",
+    detail: "主以榜樣翻轉權力想像：最大的乃是僕人。面對出賣與不忠，祂仍以愛作結。教會見證的核心不是本事，而是彼此相愛。"
+  },
+  {
+    title: "道路、真理、生命",
+    range: "約14章",
+    keypoint: "認識父藉著子；應許保惠師常與同在",
+    verse: "我就是道路、真理、生命；若不藉著我，沒有人能到父那裡去。（約14:6）",
+    detail: "門徒心裡憂愁，主以天家、與父合一與聖靈的同在安慰。他吩咐愛的具體表現是遵守命令；平安不是世界所賜。"
+  },
+  {
+    title: "真葡萄樹與結果子",
+    range: "約15章",
+    keypoint: "住在主裡面才多結果子；愛與友誼的誡命",
+    verse: "我是葡萄樹，你們是枝子……常在我裡面的，這人就多結果子。（約15:5）",
+    detail: "枝子離了葡萄樹就不能作什麼。主吩咐彼此相愛，像祂愛門徒一樣；世界若恨你們，因你們不屬世界。"
+  },
+  {
+    title: "憂愁變為喜樂：聖靈與得勝",
+    range: "約16章",
+    keypoint: "保惠師責世人、引導進入真理；主勝了世界",
+    verse: "在世上你們有苦難；但你們可以放心，我已經勝了世界。（約16:33）",
+    detail: "主預告逼迫與離散，卻應許聖靈同在與禱告的權柄。暫時的憂愁要變為產子的喜樂；得勝不是逃避苦難，而是與主同在。"
+  },
+  {
+    title: "大祭司的禱告",
+    range: "約17章",
+    keypoint: "為自己、門徒與後來信徒代求，求合一與成聖",
+    verse: "使他們都合而為一，正如你父在我裡面，我在你裡面一樣。（約17:21）",
+    detail: "主為門徒保守、分別為聖並合一禱告，讓世人因看見合一而認出父差子來。祂所賜的榮耀使教會在愛裡成熟。"
+  },
+  {
+    title: "受難的序曲：真理作王",
+    range: "約18章",
+    keypoint: "被捕、受審；為真理作見證",
+    verse: "我為此而生，也為此來到世間，特為給真理作見證。（約18:37）",
+    detail: "耶穌自願就縛，彼得三次不認主。主在彼拉多前談論國度與真理，顯明祂的王權非屬這世界的系統。"
+  },
+  {
+    title: "成了！救恩完成",
+    range: "約19章",
+    keypoint: "釘十字架、死與埋葬；經文得應驗",
+    verse: "耶穌說：成了！便低下頭，將靈魂交付神了。（約19:30）",
+    detail: "兵丁不分裂祂的無縫裡衣，應驗詩22:18；祂被舉起吸引萬人，血與水流出。約瑟與尼哥底母安葬祂，救恩之工在十架上完成。"
+  },
+  {
+    title: "看見而信：復活的主",
+    range: "約20章",
+    keypoint: "見空墳、顯現馬利亞與門徒；多馬經歷确信",
+    verse: "耶穌對他說：你因看見了我才信；那沒有看見就信的，有福了！（約20:29）",
+    detail: "復活的主呼喚名字、賜下平安與使命。多馬從疑惑到敬拜：我的主，我的神！作者點出寫作目的：叫人因信得生命。"
+  },
+  {
+    title: "愛的恢復與使命",
+    range: "約21章",
+    keypoint: "提比哩亞海邊重遇主；彼得被恢復並受託牧養",
+    verse: "耶穌第三次對他說：你愛我嗎？……耶穌說：你餵養我的羊。（約21:17）",
+    detail: "失落的一夜化為豐盛與同桌。主在炭火邊問愛，將失敗轉為託付：跟從我！門徒的結局各異，但呼召相同——忠心跟從。"
+  }
+];
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="intro" style="margin-top: 32px;">
+    <hr style="margin: 20px 0;">
+    <p><strong>祝福禱告：</strong></p>
+    <p>願天父藉著約翰福音，使你確信耶穌是基督、是神的兒子；願聖靈以真理與愛充滿你，每日住在主裡、結果累累，在黑暗世代發光作鹽。奉主耶穌基督的名，阿們！</p>
+    <hr style="margin: 20px 0;">
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

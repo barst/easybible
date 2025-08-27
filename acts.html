@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>使徒行傳的重點</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f9fafb; margin: 0; padding: 20px; }
+    h1 { text-align: center; color: #1d4ed8; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+    .card { background: linear-gradient(135deg, #dbeafe, #ffffff); padding: 20px; border-radius: 15px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); cursor: pointer; transition: transform 0.2s; }
+    .card:hover { transform: scale(1.02); }
+    .title { font-size: 20px; color: #1d4ed8; margin-bottom: 5px; }
+    .range { font-size: 14px; color: #2563eb; margin-bottom: 5px; }
+    .keypoint { font-size: 14px; margin-bottom: 5px; font-weight: bold; }
+    .verse { font-style: italic; color: #374151; font-size: 14px; }
+    .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); align-items: center; justify-content: center; z-index: 999; }
+    .modal-content { background: white; padding: 20px; border-radius: 10px; max-width: 720px; max-height: 80vh; overflow-y: auto; position: relative; cursor: pointer; }
+    .intro { max-width: 900px; margin: 20px auto; text-align: center; color: #374151; font-size: 16px; line-height: 1.75; }
+    .footer { max-width: 900px; margin: 32px auto; }
+  </style>
+</head>
+<body>
+  <h1>使徒行傳的重點</h1>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《使徒行傳》可視為路加福音的續篇，由路加醫生所寫，記述聖靈降臨後，福音如何從耶路撒冷，向猶太全地、撒馬利亞，直到地極擴展（約在主後 30–62 年間）。核心主題是：<em>聖靈差遣的教會</em>。耶穌升天後，門徒在聖靈能力中見證復活主，面對逼迫、跨文化衝突與教會內部治理議題，仍持續建立群體、栽培門徒、差派宣教士。</p>
+    <p>本書結構可由「使徒言行 + 聖靈作為」雙主線閱讀：彼得主導的耶路撒冷事工（1–12 章），與保羅主導的外邦宣教（13–28 章）。貫穿全書的關鍵經節為「<strong>徒1:8</strong>」。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "等候聖靈與使命藍圖",
+    range: "徒1章",
+    keypoint: "升天、選馬提亞；使命路線圖：耶路撒冷→猶大全地→撒馬利亞→地極",
+    verse: "但聖靈降臨在你們身上，你們就必得著能力……直到地極，作我的見證。（徒1:8）",
+    detail: "復活主四十天向門徒顯現並教導神國之事，吩咐他們在耶路撒冷等候聖靈。門徒以禱告同心，選立馬提亞代替猶大，為五旬節的突破作預備。"
+  },
+  {
+    title: "五旬節降臨：教會誕生",
+    range: "徒2章",
+    keypoint: "聖靈澆灌、彼得講道、三千人受洗、群體生活樣式",
+    verse: "你們各人要悔改，奉耶穌基督的名受洗……就必領受所賜的聖靈。（徒2:38）",
+    detail: "聖靈降臨帶出多國語言的見證，彼得引用約珥預言信息，宣告耶穌為主為基督。初代教會恆切遵行使徒教訓、彼此交接、擘餅與禱告，成為群體見證的典範。"
+  },
+  {
+    title: "美門口的醫治與宣講",
+    range: "徒3章",
+    keypoint: "醫治瘸子、彼得在殿中講道、呼召悔改歸正",
+    verse: "金銀我都沒有，只把我所有的給你：我奉拿撒勒人耶穌基督的名，叫你起來行走！（徒3:6）",
+    detail: "神蹟引人聚集，彼得指向耶穌是眾先知所預告的彌賽亞，呼籲以色列人悔改，好叫罪得塗抹，迎接復興。"
+  },
+  {
+    title: "逼迫初現：在權柄前作見證",
+    range: "徒4章",
+    keypoint: "彼得約翰受審、放膽傳講、信徒同心禱告、凡物公用",
+    verse: "除他以外，別無拯救……天下人間沒有賜下別的名，我們可以靠著得救。（徒4:12）",
+    detail: "公會禁止奉耶穌之名講道，門徒卻求主賜膽量，並見主以神蹟奇事印證福音。教會以愛心分享資產，巴拿巴成為佳例。"
+  },
+  {
+    title: "聖潔與敬畏：亞拿尼亞與撒非喇",
+    range: "徒5章",
+    keypoint: "教會內部聖潔、使徒被囚又得釋、順服神不順服人",
+    verse: "順從神，不順從人，是應當的。（徒5:29）",
+    detail: "虛假帶來嚴厲審判，使眾人心生敬畏。宗教領袖加重壓力，但天使開門釋放使徒；使徒仍在殿裡家裡不住教訓人。"
+  },
+  {
+    title: "執事興起與話語擴長",
+    range: "徒6章",
+    keypoint: "七執事被立，講道與愛心服事並重；司提反蒙恩有能力",
+    verse: "所以弟兄們，當從你們中間選出七個……滿有聖靈和智慧的人。（徒6:3）",
+    detail: "因希臘化寡婦被忽略引發爭議，使徒設立執事，分工使教會更健康；神的道興旺，門徒數目大大加增，連祭司也信服。"
+  },
+  {
+    title: "司提反見證與殉道",
+    range: "徒7章",
+    keypoint: "回顧救恩歷史，直指人心剛硬；看見人子站在神右邊",
+    verse: "看哪！我看見天開了，人子站在神的右邊。（徒7:56）",
+    detail: "司提反以歷史神學宣講，指出聖殿並不限制神，真正的問題在於拒絕聖者。殉道催生新一波分散與宣講。"
+  },
+  {
+    title: "福音越界：撒馬利亞與埃提阿伯太監",
+    range: "徒8章",
+    keypoint: "腓利在撒馬利亞傳道、行神蹟；引導太監信主受洗",
+    verse: "腓利就開口從這經上起，對他傳講耶穌。（徒8:35）",
+    detail: "逼迫使教會分散，反而促進福音擴展。彼得約翰按手，聖靈降臨在撒馬利亞人身上；荒野的馬車上，又多了一位喜樂的門徒。"
+  },
+  {
+    title: "掃羅歸主與蒙差遣",
+    range: "徒9章",
+    keypoint: "大馬色路上遇主、亞拿尼亞接待、保羅被堅固；彼得行神蹟",
+    verse: "他是我所揀選的器皿，要在外邦人、君王和以色列人面前宣揚我的名。（徒9:15）",
+    detail: "仇敵成為器皿，教會仍存疑，但巴拿巴擔保與陪伴。彼得醫治以尼雅、叫多加復活，眾人信主，教會得平安被建立。"
+  },
+  {
+    title: "哥尼流之家：外邦人領受聖靈",
+    range: "徒10章",
+    keypoint: "異象對接、彼得講道、聖靈降臨在外邦人身上",
+    verse: "神是不偏待人的……凡敬畏他、行義的人都為他所悅納。（徒10:34-35）",
+    detail: "彼得突破潔淨／不潔淨的界線，明白神的心是向萬民。外邦人也領受聖靈並受洗，成為教會跨文化轉捩點。"
+  },
+  {
+    title: "安提阿教會興起",
+    range: "徒11章",
+    keypoint: "福音臨到希利尼人、門徒初稱「基督徒」",
+    verse: "巴拿巴看見神所賜的恩就歡喜……勸勉眾人立定心志，恆久靠主。（徒11:23）",
+    detail: "耶路撒冷認可外邦事工，巴拿巴尋保羅到安提阿同工；教會關心耶路撒冷的需要，以奉獻表達合一。"
+  },
+  {
+    title: "逼迫與拯救",
+    range: "徒12章",
+    keypoint: "雅各殉道、彼得被囚；教會迫切禱告、神差使者救彼得",
+    verse: "神的道日見興旺，越發廣傳。（徒12:24）",
+    detail: "希律加害教會，卻在自誇中受審判。患難未止息，神的話卻不被捆鎖，為外邦宣教開路。"
+  },
+  {
+    title: "第一次宣教旅程起行",
+    range: "徒13章",
+    keypoint: "安提阿禁食禱告差派；彼西底安提阿講道；猶太人與外邦人反應分歧",
+    verse: "因為主曾這樣吩咐我們說：『我已立你作外邦人的光，叫你施行救恩直到地極。』（徒13:47）",
+    detail: "聖靈在敬拜中說話，差派保羅與巴拿巴。信息聚焦在耶穌的死與復活，宣告靠祂得稱義。有人反對，有人歡喜領受。"
+  },
+  {
+    title: "堅固門徒，設立長老",
+    range: "徒14章",
+    keypoint: "路司得受逼迫；回程堅固眾教會、設立長老",
+    verse: "我們進入神的國，必須經歷許多艱難。（徒14:22）",
+    detail: "神蹟引發錯誤崇拜，保羅撥亂反正，指向創造主。雖遭石打幾乎喪命，仍返回各城勸勉門徒恆守信仰，建立地方治理。"
+  },
+  {
+    title: "耶路撒冷大會：因恩典得救",
+    range: "徒15章",
+    keypoint: "外邦人是否需受割禮？使徒與長老議定：因主恩得救",
+    verse: "我們得救，乃是因主耶穌的恩，和他們一樣，這是我們所信的。（徒15:11）",
+    detail: "教會以聖經與聖靈引導作判準，避免律法主義成為攔阻；以信心與愛心維繫合一。保羅與巴拿巴分路，兩隊宣教同時展開。"
+  },
+  {
+    title: "第二次宣教：福音入歐洲",
+    range: "徒16章",
+    keypoint: "馬其頓異象、腓立比得勝與受苦並存",
+    verse: "當信主耶穌，你和你一家都必得救。（徒16:31）",
+    detail: "主關閉與打開宣教路徑，帶領進入歐洲。呂底亞開放家庭，保羅西拉在囚牢讚美，禁卒全家得救，教會於逆境中誕生。"
+  },
+  {
+    title: "雅典講壇：向文化對話",
+    range: "徒17章",
+    keypoint: "帖撒羅尼迦、庇哩亞與雅典；與多神論者對話",
+    verse: "這位神已定了日子，要藉著他所設立的人按公義審判天下。（徒17:31）",
+    detail: "在庇哩亞，眾人天天查考聖經；在雅典，保羅以創造、護理與復活展開護教，邀請人從未知走向真神。"
+  },
+  {
+    title: "哥林多的同工與堅固",
+    range: "徒18章",
+    keypoint: "與百基拉亞居拉同工；主夜間鼓勵；法律保護宣講空間",
+    verse: "不要怕，只管講，不要閉口……因為在這城裡我有許多的百姓。（徒18:9-10）",
+    detail: "保羅在製帳工作中與同工結連，主親自鼓勵他不懼怕。法律爭端反讓福音得以推進；亞波羅在以弗所被成全。"
+  },
+  {
+    title: "以弗所復興與屬靈爭戰",
+    range: "徒19章",
+    keypoint: "受聖靈、異象能力、棄絕邪術、商業掀動騷亂",
+    verse: "主的道大大興旺，而且得勝，就是這樣。（徒19:20）",
+    detail: "福音動搖偶像經濟，引發利益衝突。門徒以公開悔改與棄絕黑暗回應真理，顯明國度的能力與價值。"
+  },
+  {
+    title: "告別演說：以主託付為念",
+    range: "徒20章",
+    keypoint: "米利都向以弗所長老勉勵：牧養群羊、謹慎自己",
+    verse: "我卻不以性命為念……只要行完我的路程，成就我從主耶穌所領受的職事。（徒20:24）",
+    detail: "保羅回顧忠心服事，提醒防備豺狼，勸勉施比受更為有福，將眾人交託恩典之道。"
+  },
+  {
+    title: "赴耶路撒冷：捨命也要去",
+    range: "徒21章",
+    keypoint: "先知預告捆鎖，仍選擇順服；在殿被拿",
+    verse: "我為主耶穌的名，不但被人捆綁，就是死在耶路撒冷也是願意的。（徒21:13）",
+    detail: "愛與順服的抉擇面前，保羅以使命為優先。文化誤解引發暴動，他卻抓住機會在眾人前作見證。"
+  },
+  {
+    title: "保羅見證其蒙恩經歷",
+    range: "徒22章",
+    keypoint: "以希伯來語向百姓述說歸主過程與呼召",
+    verse: "現在你為什麼耽延呢？起來，求告他的名受洗，洗去你的罪。（徒22:16）",
+    detail: "保羅以自身故事聯結聽眾，當提到差往外邦人時，再度觸動敏感神學與族群情緒，局勢升溫。"
+  },
+  {
+    title: "夜間的安慰與盼望",
+    range: "徒23章",
+    keypoint: "在公會受審、主夜間親自堅固；陰謀暗殺被破壞",
+    verse: "放心吧！你怎樣在耶路撒冷為我作見證，也必怎樣在羅馬為我作見證。（徒23:11）",
+    detail: "信心不是不遇風險，而是有主的同在與應許。神透過外邦政權保護他的僕人，使其向羅馬前進。"
+  },
+  {
+    title: "腓力斯面前：存無虧的良心",
+    range: "徒24章",
+    keypoint: "保羅自辯、談論公義節制與審判；囚禁中仍見證",
+    verse: "因此，我自己勉勵對神、對人常存無虧的良心。（徒24:16）",
+    detail: "福音在權力與金錢的角力中仍不失其光。腓力斯雖心動卻猶豫，保羅持守清潔良心，耐心等候神時間。"
+  },
+  {
+    title: "在法庭上堅定呼召",
+    range: "徒25章",
+    keypoint: "向該撒上訴，避免不公審判；神藉制度護衛真理",
+    verse: "我上告該撒！（徒25:11）",
+    detail: "上訴權成為宣教門戶。保羅不僅自保，更確保福音能抵達帝國心臟。"
+  },
+  {
+    title: "亞基帕王前的見證",
+    range: "徒26章",
+    keypoint: "重述呼召與異象，勸人悔改歸向神",
+    verse: "亞基帕王啊，我故此沒有違背那從天上來的異象。（徒26:19）",
+    detail: "保羅以光照與使命為主軸，呼喚王與眾人回應福音；福音既合乎先知，也合乎理性。"
+  },
+  {
+    title: "風暴中的信與望",
+    range: "徒27章",
+    keypoint: "海上風暴、航海求生；神應許性命無一損失",
+    verse: "我信神他怎樣對我說，事情也要怎樣成就。（徒27:25）",
+    detail: "在失控環境中，屬神的人以盼望與自制穩住眾人。經歷擺攤、拋貨、觸礁，卻照著主的話平安脫險。"
+  },
+  {
+    title: "抵達羅馬：不受攔阻的福音",
+    range: "徒28章",
+    keypoint: "在馬耳他行神蹟、抵羅馬傳講神國；結語開放式",
+    verse: "放膽傳講神國的道，將主耶穌基督的事教導人，並沒有人禁止。（徒28:31）",
+    detail: "使徒行傳以未完的結尾，表示神的故事在教會中繼續。鎖鏈攔不住福音，家監成為講壇，列邦為主開門。"
+  }
+];
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer intro">
+    <hr style="margin: 20px 0;">
+    <p><strong>祝福禱告：</strong></p>
+    <p>願聖靈再次充滿，使我們像初代教會一樣，以勇氣與愛心，在所處的城與文化中放膽見證復活主；願神的道在我們中間大大興旺，直到地極。阿們！</p>
+    <hr style="margin: 20px 0;">
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>
