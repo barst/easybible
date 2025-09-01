@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>撒母耳記下的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-1">
+  <h1>撒母耳記下的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《撒母耳記下》接續撒母耳記上的敘事，詳細記載了大衛作王的統治時期。本書的核心是「大衛之約」，即神應許大衛，他的家和他的國必存到永遠。書的前半部分（1-10章）描繪了大衛的興盛：他統一全國，定都耶路撒冷，迎回約櫃，並在軍事上取得輝煌勝利。然而，書的後半部分（11-24章）則急轉直下，記載了大衛因與拔示巴犯罪所帶來的個人、家庭和國家的連鎖悲劇。撒母耳記下深刻地揭示了神的信實與人的軟弱，以及罪的破壞性後果，同時也彰顯了神在悔改者身上那不變的赦罪恩典。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "大衛的興起與統一王國",
+    range: "撒下1-5章",
+    keypoint: "掃羅死後，大衛先在希伯崙作猶大王，後被以色列眾支派擁立為全以色列的王，並攻取耶路撒冷定都。",
+    verse: "故此，以色列的長老都來到希伯崙見大衛王，大衛在希伯崙耶和華面前與他們立約，他們就膏大衛作以色列的王。（撒下5:3）",
+    detail: "大衛的登基並非一帆風順，他經歷了與掃羅兒子伊施波設的內戰。然而，大衛始終以敬畏神和寬大的心對待掃羅家，最終贏得了所有支派的歸順。攻取並建立耶路撒冷為政治和宗教中心，是大衛王國穩固的關鍵一步。"
+  },
+  {
+    title: "約櫃入城與大衛之約",
+    range: "撒下6-7章",
+    keypoint: "大衛將約櫃迎入耶路撒冷，並有意為神建殿；神卻與大衛立下永約，應許他的後裔和國度永存。",
+    verse: "你的家和你的國必在我面前永遠堅立。你的國位也必堅定，直到永遠。（撒下7:16）",
+    detail: "大衛在約櫃前盡情跳舞敬拜，顯明他對神的熱愛。他想為神建殿，但神卻反過來要為他建立『家室』。這個『大衛之約』是聖經中最重要的盟約之一，它不僅關乎大衛的王朝，更指向了那將要來臨的、永遠的君王——彌賽亞耶穌基督。"
+  },
+  {
+    title: "大衛的罪與拿單的責備",
+    range: "撒下11-12章",
+    keypoint: "大衛在安逸中犯下姦淫和謀殺的重罪；先知拿單用比喻勇敢地指責大衛，大衛隨即悔改。",
+    verse: "大衛對拿單說：『我得罪耶和華了！』拿單說：『耶和華已經除掉你的罪，你必不至於死。』（撒下12:13）",
+    detail: "這是大衛一生中最大的污點。他濫用王權，奪取了赫人烏利亞的妻子拔示巴，並設計殺害了烏利亞。神差遣拿單，用一個巧妙的比喻，使大衛認識到自己罪的醜陋。大衛的立刻悔改，顯明了他內心對神的敬畏，但罪的後果卻依然臨到他的家庭，『刀劍必永不離開你的家』。"
+  },
+  {
+    title: "家庭的混亂與押沙龍的叛亂",
+    range: "撒下13-18章",
+    keypoint: "大衛的兒子暗嫩玷辱妹妹他瑪，押沙龍為妹報仇後發動叛亂，迫使大衛逃離耶路撒冷。",
+    verse: "押沙龍和跟隨他的以色列人，都進了耶路撒冷。（撒下16:15）",
+    detail: "大衛犯罪的後果，如同瘟疫般在他的家中蔓延。兒子們的亂倫、謀殺和叛亂，使整個王國陷入動盪。押沙龍的叛亂，是大衛統治時期最黑暗的一頁，他被親生兒子追殺，嚐盡了眾叛親離的苦果。最終，押沙龍在戰敗中死去，大衛為他哀哭，顯明了一個父親的傷痛。"
+  },
+  {
+    title: "王國的恢復與晚年",
+    range: "撒下19-24章",
+    keypoint: "大衛平定叛亂後重回耶路撒冷，處理王國的各樣事務，並以一首感恩的詩歌和數點百姓的過犯作結。",
+    verse: "耶和華是我的巖石，我的山寨，我的救主。（撒下22:2）",
+    detail: "書的結尾部分，記載了大衛王國的恢復和晚年的一些事件。大衛的讚美詩（22章）回顧了神在他一生中的拯救與信實。然而，他因驕傲而數點百姓，再次招致神的審判。這顯明了即使是合神心意的人，也非完人，一生都需要活在神的恩典和赦免之下。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那與大衛立約的信實上帝，也將祂永不改變的恩典賜給您。願您能從大衛的生平中學會順服與悔改，並在軟弱跌倒時，經歷祂赦罪的恩典與恢復的大能，堅信祂的國度永不動搖。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

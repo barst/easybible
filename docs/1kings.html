@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>列王紀上的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-2">
+  <h1>列王紀上的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《列王紀上》延續了撒母耳記的歷史，記載了從所羅門繼承王位、建造聖殿的輝煌時期，到王國因罪分裂為南北兩國，以及之後諸王的統治歷史。本書的核心主題是「王的順服與國的興衰」。書中以「大衛之約」為評斷標準，反覆顯明一個模式：當君王敬畏神、遵守祂的律法時，國家就蒙福興盛；當君王離棄神、隨從偶像時，國家就走向衰敗和審判。列王紀上不僅是歷史記錄，更是一部深刻的神學反思，探討了領導力、偶像崇拜和神在歷史中的主權。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "所羅門的智慧與王國的興盛",
+    range: "王上1-4章",
+    keypoint: "所羅門繼承大衛的王位，他向神求智慧，神賜他空前絕後的智慧、財富和尊榮，使王國達到巔峰。",
+    verse: "神賜給所羅門極大的智慧聰明和廣大的心，如同海沙不可測量。（王上4:29）",
+    detail: "所羅門的統治初期，是以他對神的敬畏和對智慧的追求為標誌。他不為自己求壽、求富，只求能判斷百姓的智慧，這蒙了神的喜悅。神極大地賜福他，使他的名聲傳遍列國，以色列也在他的治理下享受了前所未有的和平與繁榮。"
+  },
+  {
+    title: "建造聖殿與獻殿禱告",
+    range: "王上5-8章",
+    keypoint: "所羅門動用大量人力物力，為耶和華建造了宏偉的聖殿；在獻殿典禮上，他向神獻上謙卑而榮耀的禱告。",
+    verse: "神啊，求你垂聽僕人向此處所發的禱告。求你在天上你的居所垂聽，垂聽而赦免。（王上8:30）",
+    detail: "聖殿的建造是所羅門統治時期最偉大的成就，象徵著神在祂子民中間的同在。在獻殿禱告中，所羅門承認天和天上的天尚且不足神居住，但仍祈求神垂顧這殿，垂聽百姓的禱告，並在他們犯罪悔改時施以赦免。當他禱告完畢，耶和華的榮光充滿了殿。"
+  },
+  {
+    title: "所羅門的墮落與王國的危機",
+    range: "王上9-11章",
+    keypoint: "所羅門晚年因迎娶眾多外邦妃嬪，隨從她們去敬拜偶像，導致神向他發怒，預言王國將會分裂。",
+    verse: "耶和華對所羅門說：『你既行了這事，不遵守我所吩咐你的約和律例，我必將你的國奪回，賜給你的臣子。』（王上11:11）",
+    detail: "所羅門的晚年是一個悲劇性的警示。他違背了神明確的命令，因政治聯姻而陷入偶像崇拜的網羅。他起初的智慧和敬虔，被晚年的奢華和妥協所取代。神的審判臨到，祂興起耶羅波安等敵人，為王國的分裂埋下了伏筆。這顯明了即便是最有智慧的人，若離棄神，也終將失敗。"
+  },
+  {
+    title: "王國分裂：南北對峙",
+    range: "王上12-14章",
+    keypoint: "所羅門的兒子羅波安以強硬手段對待百姓，導致北方十個支派脫離，由耶羅波安帶領，成立北國以色列。",
+    verse: "於是，以色列人叛離大衛家，直到今日。（王上12:19）",
+    detail: "羅波安的愚蠢和驕傲，成為王國分裂的直接導火線。然而，耶羅波安為鞏固自己的王位，害怕百姓上耶路撒冷敬拜，便在但和伯特利設立金牛犢，帶領北國陷入了更深的偶像崇拜罪中。從此，以色列分裂為南國猶大和北國以色列，開始了長期的對峙和屬靈的衰敗。"
+  },
+  {
+    title: "先知以利亞與亞哈王",
+    range: "王上17-19章",
+    keypoint: "在北國最邪惡的亞哈王統治時期，神興起先知以利亞，與巴力的先知在迦密山上對決，彰顯耶和華是真神。",
+    verse: "耶和華啊，求你應允我，應允我！使這民知道你——耶和華是神，又知道是你叫這民的心迴轉。（王上18:37）",
+    detail: "以利亞的事奉，是黑暗時代中信心的明燈。他宣告旱災，蒙神超自然的供應，並在迦密山上獨自挑戰450個巴力先知。神降下火來燒盡祭物，向全體百姓證明了祂是獨一的真神。然而，得勝之後的以利亞也經歷了軟弱和沮喪，神卻在微小的聲音中親自安慰和堅固他。"
+  },
+  {
+    title: "亞哈的罪惡與結局",
+    range: "王上20-22章",
+    keypoint: "亞哈王貪圖拿伯的葡萄園，在他的妻子耶洗別的唆使下，設計殺害拿伯；以利亞預言他和耶洗別將遭審判。",
+    verse: "狗在何處舔拿伯的血，也必在何處舔你的血。（王上21:19）",
+    detail: "拿伯葡萄園的事件，將亞哈和耶洗別的殘暴與不義暴露無遺。他們濫用王權，為一己私慾而踐踏律法、殘害無辜。神的審判藉著以利亞的口臨到，預言了他們悲慘的结局。最終，亞哈不聽從真先知米該雅的警告，在與亞蘭人的戰爭中陣亡，應驗了神的預言。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那賜智慧、又察驗人心的神，引導您的腳步。願您能從列王的故事中學會敬畏與順服，不效法所羅門的妥協與亞哈的悖逆，乃是專心跟隨主，在祂的國度中作忠心的僕人。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

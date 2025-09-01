@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>以斯帖記的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-3">
+  <h1>以斯帖記的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《以斯帖記》是聖經中一卷充滿戲劇性張力的歷史書，故事發生在波斯帝國時期。本書的獨特之處在於，全書沒有一次直接提到「神」的名字，但神的保守和護理卻無處不在。核心主題是「神的隱藏護理」與「人的勇敢行動」。故事講述了猶大孤女以斯帖，在一個奇妙的機遇下成為波斯王后。當惡人哈曼策劃滅絕所有猶太人時，以斯帖在末底改的激勵下，冒著生命危險，以智慧和勇氣揭露了陰謀，最終扭轉了整個民族的命運。本書設立了普珥節，以記念神對祂子民奇妙的拯救。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "以斯帖被選為后",
+    range: "斯1-2章",
+    keypoint: "波斯王廢掉王后瓦實提，在全國選立新后；猶大孤女以斯帖被選中，但她隱藏了自己的宗族身份。",
+    verse: "王愛以斯帖過於愛眾女，她在王眼前蒙寵愛比眾處女更甚。王就把王后的冠冕戴在她頭上，立她為王后，代替瓦實提。（斯2:17）",
+    detail: "故事的開頭充滿了宮廷的奢華與權力的任性。然而，在這一系列的偶然事件背後，是神看不見的手在引導。以斯帖的被選，為後來拯救她的同胞埋下了關鍵的伏筆。同時，她的養父末底改揭發了一場暗殺王的陰謀，也為後來的劇情發展鋪平了道路。"
+  },
+  {
+    title: "哈曼的陰謀與滅族危機",
+    range: "斯3章",
+    keypoint: "惡人哈曼被高升，因末底改不向他跪拜而心生怨恨，遂設下陰謀，要滅絕波斯帝國境內所有的猶太人。",
+    verse: "哈曼見末底改不跪不拜，他就怒氣填胸。……他以為下手害末底改一人是小事，就要滅絕亞哈隨魯王通國所有的猶大人，就是末底改的本族。（斯3:5-6）",
+    detail: "哈曼的驕傲和仇恨，將整個猶太民族推向了滅絕的邊緣。他利用王的權柄，抽籤定下了屠殺的日期，並將諭旨傳遍全國。這突如其來的亡國危機，顯明了仇敵的殘酷，也考驗著神子民的信心。"
+  },
+  {
+    title: "『焉知你得了王后的位分，不是為現今的機會嗎？』",
+    range: "斯4章",
+    keypoint: "末底改請求以斯帖向王求情；以斯帖在猶豫之後，定意禁食，並冒死晉見君王。",
+    verse: "末底改託人回覆以斯帖說：『你莫想在王宮裡強過一切猶大人，得免這禍。……焉知你得了王后的位分，不是為現今的機會嗎？』（斯4:13-14）",
+    detail: "這是全書的轉捩點。面對民族的危亡，以斯帖起初因懼怕而猶豫。末底改的話語，深刻地挑戰了她的信心和使命感。他指出，沉默無法帶來倖免，而她的王后之位，可能正是神為此刻所預備的。以斯帖最終決志，說出了那句名言：『我若死就死吧！』這是一個將個人安危置之度外、完全信靠的勇敢行動。"
+  },
+  {
+    title: "局勢的逆轉",
+    range: "斯5-7章",
+    keypoint: "以斯帖兩次設宴，在關鍵時刻揭露哈曼的陰謀；王因夜不成寐，發現末底改的舊功，局勢發生戲劇性逆轉。",
+    verse: "當日，亞哈隨魯王把猶大人仇敵哈曼的家產賜給王后以斯帖。末底改也來到王面前，因為以斯帖已經告訴王，末底改是她的親屬。（斯7:1的概括）",
+    detail: "這一部分的敘事充滿了巧合與諷刺，完美地展現了神的護理。就在哈曼為處死末底改立起木架的當晚，王卻因失眠而讀到末底改的功勞。哈曼本想求王高升自己，卻被迫去尊榮他最憎恨的敵人。在第二次筵席上，以斯帖勇敢地揭露了哈曼的詭計，哈曼當場被處死在他為末底改所預備的木架上。"
+  },
+  {
+    title: "猶大人的得勝與普珥節的設立",
+    range: "斯8-10章",
+    keypoint: "王下達新的諭旨，允許猶太人自衛反擊；猶太人殺戮仇敵，轉憂為喜，並設立普珥節以作記念。",
+    verse: "以這月的兩日為猶大人脫離仇敵得平安、轉憂為喜、轉悲為樂的吉日。（斯9:22）",
+    detail: "雖然哈曼已死，但先前的諭旨無法廢除。在末底改和以斯帖的努力下，王頒布新詔，賦予猶太人反擊的權利。在指定的日子，猶太人奮起保護自己，並取得了完全的勝利。為了記念這次奇妙的拯救，他們設立了普珥節，世世代代傳頌神在他們中間所行的奇事。故事以末底改被高升，在波斯帝國身居高位作結。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那在暗中察看、護理萬事的神，也保守您的一生。願您能從以斯帖的身上學會勇氣和智慧，在關鍵時刻，為神的國度挺身而出，並深信您今日所在的位置，正是神為『現今的機會』所預備的。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

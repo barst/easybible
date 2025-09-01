@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>士師記的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-3">
+  <h1>士師記的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《士師記》記載了從約書亞去世到以色列建立王國之間約三百多年的混亂時期。本書的核心主題是「以色列的惡性循環」與「神的拯救」。書中反覆出現一個循環模式：「以色列人行耶和華眼中看為惡的事 → 神將他們交在仇敵手中 → 他們受苦、呼求神 → 神興起一位士師來拯救他們 → 國中太平 → 士師死後，百姓又去行惡」。士師記描繪了一幅黑暗的圖畫，顯明了當「各人任意而行」時，社會和信仰的崩潰。然而，即使在人的悖逆中，神仍然施行祂的憐憫和拯救。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "悖逆的循環開始",
+    range: "士1-2章",
+    keypoint: "約書亞死後，以色列人未能完全趕出迦南人，轉而敬拜他們的偶像，陷入罪惡的循環。",
+    verse: "他們離棄了領他們出埃及地的耶和華——他們列祖的神，去叩拜別神，就是四圍列國的神，惹耶和華發怒。（士2:12）",
+    detail: "士師記的開篇就為全書的悲劇定下了基調。新一代的以色列人忘記了神和祂的大作為，他們與迦南人妥協，隨從他們的風俗拜偶像。這導致了神公義的審判，但也開啟了神藉著士師施行拯救的歷史。"
+  },
+  {
+    title: "底波拉與巴拉的得勝",
+    range: "士4-5章",
+    keypoint: "女士師底波拉興起，與巴拉聯手，靠神的大能擊敗了強大的迦南王耶賓和他的鐵車軍隊。",
+    verse: "耶和華啊，願你的仇敵都這樣滅亡！願愛你的人如日頭出現，光輝烈烈！（士5:31）",
+    detail: "在男性領袖軟弱（巴拉需要底波拉的同行才敢出戰）的時代，神興起了女士師底波拉。這場勝利顯明了神的得勝不在乎人的兵力多寡（以色列軍隊裝備遠遜於敵人）。底波拉之歌（第五章）是一首壯麗的凱歌，頌讚了神的作為和那些勇敢回應呼召的人。"
+  },
+  {
+    title: "基甸與三百勇士",
+    range: "士6-8章",
+    keypoint: "膽怯的基甸蒙神呼召，神將他的軍隊從數萬人裁減至三百人，以顯明得勝在於神而非人。",
+    verse: "耶和華對基甸說：『跟隨你的人過多，我不能將米甸人交在他們手中，免得以色列人向我誇大，說：是我們自己的手救了我們。』（士7:2）",
+    detail: "基甸的故事深刻地教導了信心的功課。神特意揀選一個膽怯的人，並使用極少數的兵力，去對抗龐大的米甸軍隊。用吹角、打破瓶子和吶喊這樣的方式得勝，是為了讓以色列人清楚地知道，拯救他們的是耶和華，而不是他們自己的力量。"
+  },
+  {
+    title: "耶弗他的許願與悲劇",
+    range: "士10-12章",
+    keypoint: "被趕逐的耶弗他被召回作領袖，他向神輕率許願，雖戰勝亞捫人，卻導致了家庭的悲劇。",
+    verse: "耶弗他就向耶和華許願，說：『你若將亞捫人交在我手中，我從亞捫人那裡平平安安回來的時候，無論什麼人，先從我家門出來迎接我，就必歸你，我也必將他獻上為燔祭。』（士11:30-31）",
+    detail: "耶弗他的故事是一個複雜的悲劇。他是一個英勇的戰士，卻因著對神律法的不了解和輕率的許願，付上了沉重的代價。這反映了士師時代普遍的屬靈無知和混亂狀態，即使是為神所用的人，也可能帶著嚴重的瑕疵。"
+  },
+  {
+    title: "參孫：恩賜與放縱",
+    range: "士13-16章",
+    keypoint: "參孫是拿細耳人，擁有神所賜的超人力量，卻因放縱情慾、不守誓言，最終與敵人同歸於盡。",
+    verse: "參孫求告耶和華說：『主耶和華啊，求你眷念我。這一次，求你賜我力量，使我能報非利士人剜我雙眼的仇。』（士16:28）",
+    detail: "參孫的一生是恩賜與悲劇的結合體。他是士師中個人能力最強大的一位，卻也是品格最軟弱的一位。他的人生被情慾和復仇所驅動，屢次違背拿細耳人的誓言。他的結局雖然充滿了英雄式的悲壯，但也深刻地警告我們：屬靈的恩賜若沒有聖潔的品格來承載，最終只會帶來毀滅。"
+  },
+  {
+    title: "各人任意而行",
+    range: "士17-21章",
+    keypoint: "以但支派的偶像崇拜和便雅憫支派的基比亞暴行作結，顯明沒有神作王的混亂光景。",
+    verse: "那時，以色列中沒有王，各人任意而行。（士21:25）",
+    detail: "士師記的最後幾章，描繪了以色列社會在信仰和道德上的全面崩潰。利未人設立私人的神堂，但支派搶奪神像和祭司，基比亞發生了駭人聽聞的集體性暴力事件，並引發了以色列內部血腥的內戰。書的結語『那時，以色列中沒有王，各人任意而行』，為這段黑暗的歷史作了最精準的註解，也為將要來臨的君王制度埋下了伏筆。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那在人的軟弱和悖逆中仍施行拯救的神，保守您的心懷意念。願您能從士師記的歷史中學會功課，不任意而行，而是讓基督在您的生命中作王，活出順服與聖潔的生命。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

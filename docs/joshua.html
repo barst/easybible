@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>約書亞記的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-2">
+  <h1>約書亞記的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《約書亞記》是聖經歷史書的第一卷，記載了以色列人在摩西去世後，由約書亞帶領進入並征服迦南地的歷史。本書的核心主題是「神的信實」與「信心的順服」。神信實地成就了祂對亞伯拉罕的應許，將迦南地賜給以色列人為業。而以色列人則需要憑著信心和順服，去爭戰並得著這地。約書亞記充滿了神蹟奇事（如過約旦河、耶利哥城倒塌），以及對以色列人分地為業的詳細記錄。本書是理解神應許的實現和信心爭戰的重要書卷。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "約書亞的蒙召與過約旦河",
+    range: "書1-4章",
+    keypoint: "神呼召約書亞，應許與他同在；以色列人憑信心跟隨約櫃，神使約旦河水斷流，他們安然走過。",
+    verse: "我怎樣與摩西同在，也必照樣與你同在；我必不撇下你，也不丟棄你。你當剛強壯膽！（書1:5-6）",
+    detail: "摩西去世後，神親自堅固約書亞，鼓勵他要剛強壯膽，並晝夜思想神的律法。過約旦河的神蹟，不僅是進入應許之地的第一步，也向新一代以色列人顯明，神與約書亞同在，正如祂從前與摩西同在一樣，大大堅固了百姓的信心。"
+  },
+  {
+    title: "耶利哥城的倒塌",
+    range: "書5-6章",
+    keypoint: "以色列人遵行神的命令，繞城七日，耶利哥城牆不攻自塌，顯明神的得勝不在乎人的方法。",
+    verse: "耶利哥的城牆因以色列人繞行七日，就倒塌了。（來11:30）",
+    detail: "攻取耶利哥城的方式完全不合軍事常理，神要求以色列人以看似愚拙的繞城和呼喊來爭戰。這場勝利的關鍵在於以色列人對神話語的絕對順服。耶利哥的倒塌，是一個信心的宣告：爭戰的勝敗全在於耶和華，祂能用任何方式為祂的子民成就大事。"
+  },
+  {
+    title: "艾城的失敗與得勝",
+    range: "書7-8章",
+    keypoint: "亞干的罪導致艾城之役的失敗，顯明罪的連鎖效應；在除罪之後，神使以色列人得勝。",
+    verse: "以色列人哪，你們中間有當滅的物。你們若不除掉，就不能在仇敵面前站立得住。（書7:13）",
+    detail: "艾城的失敗給予沉浸在勝利中的以色列人一個沉痛的教訓：個人的罪會影響整個群體。亞干因貪婪而取了當滅之物，導致全軍的潰敗。這個事件強調了聖潔在屬靈爭戰中的重要性。只有在徹底對付罪惡之後，以色列人才能重新經歷神的同在和得勝。"
+  },
+  {
+    title: "征服迦南與分地為業",
+    range: "書9-22章",
+    keypoint: "以色列人與基遍人立約，並在南方和北方爭戰，征服迦南諸王，最終按支派拈鬮分地。",
+    verse: "這樣，耶和華將從前向他們列祖起誓所應許的全地賜給以色列人，他們就得了為業，住在其中。（書21:43）",
+    detail: "這部分詳細記錄了以色列人征服迦南地的過程和分地的細節。雖然過程充滿挑戰，甚至有因詭計而犯錯（與基遍人立約），但神始終信實地幫助他們。分地的完成，標誌著神對列祖應許的具體實現，以色列人終於在應許之地得享安息。"
+  },
+  {
+    title: "約書亞的告別勸勉",
+    range: "書23-24章",
+    keypoint: "約書亞在示劍重申聖約，呼籲百姓要專心事奉耶和華，不可事奉別神。",
+    verse: "至於我和我家，我們必定事奉耶和華。（書24:15）",
+    detail: "在生命的末了，約書亞召集以色列的領袖，回顧神的信實，並向他們發出一個嚴肅的挑戰：選擇他們所要事奉的神。他以自己為榜樣，立下心志，全家都要事奉耶和華。這段告別演說，成為歷代信徒立志跟隨神的經典宣告，提醒我們信仰是一個持續不斷的抉擇。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那信實守約的耶和華神，也帶領您得著祂所應許的產業。願您能像約書亞一樣，剛強壯膽，專心跟隨，並立定心志說：『至於我和我家，我們必定事奉耶和華！』阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

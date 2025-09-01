@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>尼希米記的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-2">
+  <h1>尼希米記的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《尼希米記》在希伯來聖經中常與以斯拉記合為一卷，記載了第三批被擄歸回的猶太人在省長尼希米領導下的事蹟。本書的核心主題是「城牆的重建」與「群體的更新」。尼希米原是波斯王宮中的酒政，當他聽聞耶路撒冷城牆毀壞、百姓受凌辱時，心中極其悲痛，便向神禱告並向君王請求，毅然回到故土。書中詳細記載了他如何組織百姓，在內憂外患（敵人的攔阻和內部的剝削）之下，僅用五十二天就奇蹟般地完成了城牆的重建。城牆建成後，尼希米與以斯拉同工，帶領百姓宣讀律法、認罪悔改、重立聖約，進行了全面的社會和宗教改革。本書是領袖學、禱告與行動結合的典範。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "尼希米的禱告與歸回",
+    range: "尼1-2章",
+    keypoint: "尼希米聽聞耶路撒冷的困境，禁食、禱告、認罪；他抓住時機向波斯王請求，蒙允准回到耶路撒冷重建城牆。",
+    verse: "求你記念你所吩咐僕人摩西的話，說：『你們若犯罪，我就把你們分散在萬民中；但你們若歸向我，謹守遵行我的誡命，你們被趕散的人雖在天涯，我也必從那裡將他們招聚回來，帶到我所選擇立為我名的居所。』（尼1:8-9）",
+    detail: "尼希米的行動始於一個充滿負擔的禱告。他沒有抱怨，而是首先向神認同百姓的罪。他的禱告是基於神自己的應許。在禱告之後，他以智慧和勇氣，把握機會向王陳明心意。王的恩准和他一路上的順利，都顯明了『我神施恩的手幫助我』。"
+  },
+  {
+    title: "重建城牆：分工與合作",
+    range: "尼3章",
+    keypoint: "尼希米組織百姓，不分階層，各按家族分段修造城牆，展現了合一與配搭的驚人力量。",
+    verse: "從那日起，我的僕人一半做工，一半拿槍、拿盾牌、拿弓、穿鎧甲。（尼4:16）",
+    detail: "第三章詳細地記錄了參與建牆的各個家族和群體，從大祭司到平民，從銀匠到商人，人人都參與其中。這幅圖畫生動地展現了當神的子民同心合意時，所能成就的巨大工程。每個人都在自己的崗位上『修造對著自己房屋的那一段』，共同承擔使命。"
+  },
+  {
+    title: "面對內憂外患",
+    range: "尼4-6章",
+    keypoint: "面對外敵（參巴拉、多比雅）的嘲笑、威脅和詭計，以及內部貴冑剝削窮人的問題，尼希米一手做工，一手拿兵器，並以身作則解決內部矛盾。",
+    verse: "我們的神必為我們爭戰。（尼4:20）",
+    detail: "重建過程充滿了挑戰。外部的敵人用盡各種方法攔阻，從譏諷到武力威脅，再到陰謀陷害。尼希米的回應是：禱告，並設立防衛。他激勵百姓，不要怕，要記念主。同時，他也嚴厲地處理了內部的不公義，斥責貴冑放高利貸的行為，並自己放棄省長的俸祿，成為眾人的榜樣。最終，城牆在五十二天內完工，使仇敵懼怕，『就知道這工作是出於我們的神』。"
+  },
+  {
+    title: "宣讀律法與群體悔改",
+    range: "尼8-10章",
+    keypoint: "城牆建成後，以斯拉向百姓宣讀律法書，百姓聽了都哭了；利未人帶領百姓認罪、讚美，並重新與神立約。",
+    verse: "他們站在自己的地方，念耶和華——他們神的律法書，又承認自己的罪，敬拜耶和華——他們的神。（尼9:3）",
+    detail: "尼希米記的高潮不是工程的完結，而是屬靈的更新。百姓對神話語的渴慕，以及聽見律法後扎心的反應，帶來了一場深刻的悔改運動。第九章記載了聖經中最長的禱告之一，回顧了以色列的歷史，承認了百姓的悖逆，並頌讚了神的信實。最終，百姓與神重新立下誓約，承諾遵守律法、分別為聖。"
+  },
+  {
+    title: "耶路撒冷的堅固與改革",
+    range: "尼11-13章",
+    keypoint: "百姓抽籤決定遷入耶路撒冷居住，為城牆舉行盛大的奉獻禮，尼希米在第二次歸回後，再次潔淨聖殿和安息日。",
+    verse: "耶路撒冷啊，我若忘記你，情願我的右手忘記技巧！（詩137:5）",
+    detail: "為了使首都堅固，百姓們順服地抽籤，讓十分之一的人口搬入城內居住。城牆的奉獻禮是一個充滿喜樂和讚美的慶典，兩隊詩班在城牆上相向而行，歌聲響徹雲霄。然而，改革並非一勞永逸。在尼希米離開一段時間後，百姓又故態復萌。他回來後，再次以雷厲風行的手段，潔淨聖殿中被玷污的房間，並嚴格執行安息日的條例，顯明了持守聖潔需要不斷的警醒和努力。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那感動尼希米的神，也將對神國度的負擔放在您心中。願您能成為一個禱告與行動並重的領袖，靠著神施恩的手，勇敢面對挑戰，並在神的話語上，建立自己和群體的生命。我的神啊，求你記念我，施恩與我！阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

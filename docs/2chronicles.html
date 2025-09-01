@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>歷代志下的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-5">
+  <h1>歷代志下的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《歷代志下》接續歷代志上的敘事，從所羅門的統治開始，一直記載到猶大國被擄到巴比倫為止。與列王紀不同，歷代志的作者（傳統認為是以斯拉）在被擄歸回的背景下，將歷史的焦點完全放在南國猶大和耶路撒冷的聖殿上，幾乎忽略了北國以色列的歷史。本書的核心是「聖殿敬拜」與「君王的屬靈狀況」。書中詳細記載了聖殿的建造、敬拜的恢復，以及歷代猶大君王的統治。作者以一個清晰的神學觀點來評價君王：凡是帶領百姓敬畏神、尋求神、潔淨聖殿的，就蒙神賜福；凡是離棄神、行偶像崇拜的，就招致審判和國家的衰敗。本書旨在呼籲歸回的子民，要以聖殿為中心，重建對神的忠誠。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "所羅門建造聖殿",
+    range: "代下1-7章",
+    keypoint: "所羅門繼位，求得智慧，並為耶和華建造了宏偉的聖殿。獻殿之時，神的榮光充滿了殿。",
+    verse: "我所要建造的殿宇甚大，因為我們的神至大，超乎萬神。（代下2:5）",
+    detail: "歷代志下以極大的篇幅，詳細描繪了所羅門建造聖殿的輝煌。這不僅是建築的成就，更是神同在的記號。在獻殿禮上，神以火從天降下燒盡祭物，並以榮光充滿聖殿來回應，顯明祂的悅納。神也親自向所羅門顯現，應許若百姓謙卑、禱告、尋求祂的面、轉離惡行，祂就必從天上垂聽，赦免他們的罪，醫治他們的地。"
+  },
+  {
+    title: "王國的分裂與南國諸王",
+    range: "代下10-12章",
+    keypoint: "羅波安的愚昧導致王國分裂。此後，歷代志主要記載南國猶大諸王的統治，並以他們對神的忠誠度來評價其功過。",
+    verse: "羅波安的國堅立，他強盛的時候，就離棄耶和華的律法，以色列人也都隨從他。（代下12:1）",
+    detail: "王國分裂後，作者的視角集中在南國猶大，因為那裡有耶路撒冷聖殿和神所應許的大衛譜系。書中記載了羅波安、亞比雅、亞撒等君王。他們的統治呈現出一個清晰的模式：當他們尋求神、遵守律法時，國家就得享平安和勝利；當他們驕傲、離棄神時，就必遭遇外敵的攻擊和內部的動盪。"
+  },
+  {
+    title: "約沙法的改革與得勝",
+    range: "代下17-20章",
+    keypoint: "約沙法王行耶和華眼中看為正的事，差遣祭司和利未人教導律法，並在面臨三國聯軍攻擊時，專心倚靠神而取得大勝。",
+    verse: "我們無力抵擋這來攻擊我們的大軍，我們也不知道怎樣行，我們的眼目單仰望你。（代下20:12）",
+    detail: "約沙法是一位敬虔的君王，他不僅自己敬畏神，更致力於在全國推行律法教育。他統治的亮點，是在面對強敵時，帶領全國百姓禁食禱告，完全仰望神。神垂聽他們的禱告，使敵軍自相殘殺，以色列人不動一兵一卒就取得了勝利。這場『讚美得勝』的戰役，是信心與倚靠的典範。"
+  },
+  {
+    title: "約阿施的起伏與烏西雅的驕傲",
+    range: "代下23-26章",
+    keypoint: "年幼的約阿施在祭司耶何耶大的輔佐下，修葺聖殿，行神眼中看為正的事，但耶何耶大死後便離棄神。烏西雅王強盛時心高氣傲，擅入聖殿燒香而長大痲瘋。",
+    verse: "祭司耶何耶大在世的時候，約阿施行耶和華眼中看為正的事。（代下24:2）",
+    detail: "這兩位君王的故事，深刻地揭示了屬靈影響力和內在生命的重要性。約阿施的善行，很大程度上依賴於他人的督責。而烏西雅的例子則警告我們，成功和強盛極易使人驕傲，從而越過本分，輕慢神。他們的結局都顯明，對神的忠誠必須是發自內心、並且持守到底的。"
+  },
+  {
+    title: "希西家的潔淨與逾越節",
+    range: "代下29-32章",
+    keypoint: "希西家王登基後，立刻潔淨聖殿，恢復敬拜，並邀請南北兩國的百姓一同守逾越節，帶來屬靈的大復興。",
+    verse: "這樣，在耶路撒冷大有喜樂，自從以色列王大衛兒子所羅門的時候，在耶路撒冷沒有這樣的喜樂。（代下30:26）",
+    detail: "希西家的統治是歷代志中的一個高峰。他對恢復聖殿敬拜的熱忱，以及他尋求國家合一的努力，帶來了空前的屬靈復興和喜樂。在面對亞述王西拿基立的圍攻時，他堅定倚靠神，最終經歷了神奇妙的拯救。希西家是困境中信靠神的典範君王。"
+  },
+  {
+    title: "約西亞的改革與最終的覆滅",
+    range: "代下34-36章",
+    keypoint: "約西亞王年幼登基，尋求神，在修殿時發現律法書，領導了全國性的悔改和宗教改革。然而，他之後的君王繼續行惡，最終導致猶大被巴比倫所滅。",
+    verse: "王……在耶和華面前立約，要盡心盡性地順從耶和華，遵守他的誡命、法度、律例，成就這書上所記的約言。（代下34:31）",
+    detail: "約西亞的改革是猶大國最後一次、也是最徹底的一次屬靈復興。他對神話語的敬畏和順服，為國家帶來了短暫的平安。然而，他祖父瑪拿西的罪孽深重，國家的敗壞已無法逆轉。約西亞戰死後，猶大國迅速走向滅亡，耶路撒冷被毀，聖殿被焚，百姓被擄。書的結尾，卻以波斯王古列下詔允許猶太人歸回建殿作結，為黑暗的歷史留下了一線光明的盼望。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那察看君王內心的神，也鑒察您的心。願您能從猶大諸王的興衰中學會功課，以聖殿（教會）為中心，專心尋求祂，並在祂的話語上扎根，經歷祂信實的引導和復興的大能。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

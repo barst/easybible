@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>箴言的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-5">
+  <h1>箴言的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《箴言》是聖經「智慧文學」的核心書卷之一，主要作者是所羅門王。本書彙集了數百條關於人生智慧的格言、忠告和詩歌。其核心主題是「敬畏耶和華是智慧的開端」。箴言並非提供抽象的哲學理論，而是給予在日常生活中如何做出明智選擇的實用指導。內容涵蓋了勤勞與懶惰、言語的智慧、財富觀、擇偶、管教子女、遠離淫婦、以及公平正義等多個層面。它將人生分為兩條道路：智慧之路與愚蒙之路，並呼籲讀者選擇前者，以過一個蒙神喜悅和祝福的生活。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "智慧的呼喚",
+    range: "箴1-9章",
+    keypoint: "以父親對兒子的口吻，勸勉年輕人要尋求智慧，遠離惡人的誘惑和淫婦的迷惑。智慧被擬人化為一位在街市上呼喊的女士。",
+    verse: "敬畏耶和華是知識的開端；愚妄人藐視智慧和訓誨。（箴1:7）",
+    detail: "箴言的開篇部分，奠定了全書的基礎。作者反覆強調聽從父母教誨、尋求真智慧的重要性。智慧不僅僅是知識，更是一種敬畏神、能分辨善惡的品格。這幾章將智慧與愚昧擬人化，生動地描繪了選擇不同道路將帶來的截然不同的後果。"
+  },
+  {
+    title: "所羅門的箴言集",
+    range: "箴10-22章",
+    keypoint: "一系列關於義人與惡人、智慧與愚昧、勤勞與懶惰、誠實與詭詐的對比性箴言。",
+    verse: "手懶的，要受貧窮；手勤的，卻要富足。夏天聚斂的，是智慧之子；收割時沉睡的，是貽羞之子。（箴10:4-5）",
+    detail: "這部分是箴言的主體，包含了數百條簡潔而深刻的格言。這些箴言大多採用對偶句的形式，將兩種不同的品格和其结局並列，形成鮮明對比。內容幾乎涵蓋了生活的所有層面，旨在教導人如何在日常言行中，活出敬畏神的智慧。"
+  },
+  {
+    title: "智慧人的言語",
+    range: "箴22-24章",
+    keypoint: "彙集了三十句智慧人的言語，提供關於處世、待人、飲食和家庭等方面的具體忠告。",
+    verse: "你要專心領受訓誨，留心聽知識的言語。不可不管教孩童；你用杖打他，他必不至於死。（箴22:17, 23:13）",
+    detail: "這部分箴言的風格略有不同，篇幅較長，更像是小段的教誨。內容非常務實，例如警告人不要與好生氣的人結交，不要為人作保，不要貪圖君王的宴席，並強調了管教子女的重要性。這些都是旨在塑造健全品格的實用智慧。"
+  },
+  {
+    title: "希西家的人所謄錄的箴言",
+    range: "箴25-29章",
+    keypoint: "另一組所羅門的箴言，由猶大王希西家的人所抄錄，內容多涉及君王、鄰里關係和社會公義。",
+    verse: "一句話說得合宜，就如金蘋果在銀網子裡。（箴25:11）",
+    detail: "這部分箴言同樣充滿智慧。它教導君王要查明實情，也教導普通人要誠實待人。其中包含了許多關於言語力量的著名比喻，如『一句話說得合宜，就如金蘋果在銀網子裡』，以及關於如何對待朋友和仇敵的智慧。"
+  },
+  {
+    title: "亞古珥與利慕伊勒的箴言",
+    range: "箴30章",
+    keypoint: "亞古珥的禱告，求神使他不貧窮也不富足；以及他對神話語和受造物奇妙的觀察。",
+    verse: "我求你兩件事，在我未死之先，不要不賜給我：求你使虛假和謊言遠離我；使我也不貧窮也不富足；賜給我需用的飲食。（箴30:7-8）",
+    detail: "亞古珥的箴言充滿了謙卑和對神的敬畏。他著名的禱告，顯明了一種知足常樂的智慧。他對自然界中四樣微小卻聰明的活物和四樣威武的走獸的觀察，也啟發人思想神奇妙的創造。"
+  },
+  {
+    title: "才德婦人的頌歌",
+    range: "箴31章",
+    keypoint: "利慕伊勒王轉述其母親的教誨，最後以一首優美的離合詩，頌讚才德婦人的品格與價值。",
+    verse: "才德的女子很多，惟獨你超過一切。豔麗是虛假的，美容是虛浮的；惟敬畏耶和華的婦女必得稱讚。（箴31:29-30）",
+    detail: "箴言以對一位理想女性的頌讚作結。這位才德的婦人，不僅勤勞、智慧、有商業頭腦、善於管理家務，她更是一位充滿慈愛、樂於助人、並以敬畏耶和華為生命根基的人。她的價值遠勝過外在的美容，是箴言所倡導的智慧品格的完美體現。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那賜人智慧的耶和華神，將敬畏祂的心放在您裡面。願您能從箴言中得著處世的智慧，在言語、工作和人際關係上，都能做出明智的選擇，走在蒙福的義人道路上。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

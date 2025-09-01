@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>以斯拉記的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-1">
+  <h1>以斯拉記的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《以斯拉記》記載了猶大百姓在經歷七十年被擄之後，分兩批回歸耶路撒冷的歷史。本書的核心主題是「聖殿的重建」與「聖潔的恢復」。第一批歸回的百姓在省長所羅巴伯和祭司耶書亞的帶領下，克服了重重攔阻，重建了聖殿。約六十年後，文士以斯拉帶領第二批百姓歸回，他的主要工作是教導神的律法，並處理百姓與外邦人通婚的罪，帶領百姓重新立志，過分別為聖的生活。以斯拉記顯明了神信實地成就祂使百姓歸回的應許，並呼籲祂的子民要以神的話語為中心，重建信仰和生活。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "第一次歸回與重建聖殿的根基",
+    range: "拉1-3章",
+    keypoint: "波斯王古列下詔，允許猶太人歸回。所羅巴伯和耶書亞帶領第一批百姓回到耶路撒冷，首先重建祭壇，恢復獻祭。",
+    verse: "到了七月，以色列人住在各城，那時他們如同一人，聚集在耶路撒冷。……他們在原有的根基上築壇，因懼怕鄰國的民，就在壇上向耶和華早晚獻燔祭。（拉3:1-3）",
+    detail: "神的應許藉著外邦君王成就，這顯明了神掌管萬國。歸回的百姓首先恢復的不是自己的家園，而是對神的敬拜。他們在廢墟之上重建祭壇，這是一個信心的行動，表明他們承認敬拜神是他們生活的中心。當立下聖殿根基時，他們發出極大的讚美和哭泣。"
+  },
+  {
+    title: "重建工作受阻與先知的激勵",
+    range: "拉4-6章",
+    keypoint: "周圍的敵人用各樣方法攔阻建殿工程，使其停頓多年；後因先知哈該和撒迦利亞的鼓勵，工程得以恢復並最終完成。",
+    verse: "那時，猶大和便雅憫的敵人聽說被擄歸回的人為耶和華——以色列的神建造殿宇，就前來……在他們建造的時候，擾亂他們。（拉4:1-4）",
+    detail: "重建的過程並非一帆風順。仇敵的控告和詭計，加上波斯政府的禁令，使建殿工程一度停擺。然而，神興起祂的先知哈該和撒迦利亞，用神的話語責備百姓的灰心，並激勵他們重新動工。最終，在新王大利烏的支持下，聖殿得以完工，百姓歡喜地舉行獻殿禮。"
+  },
+  {
+    title: "以斯拉帶領第二次歸回",
+    range: "拉7-8章",
+    keypoint: "文士以斯拉蒙波斯王亞達薛西的恩准，帶領第二批百姓歸回，並帶回大量為聖殿所用的金銀器皿。",
+    verse: "以斯拉定志考究遵行耶和華的律法，又將律例典章教訓以色列人。（拉7:10）",
+    detail: "以斯拉是一位對神話語極其渴慕和精通的領袖。他歸回的核心使命，不是政治或經濟，而是屬靈的重建。他深知，一個民族的復興，根基在於遵行神的律法。在歸回的路上，他帶領百姓禁食禱告，專心倚靠神的保護，而非求助於王的軍兵，顯明了他的信心。"
+  },
+  {
+    title: "處理與外邦人通婚的罪",
+    range: "拉9-10章",
+    keypoint: "以斯拉聽聞百姓與外邦人通婚，大大悲痛，在神面前認罪禱告；百姓受感動，立志離絕外邦女子。",
+    verse: "我們的神啊，既是如此，我們還有什麼話可說呢？因為我們離棄了你的命令。……神啊，我們在你面前甚有罪惡，因此無人在你面前站立得住。（拉9:10, 15）",
+    detail: "以斯拉的反應，顯明了一個真正屬靈領袖的樣式。他沒有立刻去指責百姓，而是自己撕裂衣服，在神面前俯伏，將百姓的罪當作自己的罪來認同和哀哭。他的禱告充滿了對神聖潔的敬畏和對罪的憂傷。這深刻的悔改，感動了百姓的心，使他們願意採取實際行動，與罪分別，重建聖潔的群體。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那施恩的神，也感動您的心，使您定志考究遵行祂的話語。願您能從以斯拉的榜樣中學會悔改與分別，並在神的家中，作一個忠心、聖潔的僕人，參與在祂榮耀的重建工作中。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

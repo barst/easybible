@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>雅歌的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-1">
+  <h1>雅歌的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《雅歌》是聖經「智慧文學」中的一卷愛情詩歌，書名意為「歌中之歌」，即最美的歌。傳統上認為作者是所羅門王。本書以男女之間熱烈的愛情對話和詩歌，描繪了從戀愛、婚禮到婚後生活的親密關係。其核心主題是「愛情的聖潔與美好」。雅歌以坦誠而優美的筆觸，讚揚了在婚姻盟約中，男女之間專一、委身、充滿激情和享受的愛情，這是神所賜的美好禮物。在預表意義上，雅歌也被歷代教會解讀為基督與教會之間那份親密、排他和永不改變的愛的完美寫照。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "愛情的序曲：彼此的渴慕",
+    range: "歌1-2章",
+    keypoint: "書拉密女與所羅門王彼此表達愛慕之情，女子渴望良人的愛情，如同在蘋果樹下得享安息。",
+    verse: "願他用口與我親嘴；因你的愛情比酒更美。（歌1:2）",
+    detail: "雅歌以女子對愛人濃烈的渴慕開篇。儘管她因勞作而皮膚黝黑，感到自卑，但她的良人卻稱讚她是『美麗的』、『佳偶』。他們在田園間彼此尋找、互相讚美，描繪了一幅純真而熱烈的愛情畫卷。女子將良人比作蘋果樹，在他的蔭下可以歡然歇息，嚐他果子的滋味，覺得甘甜。"
+  },
+  {
+    title: "愛情的尋覓與成長",
+    range: "歌3-5章",
+    keypoint: "女子在夜間尋找良人，經歷短暫的分離與重逢；在婚禮中，良人以華麗的詞藻讚美新婦全然美麗，毫無瑕疵。",
+    verse: "我的佳偶，你全然美麗，毫無瑕疵！（歌4:7）",
+    detail: "這部分描寫了愛情中的波折與成長。女子因尋不見良人而焦慮，這象徵著關係中的不安全感和考驗。然而，尋見之後的喜悅更加甜美。第四章是婚禮的高潮，良人對新婦從頭到腳的讚美，不僅是對她外貌的欣賞，更是對她整個人完全的接納與珍視。這份愛是排他的，如同『關鎖的園，禁閉的井，封閉的泉源』。"
+  },
+  {
+    title: "愛情的考驗與堅固",
+    range: "歌5-7章",
+    keypoint: "女子因一時的遲疑而錯失良人，再次經歷尋找的痛苦，但重逢後，他們的愛情更加堅固，彼此的讚美也更加成熟。",
+    verse: "我屬我的良人，我的良人也屬我。（歌6:3）",
+    detail: "婚後的愛情並非一帆風順。女子因安逸而懶於為良人開門，導致了良人的離去。她在痛苦的尋找中，向耶路撒冷的眾女子形容她良人的獨特與美好，這加深了她自己的愛。當他們重逢時，彼此的關係更加穩固，『我屬我的良人』的宣告，顯明了在盟約中那份安穩、甜蜜的歸屬感。"
+  },
+  {
+    title: "愛情的盟約與永恆",
+    range: "歌8章",
+    keypoint: "愛情被描繪為如死之堅強，眾水不能熄滅。呼籲不要驚動、不要叫醒愛情，等它自己情願。",
+    verse: "求你將我放在你心上如印記，帶在你臂上如戳記。因為愛情如死之堅強，嫉恨如陰間之殘忍；所發的電光是火焰的電光，是耶和華的烈焰。愛情，眾水不能熄滅，大水也不能淹沒。（歌8:6-7）",
+    detail: "雅歌在最高潮處，為愛情下了一個永恆的定義。它如印記般深刻，如死亡般不可抗拒，其力量如同耶和華的烈焰，任何外力都無法將其熄滅。這頌讚了在婚姻盟約中那份神聖、堅貞、永不止息的愛。最後，書中以『不要叫醒愛情，等它自發』的勸勉作結，提醒人尊重愛情成長的自然規律，不要輕率地對待這份神聖的禮物。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那設立婚姻、以愛為旗在我們之上的神，將雅歌中那份聖潔、專一、美好的愛情賜給您。願您在婚姻的盟約中，經歷那如死之堅強、眾水不能熄滅的愛，並在與基督的關係中，體會祂是您永遠的良人。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

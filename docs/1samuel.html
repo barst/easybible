@@ -1,0 +1,122 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>撒母耳記上的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-5">
+  <h1>撒母耳記上的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《撒母耳記上》記載了以色列歷史上一個重要的轉折時期：從士師時代的混亂過渡到君主制度的建立。本書圍繞三位核心人物展開：最後一位士師撒母耳、第一位君王掃羅，以及最偉大的君王大衛。書中深刻地描繪了領袖的興衰、順服與悖逆的對比，以及神在歷史中的主權揀選。撒母耳記上不僅是歷史的記錄，更充滿了對人性和神性的深刻洞察，顯明了神看重人的內心，遠勝過外在的樣貌。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "撒母耳的出生與蒙召",
+    range: "撒上1-3章",
+    keypoint: "哈拿在苦悶中禱告求子，神應允她生下撒母耳；撒母耳在聖殿中成長，蒙神呼召成為先知。",
+    verse: "耶和華啊，萬軍之神啊，你若垂顧婢女的苦情，眷念不忘婢女，賜我一個兒子，我必使他終身歸與耶和華。（撒上1:11）",
+    detail: "故事以哈拿信心的禱告開始，顯明了神垂聽卑微人的呼求。撒母耳的出生是神恩典的記號。在祭司以利家族敗壞的背景下，神親自呼召童子撒母耳，將話語託付給他，預備他成為以色列新時代的屬靈領袖。"
+  },
+  {
+    title: "約櫃的失而復得",
+    range: "撒上4-7章",
+    keypoint: "以色列人迷信約櫃，在與非利士人的爭戰中慘敗，約櫃被擄；但神的手攻擊非利士人，使他們不得不送回約櫃。",
+    verse: "以色列人哪，你們當將心歸向耶和華，單單地事奉他。（撒上7:3）",
+    detail: "這個事件教導了一個深刻的功課：神同在的記號（約櫃）不能取代神自己。以色列人將約櫃當作護身符，卻離棄了神，因此遭遇失敗。然而，神的大能不受限制，祂在外邦中親自為自己的名爭戰，使非利士人認識到以色列神的威嚴。約櫃歸回後，撒母耳帶領百姓悔改歸向神，經歷了屬靈的復興。"
+  },
+  {
+    title: "以色列人立王與掃羅的興起",
+    range: "撒上8-12章",
+    keypoint: "百姓厭棄神作王，執意要求立一個王；神透過撒母耳膏立了掃羅，以色列進入王國時期。",
+    verse: "他們厭棄我，不要我作他們的王。（撒上8:7）",
+    detail: "百姓立王的要求，表面上是為了效法列國，有王帶領他們爭戰，實質上卻是對神的不信和厭棄。儘管神警告他們君主制度的弊端，但仍應允了他們。神揀選了高大俊美的掃羅，他起初表現謙卑，並帶領以色列人取得了軍事上的勝利。"
+  },
+  {
+    title: "掃羅的悖逆與被棄",
+    range: "撒上13-15章",
+    keypoint: "掃羅兩次違背神的命令：擅自獻祭和沒有滅絕亞瑪力人，因此被神廢棄王位。",
+    verse: "耶和華喜悅燔祭和平安祭，豈如喜悅人聽從他的話呢？聽命勝於獻祭；順從勝於公羊的脂油。（撒上15:22）",
+    detail: "掃羅的悲劇在於他的不順服。他因懼怕百姓而擅自獻祭，又因貪愛上好的牛羊而沒有完全執行神的命令。這兩次事件暴露了他內心的驕傲和對神話語的輕視。撒母耳宣告了那句著名的話：『聽命勝於獻祭』，並預言神的國將離開掃羅家。"
+  },
+  {
+    title: "大衛的蒙揀選與興起",
+    range: "撒上16章",
+    keypoint: "神差遣撒母耳到耶西家，揀選了最年幼的兒子大衛，並膏立他為未來的君王。",
+    verse: "耶和華卻對撒母耳說：『不要看他的外貌和他身材高大，我不揀選他。因為，耶和華不像人看人：人是看外貌；耶和華是看內心。』（撒上16:7）",
+    detail: "神揀選的標準與人截然不同。當撒母耳看重耶西長子們的外貌時，神提醒他，祂看重的是人的內心。神揀選了當時看似最不起眼的牧童大衛，聖靈降在他身上，預備他將要承擔的使命。這是全書的轉捩點。"
+  },
+  {
+    title: "大衛戰勝歌利亞",
+    range: "撒上17章",
+    keypoint: "大衛依靠耶和華的名，用機弦甩石擊敗了非利士巨人歌利亞，為以色列帶來勝利。",
+    verse: "你來攻擊我，是靠著刀槍和銅戟；我來攻擊你，是靠著萬軍之耶和華的名。（撒上17:45）",
+    detail: "這場經典的戰役，是信心勝過恐懼的完美展現。當全以色列軍隊都在巨人面前恐懼顫抖時，年輕的大衛卻因著對神大能的信心而充滿勇氣。他宣告爭戰的勝敗在於耶和華，並以看似微不足道的方式取得了驚人的勝利，使神的名得著極大的榮耀。"
+  },
+  {
+    title: "掃羅的嫉妒與大衛的逃亡",
+    range: "撒上18-30章",
+    keypoint: "大衛聲名鵲起，引發掃羅瘋狂的嫉妒和追殺；大衛開始了漫長的逃亡生涯，但神始終與他同在。",
+    verse: "掃羅懼怕大衛；因為耶和華離開自己，與大衛同在。（撒上18:12）",
+    detail: "這部分詳細記載了掃羅如何一步步被嫉妒和恐懼吞噬，從一個君王淪為一個偏執的追殺者。與此同時，大衛在逃亡中卻展現出非凡的品格，他兩次有機會殺死掃羅，卻因敬畏神的受膏者而放過他。在曠野的試煉中，大衛的信心和對神的倚靠被不斷地熬煉和塑造。"
+  },
+  {
+    title: "掃羅的結局",
+    range: "撒上31章",
+    keypoint: "在與非利士人的基利波山戰役中，掃羅和他的兒子們陣亡，結束了他悲劇性的一生。",
+    verse: "掃羅和他三個兒子，與拿他兵器的人，以及所有跟隨他的人，都在那日一同死亡。（撒上31:6）",
+    detail: "撒母耳記上以掃羅王朝的覆滅作結。掃羅最終死在自己起初所懼怕的敵人手中。他的一生是一個深刻的警示：一個不順服神、被驕傲和嫉妒所驅使的領袖，即使有再好的開始，也終將走向悲慘的結局。這為大衛的登基鋪平了道路。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那察看人內心的耶和華神，塑造您擁有一顆合祂心意的心。願您能學會聽命勝於獻祭的功課，在試煉中倚靠祂，並在祂的揀選和恩典中，活出大衛那樣信靠順服的生命。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

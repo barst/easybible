@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>列王紀下的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-3">
+  <h1>列王紀下的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《列王紀下》緊接列王紀上的歷史，記載了南北兩國後期君王的事蹟，直到它們最終相繼被外邦滅亡。本書的核心信息是「悖逆的後果」與「神的審判」。書中清楚地展示，無論是北國以色列還是南國猶大，都因其持續的偶像崇拜和對先知警告的漠視，最終無可避免地走向了覆滅的結局。北國以色列被亞述所滅，南國猶大被巴比倫所擄。然而，在這一片黑暗的歷史中，仍有像希西家和約西亞這樣的敬虔君王，以及先知以利沙的事奉，如同明燈，彰顯了神的信實與大能。本書是對國家和個人命運的神學反思，警告後人離棄神的悲慘結局。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "以利沙繼承以利亞的職事",
+    range: "王下1-2章",
+    keypoint: "以利亞乘旋風升天，以利沙求得雙倍的感動，繼承了他的先知職事，並開始施行神蹟。",
+    verse: "願感動你的靈加倍地感動我。（王下2:9）",
+    detail: "以利亞的升天是一個榮耀的場景，標誌著他忠心事奉的完美句點。他的門徒以利沙，緊緊跟隨，並以極大的渴慕求得雙倍的屬靈能力。他用以利亞的外衣打水，水分開，印證了神的靈與他同在，開啟了他長達數十年的先知事奉。"
+  },
+  {
+    title: "以利沙的神蹟奇事",
+    range: "王下3-8章",
+    keypoint: "以利沙施行了一系列神蹟，如使寡婦的油充滿器皿、使書念婦人的兒子復活、解乃縵元帥的大痲瘋等。",
+    verse: "今日我必使你知道我是耶和華。（改編自王下5:8-15）",
+    detail: "以利沙的事奉充滿了神蹟奇事，這些神蹟不僅彰顯了神的大能，更顯明了祂對卑微人（寡婦）、外邦人（乃縵）的憐憫和關懷。乃縵得醫治的故事尤其突出，教導人順服是領受神恩典的關鍵，並宣告了耶和華是超越國界、獨一的真神。"
+  },
+  {
+    title: "北國以色列的滅亡",
+    range: "王下9-17章",
+    keypoint: "耶戶王朝的興衰，以及之後的諸王繼續行耶和華眼中看為惡的事，最終導致北國在主前722年被亞述帝國所滅。",
+    verse: "都因他們離棄耶和華——他們神的約，去敬拜事奉別神。（王下17:7的概括）",
+    detail: "這部分記載了北國以色列最後的歷史。儘管有耶戶的改革，但北國始終沒有脫離耶羅波安所設立的金牛犢崇拜。他們不斷地犯罪，無視神藉眾先知發出的警告。最終，神的忍耐到了盡頭，祂容許殘暴的亞述帝國攻陷其首都撒馬利亞，將以色列人擄到外邦，結束了北國的歷史。"
+  },
+  {
+    title: "南國猶大的敬虔君王：希西家",
+    range: "王下18-20章",
+    keypoint: "希西家王行耶和華眼中看為正的事，潔淨聖殿，倚靠神抵擋亞述大軍的圍攻，並在病危時蒙神醫治。",
+    verse: "希西家倚靠耶和華——以色列的神，在他前後的猶大諸王中沒有一個及他的。（王下18:5）",
+    detail: "在北國滅亡的背景下，南國的希西家王帶來了一線希望。他領導了一場徹底的宗教改革，並在面對亞述王西拿基立的威脅時，專心倚靠神。神垂聽他的禱告，差遣使者一夜之間擊殺了十八萬五千亞述軍兵，施行了奇妙的拯救。希西家的生平，是信心與順服帶來神蹟的典範。"
+  },
+  {
+    title: "南國的敗壞與約西亞的改革",
+    range: "王下21-23章",
+    keypoint: "瑪拿西王行大惡，使猶大罪孽深重；約西亞王發現律法書，領導了一場徹底的宗教改革，但仍無法挽回國家的命運。",
+    verse: "這約書上的一切話，是我們列祖沒有聽從，沒有遵行，惹動耶和華向我們所發的烈怒。（王下22:13）",
+    detail: "希西家之後的瑪拿西，是猶大最邪惡的君王，他的統治將國家帶入了屬靈的最低谷。雖然約西亞王發現律法書後，以極大的熱忱領導了全國性的悔改和改革，但因瑪拿西所犯的罪，神毀滅猶大的心意已定。約西亞的改革，延緩了審判，卻無法逆轉結局。"
+  },
+  {
+    title: "南國猶大的滅亡",
+    range: "王下24-25章",
+    keypoint: "猶大最後的幾位君王繼續行惡，最終巴比倫王尼布甲尼撒在主前586年攻陷耶路撒冷，焚燒聖殿，將百姓擄去。",
+    verse: "耶路撒冷和猶大遭這災禍，是因耶和華的怒氣。（王下24:20）",
+    detail: "列王紀下以南國猶大的覆滅作結。在經歷了數次圍城和被擄後，耶路撒冷最終被徹底摧毀，大衛王朝的統治告一段落，百姓被擄到巴比倫。這悲慘的結局，是猶大長期悖逆神的必然結果，應驗了眾先知的預言。書的結尾提到被擄的約雅斤王在巴比倫蒙恩，為將來的歸回留下了一絲微弱的盼望。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那掌管歷史、施行審判的公義之神，藉著列王紀的歷史教訓，使您警醒。願您能專心跟隨主，不偏左右，在彎曲悖謬的世代中作明亮的星，見證祂的信實與大能。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

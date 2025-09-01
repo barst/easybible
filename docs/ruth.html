@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>路得記的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-4">
+  <h1>路得記的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《路得記》是聖經中的一卷優美的歷史短篇，故事發生在士師秉政的黑暗時期。本書的核心主題是「慈愛」、「信實」與「救贖」。故事圍繞著摩押女子路得，在丈夫和公公去世後，依然選擇忠誠地跟隨婆婆拿俄米回到伯利恆。路得的信實和賢德，最終為她贏得了親族救贖者波阿斯的愛，她也因此成為大衛王的曾祖母，被列入耶穌基督的家譜。路得記如同一顆在黑暗中閃亮的珍珠，顯明了神的恩典和祂在平凡人生命中奇妙的護理與預備。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "路得的信實選擇",
+    range: "得1章",
+    keypoint: "在遭遇饑荒和喪親之痛後，摩押女子路得選擇跟隨婆婆拿俄米，歸向耶和華。",
+    verse: "路得說：『不要催我回去不跟隨你。你往哪裡去，我也往那裡去；你在哪裡住宿，我也在哪裡住宿；你的國就是我的國，你的神就是我的神。』（得1:16）",
+    detail: "故事以拿俄米一家的悲劇開始，他們因饑荒逃往摩押，卻在那裡失去了家中的所有男人。在絕望中，拿俄米打算獨自返回故鄉。然而，她的兒媳路得卻做出了一個驚人的決定，她願意放棄自己的故鄉和神明，誓死跟隨拿俄米，並信靠耶和華。這段告白是跨越文化和血緣的忠誠典範。"
+  },
+  {
+    title: "在波阿斯田間的蒙恩",
+    range: "得2章",
+    keypoint: "路得在波阿斯的田裡拾取麥穗，她的勤勞和賢德，以及對婆婆的孝順，贏得了波阿斯的稱讚和特別的恩待。",
+    verse: "願耶和華照你所行的賞賜你。你來投靠耶和華——以色列神的翅膀下，願你滿得他的賞賜。（得2:12）",
+    detail: "路得的品格在行動中彰顯出來。她不僅勤勞，更對婆婆充滿愛心。這一切都被田主波阿斯看在眼裡。波阿斯是一位公義且富有恩慈的人，他被路得的信實所感動，不僅保護她，更慷慨地供應她。這段相遇顯明了神的護理，祂在暗中引導，為路得預備了出路。"
+  },
+  {
+    title: "尋求救贖",
+    range: "得3章",
+    keypoint: "拿俄米為路得的將來籌劃，指示她向波阿斯這位至近的親屬，尋求婚姻的救贖。",
+    verse: "女兒啊，我不當為你找個安身之處，使你享福嗎？（得3:1）",
+    detail: "根據當時的律法，一個男人有責任娶他已故兄弟的遺孀，以延續家族血脈，這被稱為『親族救贖者』的責任。拿俄米看見了波阿斯的善意，便鼓勵路得主動去尋求波阿斯的遮蓋。路得順服地照著婆婆的指示行事，以謙卑和信靠的態度，將自己的未來交託在波阿斯的手中。"
+  },
+  {
+    title: "波阿斯的信實與救贖",
+    range: "得4章",
+    keypoint: "波阿斯在城門口，按著律法程序，從另一位更近的親屬手中，取得了贖回路得和拿俄米產業的權利，並娶路得為妻。",
+    verse: "波阿斯對長老和眾民說：『你們今日作見證，凡屬以利米勒和基連、瑪倫的，我都從拿俄米手中置買了。我又娶了瑪倫的妻摩押女子路得為妻，好在死人的產業上存留他的名。』（得4:9-10）",
+    detail: "波阿斯展現了他作為一個信實守約之人的品格。他沒有私下行事，而是在城門口公開、公正地處理了贖買的程序。他娶路得為妻，不僅是出於愛情，更是出於對神律法的尊重和對家族的責任。他們的孩子俄備得，成為了大衛王的祖父。這個故事最終指向了那位終極的救贖者——耶穌基督，祂將我們從罪惡和絕望中贖回，並將我們接入神的家中。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那看顧路得的信實上帝，也看顧您的一生。願您能像路得一樣，在困境中持守信實與仁愛，並投靠在祂大能的翅膀蔭下。願我們的主耶穌基督，那位終極的救贖主，將您從一切的苦境中贖回，使您得著豐盛的生命。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>

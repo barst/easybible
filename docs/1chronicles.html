@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>歷代志上的重點</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-4">
+  <h1>歷代志上的重點</h1>
+  <a href="index.html" class="home-link">回到主頁</a>
+
+  <div class="intro">
+    <p><strong>本書簡介：</strong></p>
+    <p>《歷代志上》是在以色列人被擄歸回後寫成的，它與《歷代志下》原為一卷書。作者（傳統認為是以斯拉）重新梳理了以色列的歷史，旨在堅固歸回子民的身份認同和信仰盼望。本書的核心是「以大衛和聖殿為中心的敬拜」。開篇以長篇的家譜，將歸回的百姓與神起初的創造和對列祖的應許連結起來，並特別聚焦於大衛的譜系。書中詳細記載了大衛王朝的建立、約櫃的迎回，以及他為建造聖殿所做的詳盡預備。歷代志上省略了大衛的一些失敗（如與拔示巴犯罪），更側重於描繪他作為一個敬拜者和神國建立者的理想形象，以此激勵當代的百姓重建家園和敬拜生活。</p>
+  </div>
+
+  <div class="grid" id="cards"></div>
+
+  <div class="modal" id="modal">
+    <div class="modal-content" onclick="closeModal()">
+      <h2 id="modalTitle"></h2>
+      <p id="modalRange"></p>
+      <p id="modalKeypoint"></p>
+      <p id="modalVerse"></p>
+      <div id="modalDetail"></div>
+    </div>
+  </div>
+
+  <script>
+   const verses = [
+  {
+    title: "從亞當到大衛的家譜",
+    range: "代上1-9章",
+    keypoint: "以詳細的家譜追溯以色列的根源，確立歸回子民的合法身份，並將焦點引向猶大支派和大衛的譜系。",
+    verse: "猶大生法勒斯和謝拉…法勒斯生希斯崙…耶西生長子以利押，…第七子大衛。（代上2:4-15）",
+    detail: "這段看似枯燥的家譜，對於被擄歸回的百姓卻有著至關重要的意義。它幫助他們重新確認自己是神聖約子民的身份，是亞伯拉罕的後裔。家譜的鋪陳，最終聚焦於大衛，為接下來以大衛為中心的敘事奠定了根基，強調了神對大衛之約的信實。"
+  },
+  {
+    title: "大衛王朝的建立",
+    range: "代上10-12章",
+    keypoint: "掃羅因不忠於耶和華而敗亡；以色列眾支派齊心歸向大衛，擁立他作王，眾多勇士前來投奔。",
+    verse: "於是以色列的長老都來到希伯崙見大衛，與他立約。他們就照耶和華藉撒母耳所說的話，膏大衛作以色列的王。（代上11:3）",
+    detail: "歷代志的作者簡潔地記載了掃羅的結局，將其敗亡直接歸因於他的不忠。與之形成鮮明對比的是，全以色列都同心合意地歸向大衛。作者詳細列舉了前來幫助大衛的各支派勇士名單，旨在描繪一幅合一、強盛的理想君王圖景，激勵當代的百姓也要同心合意地重建國家。"
+  },
+  {
+    title: "迎回約櫃：敬拜的恢復",
+    range: "代上13-16章",
+    keypoint: "大衛初次迎約櫃因方法錯誤而失敗，後學習以敬畏的心、按律法規定，成功將約櫃迎入大衛城，並設立敬拜讚美。",
+    verse: "你們當稱謝耶和華，求告他的名，在萬民中傳揚他的作為！當向他唱詩、歌頌，談論他一切奇妙的作為！（代上16:8-9）",
+    detail: "迎回約櫃的過程，是大衛敬拜生命的縮影。第一次的失敗（烏撒事件）讓他學會了敬畏和順服的重要性。第二次，他完全按照律法的規定，讓利未人扛抬約櫃，並設立了龐大的詩班和樂隊，以極大的喜樂和讚美來敬拜神。這段記載強調了正確的敬拜方式和以神為中心的喜樂。"
+  },
+  {
+    title: "大衛之約與爭戰得勝",
+    range: "代上17-21章",
+    keypoint: "神與大衛立下永約，應許堅立他的國位直到永遠；大衛依靠神，在各樣的爭戰中都得勝。",
+    verse: "我必為我民以色列選定一個地方，栽培他們，使他們住自己的地方，不再遷移。（代上17:9）",
+    detail: "與撒母耳記下平行，歷代志也記載了『大衛之約』這一核心應許。這是神對大衛忠心的回應，也是對整個以色列民族未來的保證。作者隨後記載了大衛一系列的軍事勝利，但將其歸功於神的幫助，『耶和華使大衛無論往哪裡去，都得勝。』這再次強化了神權統治的觀念。"
+  },
+  {
+    title: "為聖殿預備材料與囑託所羅門",
+    range: "代上22-29章",
+    keypoint: "大衛因流血過多，不能為神建殿，但他傾盡全力為聖殿預備材料、規劃藍圖，並將建殿的使命鄭重交託給所羅門。",
+    verse: "大衛對所羅門說：『我兒啊，我心裡本想為耶和華——我神的名建殿。』（代上22:7）",
+    detail: "這是歷代志上獨有的、篇幅巨大的部分。作者詳細描寫了大衛如何為聖殿的建造積聚了天文數字般的金銀銅鐵和木石，並組織了祭司、利未人、詩班和守門人的事奉班次。他將自己對神家的熱愛和異象，完全傳承給兒子所羅門。最後，大衛帶領全民奉獻，並以一篇榮耀的禱告和頌讚結束，將一切歸榮耀與神，為自己的統治畫上了完美的句點。"
+  }
+];
+
+    const cardsContainer = document.getElementById('cards');
+    verses.forEach((item, index) => {
+      const div = document.createElement('div');
+      div.className = 'card';
+      div.id = `card-${index + 1}`;
+      div.innerHTML = `<div class='title'>${item.title}</div><div class='range'>經文範圍：${item.range}</div><div class='keypoint'>重點：${item.keypoint}</div><div class='verse'>${item.verse}</div>`;
+      div.onclick = () => openModal(item);
+      cardsContainer.appendChild(div);
+    });
+
+    function openModal(item) {
+      document.getElementById('modalTitle').innerText = item.title;
+      document.getElementById('modalRange').innerText = `經文範圍：${item.range}`;
+      document.getElementById('modalKeypoint').innerText = `重點：${item.keypoint}`;
+      document.getElementById('modalVerse').innerText = item.verse;
+      document.getElementById('modalDetail').innerText = item.detail;
+      document.getElementById('modal').style.display = 'flex';
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+  </script>
+
+  <div class="footer">
+    <hr>
+    <p><strong>祝福禱告：</strong></p>
+    <p>願那揀選大衛、與他立約的神，也將那份對神家的熱愛和渴慕放在您心中。願您能從大衛的生平學會敬拜與奉獻，並在神的國度中，找到自己獨特的位置，忠心事奉，直到見主。阿們！</p>
+    <hr>
+    <p>整理：陳瑞明 | 聯絡信箱：<a href="mailto:barstchen@gmail.com">barstchen@gmail.com</a></p>
+  </div>
+</body>
+</html>
