@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>電子投票系統</title>
+    <style>
+        :root {
+            --primary-green: #28a745; --light-green: #d4edda; --dark-green: #155724;
+            --grey: #f0f2f5; --text-color: #333;
+            --red: #dc3545; --dark-red: #a71d2a;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0; padding: 1rem; background-color: var(--grey); color: var(--text-color);
+            display: flex; justify-content: center; align-items: flex-start; min-height: 100vh;
+        }
+        .container {
+            width: 100%; max-width: 500px; background-color: white;
+            padding: 2rem; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1, h2 { color: var(--dark-green); text-align: center; }
+        .form-group { margin-bottom: 1.5rem; }
+        label { display: block; margin-bottom: 0.5rem; font-weight: bold; }
+        input[type="tel"], .searchable-select-input {
+            width: 100%; padding: 0.75rem; font-size: 1.2rem;
+            border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;
+            text-align: center; letter-spacing: 2px;
+        }
+        .btn {
+            display: block; width: 100%; padding: 0.8rem 1rem; font-size: 1.1rem;
+            font-weight: bold; color: white; background-color: var(--primary-green);
+            border: none; border-radius: 4px; cursor: pointer; transition: background-color 0.2s;
+            margin-top: 1rem;
+        }
+        .btn:hover { background-color: var(--dark-green); }
+        .btn:disabled { background-color: #aaa; cursor: not-allowed; }
+        
+        .searchable-select { position: relative; }
+        .searchable-select-input { font-size: 1rem; text-align: left; background-color: #fff; cursor: pointer; }
+        .searchable-select-list {
+            position: absolute; top: 100%; left: 0; right: 0; max-height: 200px;
+            overflow-y: auto; border: 1px solid #ccc; border-top: none;
+            background-color: white; z-index: 1000; display: none;
+        }
+        .searchable-select-list.show { display: block; }
+        .searchable-select-list div { padding: 0.75rem; cursor: pointer; text-align: left; }
+        .searchable-select-list div:hover { background-color: var(--light-green); }
+
+        .modal {
+            display: none; position: fixed; z-index: 1001; left: 0; top: 0;
+            width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.5);
+            justify-content: center; align-items: center;
+        }
+        .modal-content {
+            background-color: #fefefe; margin: auto; padding: 20px;
+            border: 1px solid #888; width: 90%; max-width: 450px;
+            border-radius: 8px; text-align: center;
+        }
+        .modal-content ul { list-style-type: none; padding: 0; text-align: left;}
+        .modal-content li { margin: 0.5rem 0; background-color: #f8f9fa; padding: 8px; border-radius: 4px; }
+        
+        .modal-buttons { display: flex; justify-content: space-between; gap: 1rem; margin-top: 1.5rem; }
+        .btn-secondary { background-color: #6c757d; }
+        .btn-secondary:hover { background-color: #5a6268; }
+        .btn-danger { background-color: var(--red); }
+        .btn-danger:hover { background-color: var(--dark-red); }
+
+    </style>
+</head>
+<body>
+    <div class="container" id="main-container">
+        <div id="home-view">
+            <h1>電子投票系統</h1>
+            <div class="form-group">
+                <label for="key-input">請輸入8位數投票金鑰</label>
+                <input type="tel" id="key-input" pattern="[0-9]*" maxlength="8" inputmode="numeric">
+            </div>
+            <button class="btn" id="submit-key-btn">下一步</button>
+        </div>
+        <div id="vote-view" style="display:none;"></div>
+        <div id="loading-view" style="display:none; text-align:center;"><h2>處理中，請稍候...</h2></div>
+    </div>
+
+    <div id="confirm-modal" class="modal">
+        <div class="modal-content">
+            <h2>請確認您的投票內容</h2>
+            <p>送出後將無法修改。</p>
+            <div id="modal-confirm-results"></div>
+            <div class="modal-buttons">
+                <button class="btn btn-secondary" id="modal-cancel-btn">返回修改</button>
+                <button class="btn btn-danger" id="modal-confirm-btn">確認送出</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="success-modal" class="modal">
+        <div class="modal-content">
+            <h2 style="color: var(--primary-green);">投票成功！</h2>
+            <p>您的圈選結果如下：</p>
+            <div id="modal-results"></div>
+            <p>您的選票已成功送出。</p>
+            <button class="btn" id="modal-close-btn">回到投票首頁</button>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbyAd4gFYh_Tu0g03Iw1tOagCZiX5QSUR9l0gynggCCPBQ273hF82xa73L5h3v3jmMgq/exec"; 
+        
+        const homeView = document.getElementById('home-view');
+        const voteView = document.getElementById('vote-view');
+        const loadingView = document.getElementById('loading-view');
+        const keyInput = document.getElementById('key-input');
+        const submitKeyBtn = document.getElementById('submit-key-btn');
+        
+        const successModal = document.getElementById('success-modal');
+        const modalResults = document.getElementById('modal-results');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        const confirmModal = document.getElementById('confirm-modal');
+        const modalConfirmResults = document.getElementById('modal-confirm-results');
+        const modalConfirmBtn = document.getElementById('modal-confirm-btn');
+        const modalCancelBtn = document.getElementById('modal-cancel-btn');
+
+
+        function showView(viewToShow) {
+            [homeView, voteView, loadingView].forEach(view => {
+                view.style.display = view === viewToShow ? 'block' : 'none';
+            });
+        }
+
+        async function apiCall(action, method = 'GET', body = null) {
+            let url = new URL(API_URL);
+            let options = { method, mode: 'cors' };
+
+            if (method.toUpperCase() === 'GET') {
+                url.searchParams.append('action', action);
+                if (body) {
+                    for (const key in body) {
+                        url.searchParams.append(key, body[key]);
+                    }
+                }
+            } else {
+                options.headers = { 'Content-Type': 'text/plain;charset=utf-8' };
+                options.body = JSON.stringify({ action, ...body });
+            }
+
+            try {
+                const response = await fetch(url.toString(), options);
+                const responseData = await response.json();
+                if (responseData.status === 'error') {
+                    throw new Error(responseData.message || '伺服器回報了一個未知的錯誤。');
+                }
+                if (!response.ok) {
+                     throw new Error(`網路錯誤，狀態碼: ${response.status}`);
+                }
+                return responseData;
+            } catch (error) {
+                console.error("API Call Failed:", error);
+                throw error;
+            }
+        }
+
+        async function handleKeySubmit() {
+            const key = keyInput.value.trim();
+            if (key.length !== 8 || !/^\d+$/.test(key)) {
+                return alert("金鑰格式錯誤，應為8位數字。");
+            }
+            submitKeyBtn.disabled = true;
+            submitKeyBtn.textContent = "驗證中...";
+            showView(loadingView);
+            try {
+                const response = await apiCall('getElectionDetails', 'GET', { key });
+                renderVoteView(response.data);
+            } catch (error) {
+                alert("錯誤：" + error.message);
+                location.reload();
+            }
+        }
+
+        function renderVoteView({ election, candidates_by_choice }) {
+            let html = `<h2>${election.name}</h2><p style="text-align:center;">本輪應選 ${election.num_to_elect} 位。</p>`;
+            if (!candidates_by_choice || candidates_by_choice.length < election.num_to_elect) {
+                voteView.innerHTML = `<h2>錯誤</h2><p>選舉資料不完整，無法產生選票。</p>`;
+                showView(voteView); return;
+            }
+            for (let i = 0; i < election.num_to_elect; i++) {
+                const candidatesForThisChoice = candidates_by_choice[i];
+                html += `
+                    <div class="form-group">
+                        <label>圈選 ${i + 1}</label>
+                        <div class="searchable-select" data-id="select-${i}">
+                            <input type="text" class="searchable-select-input" placeholder="點擊或輸入關鍵字搜尋..." data-value="000" readonly>
+                            <div class="searchable-select-list">
+                                ${candidatesForThisChoice.map(c => `<div data-value="${c.id}">${c.name}</div>`).join('')}
+                            </div>
+                        </div>
+                    </div>`;
+            }
+            html += `<button class="btn" id="submit-vote-btn">確認投票</button>`;
+            voteView.innerHTML = html;
+            showView(voteView);
+            document.querySelectorAll('.searchable-select').forEach(setupSearchableSelect);
+            document.getElementById('submit-vote-btn').addEventListener('click', () => handleSubmitVote(keyInput.value.trim()));
+        }
+        
+        function setupSearchableSelect(selectElement) {
+            const input = selectElement.querySelector('.searchable-select-input');
+            const list = selectElement.querySelector('.searchable-select-list');
+            const options = list.querySelectorAll('div');
+            
+            if (options.length > 0) {
+                input.value = options[0].textContent;
+                input.dataset.value = options[0].dataset.value;
+            }
+
+            input.addEventListener('click', (e) => {
+                input.readOnly = false;
+                input.select();
+            });
+
+            selectElement.addEventListener('click', (e) => {
+                if (e.target.tagName === 'DIV' && e.target.parentElement === list) return;
+                document.querySelectorAll('.searchable-select-list.show').forEach(l => {
+                    if (l !== list) l.classList.remove('show');
+                });
+                list.classList.toggle('show');
+            });
+            
+            document.addEventListener('click', (e) => {
+                if (!selectElement.contains(e.target)) {
+                    list.classList.remove('show');
+                }
+            });
+
+            input.addEventListener('keyup', () => {
+                const filter = input.value.toLowerCase();
+                options.forEach(option => {
+                    option.style.display = option.textContent.toLowerCase().includes(filter) ? '' : 'none';
+                });
+            });
+
+            options.forEach(option => {
+                option.addEventListener('mousedown', (e) => {
+                    e.preventDefault();
+                    input.value = option.textContent;
+                    input.dataset.value = option.dataset.value;
+                    list.classList.remove('show');
+                    input.readOnly = true;
+                });
+            });
+        }
+        
+        async function handleSubmitVote(key) {
+            const selections = [];
+            const selectedIds = [];
+            document.querySelectorAll('.searchable-select-input').forEach(input => {
+                const id = input.dataset.value || "000";
+                selections.push({ id, name: input.value || "－空白票－" });
+                if(id !== "000") selectedIds.push(id);
+            });
+
+            if (new Set(selectedIds).size !== selectedIds.length) {
+                return alert("錯誤：不可重複圈選同一位候選人。");
+            }
+
+            let confirmHtml = `<ul>${selections.map(s => `<li>${s.name}</li>`).join('')}</ul>`;
+            modalConfirmResults.innerHTML = confirmHtml;
+
+            confirmModal.style.display = "flex";
+
+            const confirmationPromise = new Promise((resolve) => {
+                modalConfirmBtn.onclick = () => {
+                    confirmModal.style.display = "none";
+                    resolve(true);
+                };
+
+                modalCancelBtn.onclick = () => {
+                    confirmModal.style.display = "none";
+                    resolve(false);
+                };
+            });
+            
+            const isConfirmed = await confirmationPromise;
+
+            if (isConfirmed) {
+                showView(loadingView);
+                try {
+                    await apiCall('submitVote', 'POST', { key, selections });
+                    modalResults.innerHTML = `<ul>${selections.map(s => `<li>${s.name}</li>`).join('')}</ul>`;
+                    successModal.style.display = "flex";
+                } catch (error) {
+                    alert("投票失敗：" + error.message);
+                    location.reload();
+                }
+            }
+        }
+
+        submitKeyBtn.addEventListener('click', handleKeySubmit);
+        modalCloseBtn.addEventListener('click', () => location.reload());
+    </script>
+</body>
+</html>

@@ -112,6 +112,17 @@ h1 {
     font-size: 16px;
 }
 
+/* Banner Styling */
+.hero-banner {
+  width: 100%;
+  max-width: 1920px;
+  height: auto;
+  display: block;
+  margin: 0 auto 20px auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
 /* --- Theme for Index Page --- */
 .theme-index h1 { color: #334155; }
 .theme-index .card { background: linear-gradient(135deg, #e2e8f0, #ffffff); }
